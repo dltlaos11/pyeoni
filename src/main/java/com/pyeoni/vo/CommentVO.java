@@ -2,6 +2,14 @@ package com.pyeoni.vo;
 
 import java.sql.Date;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+
 public class CommentVO {
 	int commentId;
 	String content;
