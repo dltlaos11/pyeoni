@@ -1,5 +1,5 @@
-# Created by https://www.toptal.com/developers/gitignore/api/eclipse,java,web
-# Edit at https://www.toptal.com/developers/gitignore?templates=eclipse,java,web
+# Created by https://www.toptal.com/developers/gitignore/api/java,eclipse
+# Edit at https://www.toptal.com/developers/gitignore?templates=java,eclipse
 
 ### Eclipse ###
 .metadata
@@ -93,17 +93,4 @@ local.properties
 hs_err_pid*
 replay_pid*
 
-### Web ###
-*.asp
-*.cer
-*.csr
-*.htm
-*.html
-*.js
-*.php
-*.rss
-*.wasm
-*.wat
-*.xhtml
-
-# End of https://www.toptal.com/developers/gitignore/api/eclipse,java,web
+# End of https://www.toptal.com/developers/gitignore/api/java,eclipse
