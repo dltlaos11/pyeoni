@@ -5,6 +5,6 @@ public class ProductVO {
 	String promotion;
 	String brand;
 	String price;
-	String type;
+	String kind;
 	String productImg;
 }
