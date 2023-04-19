@@ -15,4 +15,8 @@ public class ProductServices {
 		return pDAO.insertProduct(product);
 	}
 
+	// 상품 상세 조회
+	public ProductVO detailProduct(String product_name, String promotion, String brand, int price) {
+		return pDAO.detailProduct(product_name, promotion, brand, price);	
+	}
 }
