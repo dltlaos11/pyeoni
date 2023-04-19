@@ -10,8 +10,8 @@ import lombok.NoArgsConstructor;
 
 
 public class ProductHistoryVO {
-	String productName; 
-	String promotion;
-	String brand;
-	String price;
+	private String productName; 
+	private String promotion;
+	private String brand;
+	private String price;
 }

@@ -45,8 +45,8 @@ public class PyeoniCrawling {
          /* promotion */
          String promotion = "";
          promotion = products.get(i).select("div.card-body span.badge.bg-gs25.text-white").text();
-         /* prod_img */
-         String prod_img = products.get(i).select("img.prod_img").attr("src"); 
+         /* productImg */
+         String productImg = products.get(i).select("img.prod_img").attr("src"); 
          
          if (promotion.equals("")) {
             promotion = products.get(i).select("div.card-body span.badge.bg-emart24.text-white").text();
@@ -72,7 +72,7 @@ public class PyeoniCrawling {
            ministop : span.badge.bg-ministop.text-white 
            cspace : span.badge.bg-cspace.text-white   
 		 */
-         System.out.println(name + " " + price + " " + brand + " " + kind + " " + promotion + " " + prod_img);
+         System.out.println(name + " " + price + " " + brand + " " + kind + " " + promotion + " " + productImg);
       }
 
       return names;

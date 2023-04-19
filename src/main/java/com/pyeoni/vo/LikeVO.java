@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class LikeVO {
-	String productName; 
-	String promotion;
-	String brand;
-	String price;
-	String email;
+	private String productName; 
+	private String promotion;
+	private String brand;
+	private String price;
+	private String email;
 }
