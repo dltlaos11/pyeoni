@@ -21,13 +21,17 @@ body {
 	width: 80px;
 }
 
+.nav-link:hover {
+	background-color: #EC6707;
+	color: white;
+	border-radius: 10px;
+}
 
 .nav-item {
 	padding-left: 50px;
 }
 
-
-a.nav-link{
+a.nav-link {
 	color: #18A0FB;
 	font-size: 20px;
 }
@@ -41,17 +45,17 @@ a.nav-link{
 
 button.btn.btn-outline-warning {
 	color: orange;
-	border-color: orange;
+	border-color: #EC6707;
 	border-width: 2px;
 	font-weight: bold;
 }
 
-#login_btn{
+#login_btn {
 	margin-right: 50px;
 }
 
-#login_btn:hover{
-	color:white;
+#login_btn:hover {
+	color: white;
 }
 
 .content {
@@ -59,97 +63,103 @@ button.btn.btn-outline-warning {
 	margin-top: 200px;
 }
 
-#main_title{
-	text-shadow: 4px 2px 2px gray; 
+#main_title {
+	text-shadow: 4px 2px 2px gray;
 }
 
-#cu_img{
+#cu_img {
 	width: 50px;
-    height: 50px;
-
+	height: 50px;
 }
-#gs_img{
+
+#gs_img {
 	width: 50px;
-    height: 50px;
+	height: 50px;
 	margin-left: 20px;
 	margin-bottom: 10px;
 }
-#seven_img{
+
+#seven_img {
 	width: 50px;
-    height: 50px;
+	height: 50px;
 	margin-bottom: 10px;
 }
 
 /* 애니메이션 */
 .w3-animate-opacity {
-  animation-duration: 5s; /* change to the desired duration */
+	animation-duration: 5s; /* change to the desired duration */
 }
 
-.brand_go>a{
+.brand_go>a {
 	text-decoration: none;
 	margin: 50px;
 	font-size: 20px;
-	color:#18A0FB;	
-	
+	color: #18A0FB;
 }
 
-.brand_go{
+.brand_go {
 	margin-top: 30px;
 }
 
-#main_search{
+#main_search {
 	width: 550px;
 	margin: auto;
 }
 
-#search_bar{
+#search_bar {
 	text-align: center;
 	width: 350px;
 	border-width: 2px;
 }
 
-#search_btn{
-	background-color: purple;
-}
-
-#search_btn:hover{
+#search_btn:hover {
 	color: white;
 }
 
+/* footer */
+footer {
+	width: 95%;
+	height: 110px;
+	bottom: 0;
+	position: absolute;
+	text-align: right;
+	
+	font-size: 15px;
+}
 </style>
 
 
 </head>
 <body>
-	<%@ include file="../jsp/sidebar.jsp" %>
+	<%@ include file="../jsp/sidebar.jsp"%>
 	<nav class="navbar navbar-expand-lg navbar-light">
 		<div class="container-fluid">
 			<a class="navbar-brand" href="#"><img
 				src="../img/logo_pyeoni.png">Pyeoni</a>
-		 	<!--토글러 -->
+			<!--토글러 -->
 			<button class="navbar-toggler" type="button"
 				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
 				aria-controls="navbarSupportedContent" aria-expanded="false"
 				aria-label="Toggle navigation">
 				<span class="navbar-toggler-icon"></span>
 			</button>
-			
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+			<div class="navbar-collapse" id="navbarSupportedContent">
 				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 					<li class="nav-item"><a class="nav-link" href="#">CU</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
-					
+
 					<!-- Session에서 관리자인지 확인하기 -->
 					<c:if test="${sessionScope.userLoggedIn == true}">
-						<li class="nav-item">
-							<a class="nav-link" href="#">관리자 페이지</a>
+						<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a>
 						</li>
 					</c:if>
 				</ul>
 				<form action="#">
-					<button class="btn btn-outline-warning" type="button" id="login_btn">login/register</button>
+					<button class="btn btn-outline-warning" type="button"
+						id="login_btn">login/register</button>
 				</form>
 			</div>
 		</div>
@@ -157,35 +167,35 @@ button.btn.btn-outline-warning {
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
-		<!-- 애니메이션 적용 -->
-		<div class="w3-container w3-center w3-animate-opacity">
-			<p id="main_title">PYEONI</p>
-			
+			<!-- 애니메이션 적용 -->
+			<div class="w3-container w3-center w3-animate-opacity">
+				<p id="main_title">PYEONI</p>
+
 				<form class="d-flex" id="main_search">
 					<div class="input-group">
-						<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn btn-outline-warning" id="search_btn" type="submit" >검색</button>
+						<input class="form-control" type="search" id="search_bar"
+							name="search_bar" placeholder="찾으시는 상품을 입력하세요">
+						<button class="btn btn-outline-warning" id="search_btn"
+							type="submit">검색</button>
 					</div>
 				</form>
-			
-		</div>
-			<!-- <div>
-				<div class="brand_logo">
-					<a href="#"><img id="cu_img" src="../img/logo_CU.png"></a>
-					<a href="#"><img id="gs_img" src="../img/logo_GS.png"></a>
-					<a href="#"><img id="seven_img" src="../img/logo_seven.png"></a>
-				</div>
-			
-			</div>  -->
-			
-			
-		<div class="brand_go">
-			<a href="#">CU</a>
-			<a href="#">GS_25</a>
-			<a href="#">SEVEN_ELEVEN</a>
-		</div>
-			
-		</div>
+
+			</div>
+		</div>	
 	</div>
+	
+	<footer>
+			<hr>
+			<nav>
+				<a href="https://www.naver.com/">Naver</a> | <a
+					href="https://github.com/Jennorresothie/pyeoni">Github</a>
+			</nav>
+			<p>
+				<span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
+				<br> <span>Copyright 2023. All Rights Reserved.</span>
+			</p>
+	</footer>
+	
+	
 </body>
 </html>

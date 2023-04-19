@@ -109,13 +109,17 @@ button.btn.btn-outline-warning {
 }
 
 #search_btn:hover{
-	color: white;
+	color: orange;
 }
 
 /* cu페이지 css시작 */
 #logo_cu{
 	width: 400px;
 	height: 200px;
+}
+
+#search_btn{
+	color: white;
 }
 
 </style>
@@ -142,7 +146,12 @@ button.btn.btn-outline-warning {
 					<li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
-					<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a></li>
+					<!-- Session에서 관리자인지 확인하기 -->
+					<c:if test="${sessionScope.userLoggedIn == true}">
+						<li class="nav-item">
+							<a class="nav-link" href="#">관리자 페이지</a>
+						</li>
+					</c:if>
 				</ul>
 				<form action="#">
 					<button class="btn btn-outline-warning" type="button" id="login_btn">login/register</button>
@@ -161,7 +170,7 @@ button.btn.btn-outline-warning {
 				<form class="d-flex" id="main_search">
 					<div class="input-group">
 						<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn btn-outline-warning" id="search_btn" type="submit" >검색</button>
+						<button class="btn" style="background-color: purple;" id="search_btn" type="submit" >검색</button>
 					</div>
 				</form>
 			

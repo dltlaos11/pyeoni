@@ -14,7 +14,7 @@
   --text-color: #58555E;
   --text-color-light: #A5A1AA;
   --body-color: #FFFFFF;
-  --container-color: ##EC6707;
+  --container-color: #FFFFFF;
 
   /*========== Font and typography ==========*/
   --body-font: 'Poppins', sans-serif;
@@ -25,7 +25,10 @@
   /*========== Font weight ==========*/
   --font-medium: 500;
   --font-semi-bold: 600;
-
+  
+  /*========== z index ==========*/
+  --z-fixed: 100;
+ 
 }
 
 @media screen and (min-width: 1024px) {
@@ -48,7 +51,6 @@ body {
   font-size: var(--normal-font-size);
   background-color: var(--body-color);
   color: var(--text-color);
-
 }
 
 h3 {
@@ -74,6 +76,11 @@ img {
   background-color: var(--container-color);
   box-shadow: 1px 0 0 rgba(22, 8, 43, 0.1);
   transition: .4s;
+  z-index: var(--z-fixed);
+}
+
+#navbar{
+	background-color: white;
 }
 
 .nav__container {

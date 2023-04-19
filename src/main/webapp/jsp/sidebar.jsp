@@ -23,7 +23,7 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">SideBar</h3>
 
-                            <a href="#" class="nav__link">
+                            <a href="../jsp/mainpage.jsp" class="nav__link">
                                 <i class="bx bx-home nav__icon"></i>                            
                                 <span class="nav__name">Home</span>
                             </a>
