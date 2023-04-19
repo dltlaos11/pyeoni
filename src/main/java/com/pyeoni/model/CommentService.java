@@ -18,8 +18,8 @@ public class CommentService {
 	}
 	
 	// 댓글 삭제
-	public int deleteComment(String product_name, String promotion, String brand, int price) {
-		return cDAO.deleteComment(product_name, promotion, brand, price);
+	public int deleteComment(int commentId) {
+		return cDAO.deleteComment(commentId);
 	}
 	
 	// 댓글 작성
