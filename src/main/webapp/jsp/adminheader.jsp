@@ -66,7 +66,7 @@ body {
 					<div class="nav__items">
 						<h3 class="nav__subtitle">SideBar</h3>
 
-						<a href="#" class="nav__link"> <i
+						<a href="mainpage.jsp" class="nav__link"> <i
 							class="bx bx-home nav__icon"></i> <span class="nav__name">Home</span>
 						</a>
 
@@ -99,22 +99,7 @@ body {
 							</div>
 
 						</div>
-				          <div class="nav__dropdown">
-                                <a href="#" class="nav__link">
-                                    <i class="bx bx-popsicle nav__icon" ></i>
-                                    <span class="nav__name">Product</span>
-                                    <i class="bx bx-chevron-down nav__icon nav__dropdown-icon"></i>
-                                </a>
 
-                                <div class="nav__dropdown-collapse">
-                                    <div class="nav__dropdown-content">
-                                        <a href="#" class="nav__dropdown-item">음료</a>
-                                        <a href="#" class="nav__dropdown-item">아이스크림</a>
-                                        <a href="#" class="nav__dropdown-item">생활용품</a>
-                                    </div>
-                                </div>
-
-                            </div>
 
 
 					</div>

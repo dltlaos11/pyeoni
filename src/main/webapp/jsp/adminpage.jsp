@@ -49,9 +49,7 @@ div.adminhome {
 	<div style="margin-left: 25%;">
 		<div class="adminhome w3-animate-opacity">ADMINISTER PAGE</div>
 	</div>
-	<div class="w3-sidebar w3-bar-block" style="width: 20%;">
-		
-	</div>
+	<div class="w3-sidebar w3-bar-block" style="width: 20%;"></div>
 
 	<div id="here" class="w3-container w3-center w3-animate-opacity">사이드바를
 		통해 원하는 기능을 선택하세요</div>

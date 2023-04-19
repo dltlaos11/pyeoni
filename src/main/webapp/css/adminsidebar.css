@@ -139,7 +139,9 @@ img {
   z-index: var(--z-fixed);
   transition: .4s;
 }
-
+#navbar{
+	 background-color: white;	
+}
 .nav__container {
   height: 100%;
   display: flex;
