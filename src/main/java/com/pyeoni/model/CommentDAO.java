@@ -31,6 +31,7 @@ public class CommentDAO {
 			re=pst.executeQuery();
 			while(re.next()) {
 				CommentVO comment = makeComment(re);
+				commentList.add(comment);
 			}
 			
 		} catch (SQLException e) {
