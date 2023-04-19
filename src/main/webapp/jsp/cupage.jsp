@@ -16,11 +16,11 @@ body {
 	margin: 0 auto;
 }
 
+
 .navbar-brand>img {
 	height: 80px;
 	width: 80px;
 }
-
 
 .nav-item {
 	padding-left: 50px;
@@ -28,7 +28,7 @@ body {
 
 
 a.nav-link{
-	color: #18A0FB;
+	color: purple;
 	font-size: 20px;
 }
 
@@ -108,12 +108,14 @@ button.btn.btn-outline-warning {
 	border-width: 2px;
 }
 
-#search_btn{
-	background-color: purple;
-}
-
 #search_btn:hover{
 	color: white;
+}
+
+/* cu페이지 css시작 */
+#logo_cu{
+	width: 400px;
+	height: 200px;
 }
 
 </style>
@@ -140,13 +142,7 @@ button.btn.btn-outline-warning {
 					<li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
-					
-					<!-- Session에서 관리자인지 확인하기 -->
-					<c:if test="${sessionScope.userLoggedIn == true}">
-						<li class="nav-item">
-							<a class="nav-link" href="#">관리자 페이지</a>
-						</li>
-					</c:if>
+					<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a></li>
 				</ul>
 				<form action="#">
 					<button class="btn btn-outline-warning" type="button" id="login_btn">login/register</button>
@@ -159,7 +155,8 @@ button.btn.btn-outline-warning {
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
 		<!-- 애니메이션 적용 -->
 		<div class="w3-container w3-center w3-animate-opacity">
-			<p id="main_title">PYEONI</p>
+			
+			<img src="../img/logo_CU.png" id="logo_cu">
 			
 				<form class="d-flex" id="main_search">
 					<div class="input-group">
@@ -169,22 +166,7 @@ button.btn.btn-outline-warning {
 				</form>
 			
 		</div>
-			<!-- <div>
-				<div class="brand_logo">
-					<a href="#"><img id="cu_img" src="../img/logo_CU.png"></a>
-					<a href="#"><img id="gs_img" src="../img/logo_GS.png"></a>
-					<a href="#"><img id="seven_img" src="../img/logo_seven.png"></a>
-				</div>
-			
-			</div>  -->
-			
-			
-		<div class="brand_go">
-			<a href="#">CU</a>
-			<a href="#">GS_25</a>
-			<a href="#">SEVEN_ELEVEN</a>
-		</div>
-			
+						
 		</div>
 	</div>
 </body>
