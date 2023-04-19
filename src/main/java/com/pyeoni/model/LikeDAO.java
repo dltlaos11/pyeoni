@@ -24,6 +24,8 @@ public class LikeDAO {
 			pst.setString(3, like.getBrand());
 			pst.setInt(4, like.getPrice());
 			pst.setString(5, like.getEmail());
+			
+			result = pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -42,11 +44,13 @@ public class LikeDAO {
 		conn=OracleUtill.getConnection();
 		try {
 			pst=conn.prepareStatement(sql);
-			pst.setString(1, like.getProductName());
-			pst.setString(2, like.getPromotion());
-			pst.setString(3, like.getBrand());
-			pst.setInt(4, like.getPrice());
+			pst.setString(1, like.getBrand());
+			pst.setInt(2, like.getPrice());
+			pst.setString(3, like.getProductName());
+			pst.setString(4, like.getPromotion());
 			pst.setString(5, like.getEmail());
+			
+			result = pst.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -56,9 +60,32 @@ public class LikeDAO {
 		return result;
 	}
 	
-	// 좋아요 조회
-	SELECT
-    COUNT(*)
-FROM likes
-WHERE brand = 'CU' AND price = 1000 AND product_name = 'APPLE' AND promotion = '1+1';
+	// 해당 상품의 좋아요 개수 조회
+	public int selectLike(LikeVO like){
+		int likeCount=0;
+		String sql = """
+			SELECT COUNT(*) FROM likes WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?;
+			""";
+				
+		conn=OracleUtill.getConnection();
+		try {
+			pst=conn.prepareStatement(sql);
+			pst.setString(1, like.getBrand());
+			pst.setInt(2, like.getPrice());
+			pst.setString(3, like.getProductName());
+			pst.setString(4, like.getPromotion());
+			
+			re=pst.executeQuery();
+			while(re.next()) {
+				likeCount = re.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(null, conn, pst);
+		}
+		
+		return likeCount;
+	}
+	
 }
