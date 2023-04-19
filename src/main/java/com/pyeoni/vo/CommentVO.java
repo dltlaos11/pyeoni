@@ -17,6 +17,6 @@ public class CommentVO {
 	String productName; 
 	String promotion;
 	String brand;
-	String price;
+	int price;
 	String email;
 }

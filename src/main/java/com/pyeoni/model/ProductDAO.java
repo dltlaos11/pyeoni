@@ -16,39 +16,42 @@ public class ProductDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet re;
-
+	
 	// 상품 전체 조회
-	public List<ProductVO> selectAllProduct() {
+	public List<ProductVO> selectAllProduct(){
 		List<ProductVO> productList = new ArrayList();
-
-		String sql = """
+		
+		String sql="""
 				select * from PRODUCT
 				""";
-
+		
 		conn = OracleUtill.getConnection();
-
+		
 		try {
 			st = conn.createStatement();
 			re = st.executeQuery(sql);
-
-			while (re.next()) {
+			
+			while(re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
+				
 			}
+
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
+
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, st);
 		}
-
+		
 		return productList;
 	}
 
-	// 상품 입력
+	// 상품 추가
 	public int insertProduct(ProductVO product) {
-		int result = 0;
-		String sql = """
-				INSERT INTO PRODUCT VALUES(?, ?, ?, ?, ?, ?);
+		int result=0;
+		String sql="""
+				INSERT INTO PRODUCT VALUES(?,?,?,?,?,?)
 				""";
 
 		conn = OracleUtill.getConnection();
@@ -64,25 +67,59 @@ public class ProductDAO {
 			result = pst.executeUpdate();
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(null, conn, pst);
 		}
-
+		
 		return result;
 	}
-
+	
+	// 상품 상세 조회
+	public ProductVO detailProduct(String product_name, String promotion, String brand, int price) {
+		ProductVO product = null;
+		String sql="""
+				SELECT * FROM PRODUCT WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?
+				""";
+		
+		conn = OracleUtill.getConnection();
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, brand);
+			pst.setInt(2, price);
+			pst.setString(3, product_name);
+			pst.setString(4, promotion);
+		
+			re = pst.executeQuery();
+			
+			while(re.next()) {
+				product = makeProduct(re);
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		return product;
+	}
+	
+	
+	
 	// 상품 정보를 담은 개체 생성함수
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
 
-		product.setProductName(re.getString("productName"));
+		product.setProductName(re.getString("product_name"));
 		product.setPromotion(re.getString("promotion"));
 		product.setBrand(re.getString("brand"));
 		product.setPrice(re.getInt("price"));
 		product.setKind(re.getString("kind"));
-		product.setProductImg(re.getString("productImg"));
+		product.setProductImg(re.getString("product_img"));
 
+		
 		return product;
 	}
 }
