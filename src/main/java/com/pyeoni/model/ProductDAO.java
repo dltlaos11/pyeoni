@@ -16,39 +16,41 @@ public class ProductDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet re;
-
+	
 	// 상품 전체 조회
-	public List<ProductVO> selectAllProduct() {
+	public List<ProductVO> selectAllProduct(){
 		List<ProductVO> productList = new ArrayList();
-
-		String sql = """
+		
+		String sql="""
 				select * from PRODUCT
 				""";
-
+		
 		conn = OracleUtill.getConnection();
-
+		
 		try {
 			st = conn.createStatement();
 			re = st.executeQuery(sql);
-
-			while (re.next()) {
+			
+			while(re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
+				
 			}
+
 		} catch (Exception e) {
 			e.printStackTrace();
+
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, st);
 		}
-
+		
 		return productList;
 	}
 
-	// 상품 입력
 	public int insertProduct(ProductVO product) {
-		int result = 0;
-		String sql = """
-				INSERT INTO PRODUCT VALUES(?, ?, ?, ?, ?, ?);
+		int result=0;
+		String sql="""
+				
 				""";
 
 		conn = OracleUtill.getConnection();
@@ -68,10 +70,10 @@ public class ProductDAO {
 		} finally {
 			OracleUtill.dbDisconnection(null, conn, pst);
 		}
-
+		
 		return result;
 	}
-
+	
 	// 상품 정보를 담은 개체 생성함수
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
@@ -83,6 +85,7 @@ public class ProductDAO {
 		product.setKind(re.getString("kind"));
 		product.setProductImg(re.getString("product_img"));
 
+		
 		return product;
 	}
 }
