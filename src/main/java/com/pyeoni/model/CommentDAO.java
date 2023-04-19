@@ -72,20 +72,17 @@ public class CommentDAO {
 	}
 	
 	// 댓글 삭제
-	public int deleteComment(String product_name, String promotion, String brand, int price) {
+	public int deleteComment(int commentId) {
 		int result=0;
 		String sql="""
-				DELETE FROM comments WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?
+				DELETE FROM comments WHERE COMMENT_ID = ?
 				""";
 		
 		conn = OracleUtill.getConnection();
 		
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, brand);
-			pst.setInt(2, price);
-			pst.setString(3, product_name);
-			pst.setString(4, promotion);
+			pst.setInt(1, commentId);
 			
 			result = pst.executeUpdate();
 		} catch (SQLException e) {
