@@ -36,7 +36,7 @@ public class ProductDAO {
 				productList.add(product);
 			}
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, st);
 		}
@@ -64,7 +64,7 @@ public class ProductDAO {
 			result = pst.executeUpdate();
 
 		} catch (Exception e) {
-			// TODO: handle exception
+			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(null, conn, pst);
 		}
@@ -76,12 +76,12 @@ public class ProductDAO {
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
 
-		product.setProductName(re.getString("productName"));
+		product.setProductName(re.getString("product_name"));
 		product.setPromotion(re.getString("promotion"));
 		product.setBrand(re.getString("brand"));
 		product.setPrice(re.getInt("price"));
 		product.setKind(re.getString("kind"));
-		product.setProductImg(re.getString("productImg"));
+		product.setProductImg(re.getString("product_img"));
 
 		return product;
 	}
