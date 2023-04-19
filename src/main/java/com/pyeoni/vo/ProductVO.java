@@ -9,10 +9,10 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class ProductVO {
-	String productName; 
-	String promotion;
-	String brand;
-	int price;
-	String kind;
-	String productImg;
+	private String productName; 
+	private String promotion;
+	private String brand;
+	private int price;
+	private String kind;
+	private String productImg;
 }

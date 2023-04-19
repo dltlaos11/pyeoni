@@ -9,9 +9,9 @@ import lombok.NoArgsConstructor;
 @Data
 
 public class MemberVO {
-	String email;
-	int isAdmin;
-	String userName;
-	String password;
-	int withDraw;
+	private String email;
+	private int isAdmin;
+	private String userName;
+	private String password;
+	private int withDraw;
 }
