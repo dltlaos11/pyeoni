@@ -1,5 +1,7 @@
 package com.pyeoni.model;
 
+import java.util.List;
+
 import com.pyeoni.vo.MemberVO;
 
 public class MemberServices {
@@ -29,8 +31,14 @@ public class MemberServices {
 	public int signout(String email, String password) {
 		return dao.signout(email, password);
 	}
+	
 	/* 회원 정보 수정 */
 	public int memUpdate(MemberVO mem) {
 		return dao.memUpdate(mem);
+	}
+	
+	/* 회원 전체 정보 */
+	public List<MemberVO> selectAll() {
+		return dao.selectAll();
 	}
 }

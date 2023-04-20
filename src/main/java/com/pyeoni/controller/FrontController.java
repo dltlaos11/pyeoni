@@ -35,6 +35,12 @@ public class FrontController extends HttpServlet {
 		case "/site-result/layout.do":
 			controll = null;
 			break;
+		case "/auth/login.view":
+			controll = new LoginController();
+			break;
+		case "/auth/signup.view":
+			controll = new SignUpController();
+			break;
 		
 		
 		default:
