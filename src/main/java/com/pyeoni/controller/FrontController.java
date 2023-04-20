@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.do")
+@WebServlet("*.view")
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
