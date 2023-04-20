@@ -44,13 +44,14 @@ public class MemberDAO {
 		return result;
 	}
 	
-	/* 중복체크 */
-	public int dupCheck(String email) {
+	/* email 중복체크 */
+	public int emailDupCheck(String email) {
 		int count = 0;
 		String sql = """
 				 select count(*) from member where email = ? 
 				""";
 		conn = OracleUtill.getConnection();
+		
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, email);
@@ -66,6 +67,30 @@ public class MemberDAO {
 		
 		return count;
 	}
+	
+	/* username 중복체크 */
+	public int usernameDupCheck(String username) {
+		int count = 0;
+		String sql = """
+				select count(*) from member where username = ? 
+				""";
+		conn = OracleUtill.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, username);
+			re = pst.executeQuery();
+			while(re.next()) {
+				count = re.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		return count;
+	}
+
 	
 	/* 로그인 */
 	public MemberVO login(String email, String password) {

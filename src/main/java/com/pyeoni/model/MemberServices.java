@@ -10,9 +10,14 @@ public class MemberServices {
 		return dao.insertMem(mem);
 	}
 	
-	/* 중복체크 */
-	public int dupCheck(String email) {
-		return dao.dupCheck(email);
+	/* email 중복체크 */
+	public int emailDupCheck(String email) {
+		return dao.emailDupCheck(email);
+	}
+	
+	/* username 중복체크 */
+	public int usernameDupCheck(String username) {
+		return dao.usernameDupCheck(username);
 	}
 	
 	/* 로그인 */
