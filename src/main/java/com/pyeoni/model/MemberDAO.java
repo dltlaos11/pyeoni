@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
+import java.util.List;
 
 import com.pyeoni.util.OracleUtill;
 import com.pyeoni.vo.MemberVO;
@@ -139,7 +141,6 @@ public class MemberDAO {
 		return result;
 	}
 	
-	/* 회원 정보 수정 */
 	public int memUpdate(MemberVO mem) {
 		int result = 0;
 		String sql = """
@@ -164,7 +165,47 @@ public class MemberDAO {
 		
 		return result;
 	}
+	
+	/* 회원 전체 정보 */
+	public List<MemberVO> selectAll() {
+		String sql = """
+				 SELECT * FROM member ORDER BY 1 
+				""";
+		List<MemberVO> memList = new ArrayList<>();
+
+		conn = OracleUtill.getConnection();
+		
+		try {
+			st = conn.createStatement();
+			re = st.executeQuery(sql);
+			
+			while(re.next()) {
+				MemberVO mem = makeMem(re);
+				memList.add(mem);
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, null);
+		}
+		
+		return memList;
+	}
+
+	private MemberVO makeMem(ResultSet re) throws SQLException {
+		MemberVO mem = new MemberVO();
+		mem.setEmail(re.getString("email"));
+		mem.setIsAdmin(re.getInt("isAdmin"));
+		mem.setUserName(re.getString("userName"));
+		mem.setPassword(re.getString("password"));
+		mem.setWithDraw(re.getInt("withDraw"));
+		
+		return mem;
+	}
 }
+
 
 
 
