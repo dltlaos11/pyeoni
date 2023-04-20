@@ -195,18 +195,21 @@ footer {
 						<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
 						<button class="btn" id="search_btn" type="submit" >검색</button>
 					</div>
-				</form>		
+				</form>	
+				
+				
+				
+					
 			</div>				
 		</div>
 	</div>
 	
 	<div>
-	<h1>Modal</h1>
-	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Modal 이용 직원등록</button>
-	<%@ include file="DetailModal.jsp" %>
+		<%@ include file="ProductSelectAll.jsp"%>	
 	</div>
 	
-	<footer>
+		
+	<!-- <footer>
 			<hr>
 			<nav>
 				<a href="https://www.naver.com/">Naver</a> | <a
@@ -216,7 +219,7 @@ footer {
 				<span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
 				<br> <span>Copyright 2023. All Rights Reserved.</span>
 			</p>
-	</footer>
+	</footer> -->
 	
 </body>
 </html>
