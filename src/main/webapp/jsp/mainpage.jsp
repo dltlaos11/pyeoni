@@ -22,18 +22,18 @@ body {
 }
 
 .nav-link:hover {
-	background-color: #EC6707;
+	background-color: #F69320;
 	color: white;
 	border-radius: 10px;
-}
-
-.nav-item {
-	padding-left: 50px;
 }
 
 a.nav-link {
 	color: #18A0FB;
 	font-size: 20px;
+}
+
+.nav-item {
+	padding-left: 50px;
 }
 
 #main_title {
@@ -43,19 +43,18 @@ a.nav-link {
 	color: orange;
 }
 
-button.btn.btn-outline-warning {
-	color: orange;
-	border-color: #EC6707;
-	border-width: 2px;
+#login_btn {
+	margin-right: 50px;
+	background-color: white;
+	border-color: #F69320;
+	color: #F69320;
 	font-weight: bold;
 }
 
-#login_btn {
-	margin-right: 50px;
-}
-
 #login_btn:hover {
+	background-color: #F69320;
 	color: white;
+	font-weight: bold;
 }
 
 .content {
@@ -112,8 +111,17 @@ button.btn.btn-outline-warning {
 	border-width: 2px;
 }
 
+#search_btn{
+	color: #F69320;
+	border-color: #F69320;
+	border-width: 2px;
+	font-weight: bold;
+}
+
 #search_btn:hover {
+	background-color:#F69320;
 	color: white;
+	font-weight: bold;
 }
 
 /* footer */
@@ -149,6 +157,9 @@ footer {
 					<li class="nav-item"><a class="nav-link" href="#">CU</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">MINI-STOP</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">emart-24</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">C-SAPCE</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
 
 					<!-- Session에서 관리자인지 확인하기 -->
@@ -158,7 +169,7 @@ footer {
 					</c:if>
 				</ul>
 				<form action="#">
-					<button class="btn btn-outline-warning" type="button"
+					<button class="btn" type="button"
 						id="login_btn">login/register</button>
 				</form>
 			</div>
@@ -173,10 +184,8 @@ footer {
 
 				<form class="d-flex" id="main_search">
 					<div class="input-group">
-						<input class="form-control" type="search" id="search_bar"
-							name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn btn-outline-warning" id="search_btn"
-							type="submit">검색</button>
+						<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
+						<button class="btn" id="search_btn" type="submit">검색</button>
 					</div>
 				</form>
 

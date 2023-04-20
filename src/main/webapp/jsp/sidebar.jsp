@@ -16,7 +16,7 @@
                 <div>
                     <a href="#" class="nav__link nav__logo">
                         <i class="bx bxs-disc nav__icon"></i>
-                        <span class="nav__logo-name"><img src="../img/logo_pyeoni.png" style="height: 80px; width: 80px;"> <br> </span>
+                        <span class="nav__logo-name"><img id="pagelogo" src="../img/logo_pyeoni.png" style="height: 80px; width: 80px;"> <br> </span>
                     </a>
 
                     <div class="nav__list">
@@ -47,6 +47,9 @@
                                         <a href="../jsp/cupage.jsp" class="nav__dropdown-item">CU</a>
                                         <a href="#" class="nav__dropdown-item">GS25</a>                      
                                         <a href="#" class="nav__dropdown-item">SEVEN-ELEVEN</a>                      
+                                        <a href="#" class="nav__dropdown-item">MINI-STOP</a>                      
+                                        <a href="#" class="nav__dropdown-item">emart-24</a>                      
+                                        <a href="#" class="nav__dropdown-item">C-SAPCE</a>                      
                                     </div>
                                 </div>
 

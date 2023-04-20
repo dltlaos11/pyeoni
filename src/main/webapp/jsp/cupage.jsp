@@ -26,6 +26,11 @@ body {
 	padding-left: 50px;
 }
 
+.nav-link:hover {
+	background-color: purple;
+	color: white;
+	border-radius: 10px;
+}
 
 a.nav-link{
 	color: purple;
@@ -39,19 +44,18 @@ a.nav-link{
 	color: orange;
 }
 
-button.btn.btn-outline-warning {
-	color: orange;
-	border-color: orange;
-	border-width: 2px;
+#login_btn{
+	margin-right: 50px;
+	background-color: white;
+	border-color: purple;
+	color: #751485;
 	font-weight: bold;
 }
 
-#login_btn{
-	margin-right: 50px;
-}
-
 #login_btn:hover{
-	color:white;
+	background-color: #751485;
+	color: white;
+	font-weight: bold;
 }
 
 .content {
@@ -108,18 +112,34 @@ button.btn.btn-outline-warning {
 	border-width: 2px;
 }
 
+#search_btn{
+	color: #751485;
+	border-color: #751485;
+	border-width: 2px;
+	font-weight: bold;
+}
+
 #search_btn:hover{
-	color: orange;
+	background-color:#751485;
+	color: white;
+	font-weight: bold;
 }
 
 /* cu페이지 css시작 */
 #logo_cu{
-	width: 400px;
-	height: 200px;
+	width: 360px;
+	height: 190px;
 }
 
-#search_btn{
-	color: white;
+/* footer */
+footer {
+	width: 95%;
+	height: 110px;
+	bottom: 0;
+	position: absolute;
+	text-align: right;
+	
+	font-size: 15px;
 }
 
 </style>
@@ -145,6 +165,9 @@ button.btn.btn-outline-warning {
 					<li class="nav-item"><a class="nav-link" href="#">CU</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">MINI-STOP</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">emart-24</a></li>
+					<li class="nav-item"><a class="nav-link" href="#">C-SAPCE</a></li>
 					<li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
 					<!-- Session에서 관리자인지 확인하기 -->
 					<c:if test="${sessionScope.userLoggedIn == true}">
@@ -154,7 +177,7 @@ button.btn.btn-outline-warning {
 					</c:if>
 				</ul>
 				<form action="#">
-					<button class="btn btn-outline-warning" type="button" id="login_btn">login/register</button>
+					<button class="btn" type="button" id="login_btn">login/register</button>
 				</form>
 			</div>
 		</div>
@@ -170,13 +193,30 @@ button.btn.btn-outline-warning {
 				<form class="d-flex" id="main_search">
 					<div class="input-group">
 						<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn" style="background-color: purple;" id="search_btn" type="submit" >검색</button>
+						<button class="btn" id="search_btn" type="submit" >검색</button>
 					</div>
-				</form>
-			
-		</div>
-						
+				</form>		
+			</div>				
 		</div>
 	</div>
+	
+	<div>
+	<h1>Modal</h1>
+	<button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal" data-bs-whatever="@mdo">Modal 이용 직원등록</button>
+	<%@ include file="DetailModal.jsp" %>
+	</div>
+	
+	<footer>
+			<hr>
+			<nav>
+				<a href="https://www.naver.com/">Naver</a> | <a
+					href="https://github.com/Jennorresothie/pyeoni">Github</a>
+			</nav>
+			<p>
+				<span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
+				<br> <span>Copyright 2023. All Rights Reserved.</span>
+			</p>
+	</footer>
+	
 </body>
 </html>
