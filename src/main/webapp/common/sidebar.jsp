@@ -8,7 +8,10 @@
 
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="../css/sidebar.css">
+<style>
 
+
+</style>
 </head>
 <body>
 	<div class="nav" id="navbar">
@@ -23,7 +26,7 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">SideBar</h3>
 
-                            <a href="../jsp/mainpage.jsp" class="nav__link">
+                            <a style = "text-decoration: none" href="../jsp/mainpage.jsp" class="nav__link">
                                 <i class="bx bx-home nav__icon"></i>                            
                                 <span class="nav__name">Home</span>
                             </a>
