@@ -1,3 +1,12 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.pyeoni.vo.MemberVO"%>
+<%@page import="org.eclipse.jdt.internal.compiler.ast.MemberValuePair"%>
+<%@page import="com.pyeoni.model.MemberServices"%>
+<%@page import="java.util.ArrayList"%>
+
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -22,6 +31,24 @@ https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%
 }
 </style>
 </head>
+<%
+/* MemberServices ms  = new MemberServices();
+MemberVO mv = new MemberVO();
+List<MemberVO> mlist= new ArrayList<>();
+mlist = mv.selectAllMembers();
+Map<String, MemberVO> emailMap = new HashMap <String, MemberVO>();
+Map<String, MemberVO> usernameMap = new HashMap <String, MemberVO>();
+
+for (MemberVO member : mlist) {
+	emailMap.put(member.getEmail(), member);
+	}
+for (MemberVO member : mlist) {
+	usernameMap.put(member.getUserName(), member);
+	}
+ */
+
+/* if (map.containsKey("key1")) */
+%>
 <body>
 	<a href="#" class = "navbar-brand"><img src="../img/logo_pyeoni.png" alt="Pyeoni">Pyeoni</a>
 	
@@ -33,7 +60,7 @@ https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-up">
 						<div class="input-group">
-							<i class='bx bxs-user'></i> <input type="text"
+							<i class='bx bxs-user'></i> <input id = "usernametext" type="text"
 								placeholder="Username">
 						</div>
 						<div class="input-group">
@@ -116,5 +143,19 @@ toggle = () => {
 setTimeout(() => {
   container.classList.add('sign-in')
 }, 200)
+
+/*  $("#usernametext").on("focus", function() {
+  $(this).attr("placeholder", $(this).data("placeholder"));
+});
+
+$("#usernametext").on("input", function() {
+  var inputVal = $(this).val();
+  if (usernameMap[inputVal]) {
+    $(this).attr("placeholder", "사용 불가");
+    $(this).focus();
+  } else {
+    $(this).attr("placeholder", $(this).data("placeholder"));
+  }
+});  */
 </script>
 </html>
