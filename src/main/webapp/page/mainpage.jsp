@@ -144,15 +144,15 @@ footer {
       <div class="container-fluid">
          <a class="navbar-brand" href="#"><img
             src="../img/logo_pyeoni.png">Pyeoni</a>
-         <!--토글러 -->
+          <!--토글러 -->
          <button class="navbar-toggler" type="button"
             data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
             aria-controls="navbarSupportedContent" aria-expanded="false"
             aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
          </button>
-
-         <div class="navbar-collapse" id="navbarSupportedContent">
+         
+         <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item"><a class="nav-link" href="#">CU</a></li>
                <li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
@@ -161,16 +161,15 @@ footer {
                <li class="nav-item"><a class="nav-link" href="#">emart-24</a></li>
                <li class="nav-item"><a class="nav-link" href="#">C-SAPCE</a></li>
                <li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
-
                <!-- Session에서 관리자인지 확인하기 -->
                <c:if test="${sessionScope.userLoggedIn == true}">
-                  <li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a>
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">관리자 페이지</a>
                   </li>
                </c:if>
             </ul>
             <form action="#">
-               <button class="btn" type="button"
-                  id="login_btn">login/register</button>
+               <button class="btn" type="button" id="login_btn">login/register</button>
             </form>
          </div>
       </div>
