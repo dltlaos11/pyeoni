@@ -75,7 +75,7 @@ public class ProductDAO {
 		return result;
 	}
 	
-	// 상품 상세 조회
+	// 상품 개별 조회
 	public ProductVO detailProduct(String product_name, String promotion, String brand, int price) {
 		ProductVO product = null;
 		String sql="""
@@ -106,7 +106,85 @@ public class ProductDAO {
 		return product;
 	}
 	
+	// 상품 편의점 회사별 조회
+	public List<ProductVO> selectProductByBrand(String brand){
+		List<ProductVO> productList = new ArrayList<>();
+		String sql = """
+				SELECT * FROM product where brand = ?
+				""";
+		conn = OracleUtill.getConnection();
+		
+		try {
+			pst=conn.prepareStatement(sql);
+			pst.setString(1, brand);
+			re=pst.executeQuery();
+			while(re.next()) {
+				ProductVO product = makeProduct(re);
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		
+		return productList; 
+	}
 	
+	// 상품 행사별 조회
+	public List<ProductVO> selectProductByPromotion(String promotion){
+		List<ProductVO> productList = new ArrayList<>();
+		String sql = """
+				SELECT * FROM product where promotion = ?
+				""";
+		conn = OracleUtill.getConnection();
+		
+		try {
+			pst=conn.prepareStatement(sql);
+			pst.setString(1, promotion);
+			re=pst.executeQuery();
+			while(re.next()) {
+				ProductVO product = makeProduct(re);
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		
+		return productList; 
+	}
+	
+	// 상품 유형별 조회
+	public List<ProductVO> selectProductByKind(String kind){
+		List<ProductVO> productList = new ArrayList<>();
+		String sql = """
+				SELECT * FROM product where kind= ?
+				""";
+		conn = OracleUtill.getConnection();
+		
+		try {
+			pst=conn.prepareStatement(sql);
+			re=pst.executeQuery();
+			while(re.next()) {
+				ProductVO product = makeProduct(re);
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		
+		return productList; 
+	}
 	
 	// 상품 정보를 담은 개체 생성함수
 	private ProductVO makeProduct(ResultSet re) throws SQLException {

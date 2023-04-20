@@ -12,6 +12,6 @@ public class LikeVO {
 	private String productName; 
 	private String promotion;
 	private String brand;
-	private String price;
+	private int price;
 	private String email;
 }
