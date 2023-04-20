@@ -68,9 +68,9 @@ li {
 									<span><img id="cu_logo" src="../img/logo_CU.png"
 										style="object-fit: contain; max-width: 100%; max-height: 100%;"></span><br>
 									<div class="product">
-										<span>코카콜라</span><br> 
-										<span>2+1</span><br> 
-										<span>3000원</span><br>
+										<span id  = "prodname"></span><br> 
+										<span id  = "prodpromotion"></span><br> 
+										<span id  = "prodprice"></span><br>
 									</div>
 								</div>
 							</div>
