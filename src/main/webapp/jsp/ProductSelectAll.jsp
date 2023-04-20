@@ -15,11 +15,11 @@
 /* #productInfo:hover {
   background-color: rgba(117, 20, 133, 0.3);
 } */
-body {
+body.selectall {
 	text-align: center;
 }
 
-hr {
+hr.selectall {
 	width: 700px;
 	margin: 0 auto;
 }
@@ -58,7 +58,7 @@ hr {
 	
 </script>
 </head>
-<body>
+<body class = "selectall">
 	<%
 	ProductServices ps = new ProductServices();
 	List<ProductVO> plist = ps.selectAllProduct();
@@ -104,7 +104,7 @@ hr {
 		</button>
 		<br>
 		<br>
-		<hr>
+		<hr class = "selectall">
 		<br>
 
 
