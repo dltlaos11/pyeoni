@@ -15,11 +15,11 @@
 /* #productInfo:hover {
   background-color: rgba(117, 20, 133, 0.3);
 } */
-body.selectall {
+.selectall {
 	text-align: center;
 }
 
-hr.selectall {
+.hrselectall {
 	width: 700px;
 	margin: 0 auto;
 }
@@ -104,7 +104,7 @@ hr.selectall {
 		</button>
 		<br>
 		<br>
-		<hr class = "selectall">
+		<hr class = "hrselectall">
 		<br>
 
 

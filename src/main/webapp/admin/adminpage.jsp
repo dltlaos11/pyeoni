@@ -45,7 +45,7 @@ div.adminhome {
 </script>
 </head>
 <body>
-	<%@ include file="adminheader.jsp"%>
+	<%@ include file="adminsidebar.jsp"%>
 	<div style="margin-left: 25%;">
 		<div class="adminhome w3-animate-opacity">ADMINISTER PAGE</div>
 	</div>
