@@ -26,7 +26,7 @@
                         <div class="nav__items">
                             <h3 class="nav__subtitle">SideBar</h3>
 
-                            <a style = "text-decoration: none" href="../jsp/mainpage.jsp" class="nav__link">
+                            <a style = "text-decoration: none" href="../page/mainpage.jsp" class="nav__link">
                                 <i class="bx bx-home nav__icon"></i>                            
                                 <span class="nav__name">Home</span>
                             </a>
@@ -47,7 +47,7 @@
 
                                 <div class="nav__dropdown-collapse">
                                     <div class="nav__dropdown-content">
-                                        <a href="../jsp/cupage.jsp" class="nav__dropdown-item">CU</a>
+                                        <a href="../page/cupage.jsp" class="nav__dropdown-item">CU</a>
                                         <a href="#" class="nav__dropdown-item">GS25</a>                      
                                         <a href="#" class="nav__dropdown-item">SEVEN-ELEVEN</a>                      
                                         <a href="#" class="nav__dropdown-item">MINI-STOP</a>                      
