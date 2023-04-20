@@ -36,7 +36,10 @@ public class FrontController extends HttpServlet {
 			controll = new MainpageController();
 			break;
 		
-		
+		case "/page/cu.view":
+			controll = new CuController();
+			break;
+			
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + path);
 		}
