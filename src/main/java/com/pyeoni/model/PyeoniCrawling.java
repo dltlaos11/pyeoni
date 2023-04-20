@@ -1,6 +1,8 @@
 package com.pyeoni.model;
 
 import java.io.IOException;
+import java.util.ArrayList;
+
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.nodes.Element;
@@ -29,7 +31,7 @@ public class PyeoniCrawling {
 
    public static String[] getNames(Document doc, Elements products) {
       String[] names = new String[products.size()];
-
+      
       for (int i = 0; i < products.size(); ++i) {
     	 /* name */
          String name = (String) products.get(i).select("div.card-body > div > strong").get(0).text();
@@ -72,9 +74,9 @@ public class PyeoniCrawling {
            ministop : span.badge.bg-ministop.text-white 
            cspace : span.badge.bg-cspace.text-white   
 		 */
+         
          System.out.println(name + " " + price + " " + brand + " " + kind + " " + promotion + " " + productImg);
       }
-
       return names;
    }
 }
