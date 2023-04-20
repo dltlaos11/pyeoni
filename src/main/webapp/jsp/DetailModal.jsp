@@ -28,7 +28,7 @@
 	margin-top: 20px;
 }
 
-li {
+.modalcomment {
 	list-style: none;
 }
 
@@ -59,7 +59,7 @@ li {
 
 				<div class="modal-body">
 					<ul>
-						<li>
+						<li class = "modalcomment">
 							<div class="products">
 								<div>
 									<img id="cokeimg" src="../img/coke.png">
@@ -76,21 +76,21 @@ li {
 							</div>
 						</li>
 						<!-- 댓글 목록 -->
-						<li>
+						<li class = "modalcomment">
 							<div class="comments">
 								<h3>댓글 목록</h3>
 								<ul>
-									<li>첫 번째 댓글입니다.</li>
-									<li>두 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
-									<li>세 번째 댓글입니다.</li>
+									<li class = "modalcomment">첫 번째 댓글입니다.</li>
+									<li class = "modalcomment">두 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
+									<li class = "modalcomment">세 번째 댓글입니다.</li>
 								</ul>
 							</div>
 						</li>
