@@ -45,6 +45,7 @@ public class JspFilter extends HttpFilter implements Filter {
 		System.out.println(page);
 		
 		res.sendRedirect(page);
+		return;
 		//chain.doFilter(request, response);
 	}
 
