@@ -11,6 +11,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
+
 
 <%@ include file="../common/commonfiles.jsp"%>
 
@@ -18,7 +20,6 @@
 body {
    margin: 0 auto;
 }
-
 
 .navbar-brand>img {
    height: 80px;
@@ -63,7 +64,7 @@ a.nav-link{
 
 .content {
    text-align: center;
-   margin-top: 200px;
+   margin-top: 100px;
 }
 
 #main_title{
@@ -134,6 +135,15 @@ a.nav-link{
    height: 190px;
 }
 
+.change_event{
+	text-align: center;
+	margin-bottom:30px;
+	color: #751485;
+	font-size: 25px;
+	font-weight: bold;
+}
+
+
 /* footer */
 footer {
    width: 95%;
@@ -145,10 +155,6 @@ footer {
    font-size: 15px;
 }
 
-/* ProductSelectAll */
-/* #productInfo:hover {
-  background-color: rgba(117, 20, 133, 0.3);
-} */
 
 </style>
 
@@ -172,10 +178,10 @@ footer {
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                <li class="nav-item"><a class="nav-link" href="#">CU</a></li>
                <li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">MINI-STOP</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">emart-24</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">C-SAPCE</a></li>
+               <li class="nav-item"><a class="nav-link" href="#">SEVENELEVEN</a></li>
+               <li class="nav-item"><a class="nav-link" href="#">MINISTOP</a></li>
+               <li class="nav-item"><a class="nav-link" href="#">emart24</a></li>
+               <li class="nav-item"><a class="nav-link" href="#">CSPACE</a></li>
                <li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
                <!-- Session에서 관리자인지 확인하기 -->
                <c:if test="${sessionScope.userLoggedIn == true}">
@@ -194,8 +200,7 @@ footer {
    <div class="content">
       <div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
       <!-- 애니메이션 적용 -->
-      <div class="w3-container w3-center w3-animate-opacity">
-         
+      <div class="w3-container w3-center w3-animate-opacity">        
          <img src="../img/logo_CU.png" id="logo_cu">
          
             <form class="d-flex" id="main_search">
@@ -206,6 +211,15 @@ footer {
             </form>            
          </div>            
       </div>
+   </div>
+   
+   <!-- 1+1, 2+1 텍스트 -->
+   <div class="change_event">
+   	
+	   <i class='bx bxs-megaphone'></i>
+	   <span id="1+1">1+1 행사상품입니다.</span><br>
+	   <!-- <span id="2+1">2+1 행사상품입니다.</span><br>  
+	   <span id="allproduct">전체 상품목록입니다.</span><br>  -->
    </div>
    
    <!-- ProductSelectAll -->
