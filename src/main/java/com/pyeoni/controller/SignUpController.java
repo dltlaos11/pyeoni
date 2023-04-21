@@ -12,6 +12,12 @@ public class SignUpController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		
+		String method = (String)data.get("method");
+		String page = "";
+		
+		if(method.equals("GET")) {
+			page = "loginpage.jsp";
+		} else {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
 		MemberServices service = new MemberServices();
@@ -20,15 +26,17 @@ public class SignUpController implements CommonControllerInterface {
 		
 		String email = request.getParameter("email");
 		String password = request.getParameter("password");
-		String username = request.getParameter("userName");
+		String username = request.getParameter("username");
 		
 		memVO.setEmail(email);
 		memVO.setPassword(password);
 		memVO.setUserName(username);
 		
 		int result = service.insertMem(memVO);
+		page = "redirect:main.view";
+		}
 		
-		return "redirect:login.view";
+		return page;
 	}
 
 //	private MemberVO setForm(HttpServletRequest request) {
