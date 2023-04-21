@@ -21,6 +21,7 @@ body {
    width: 80px;
 }
 
+
 .nav-link:hover {
    background-color: #F69320;
    color: white;
@@ -37,10 +38,13 @@ a.nav-link {
 }
 
 #main_title {
-   font-size: 80px;
-   font-weight: bold;
-   text-align: center;
-   color: orange;
+ 
+  font-family: 'Staatliches', cursive;
+  font-size: 6em;
+  text-align: center;
+  color: ##F69320;
+  text-shadow: 5px 5px #2D63A7;
+  color: orange;
 }
 
 #login_btn {
@@ -62,42 +66,9 @@ a.nav-link {
    margin-top: 200px;
 }
 
-#main_title {
-   text-shadow: 4px 2px 2px gray;
-}
-
-#cu_img {
-   width: 50px;
-   height: 50px;
-}
-
-#gs_img {
-   width: 50px;
-   height: 50px;
-   margin-left: 20px;
-   margin-bottom: 10px;
-}
-
-#seven_img {
-   width: 50px;
-   height: 50px;
-   margin-bottom: 10px;
-}
-
 /* 애니메이션 */
 .w3-animate-opacity {
    animation-duration: 5s; /* change to the desired duration */
-}
-
-.brand_go>a {
-   text-decoration: none;
-   margin: 50px;
-   font-size: 20px;
-   color: #18A0FB;
-}
-
-.brand_go {
-   margin-top: 30px;
 }
 
 #main_search {
@@ -142,7 +113,7 @@ footer {
    <%@ include file="../common/sidebar.jsp"%>
    <nav class="navbar navbar-expand-lg navbar-light">
       <div class="container-fluid">
-         <a class="navbar-brand" href="#"><img
+         <a class="navbar-brand" href="../page/mainpage.jsp"><img
             src="../img/logo_pyeoni.png">Pyeoni</a>
           <!--토글러 -->
          <button class="navbar-toggler" type="button"
@@ -154,13 +125,13 @@ footer {
          
          <div class="collapse navbar-collapse" id="navbarSupportedContent">
             <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-               <li class="nav-item"><a class="nav-link" href="#">CU</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">GS25</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">SEVEN-ELEVEN</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">MINI-STOP</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">emart-24</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">C-SAPCE</a></li>
-               <li class="nav-item"><a class="nav-link" href="#">ALL</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/cupage.jsp">CU</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/GSpage.jsp">GS25</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/Sevenpage.jsp">SEVENELEVEN</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/Minipage.jsp">MINISTOP</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/Emartpage.jsp">emart24</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/Cspacepage.jsp">CSPACE</a></li>
+               <li class="nav-item"><a class="nav-link" href="../page/Allpage.jsp">ALL</a></li>
                <!-- Session에서 관리자인지 확인하기 -->
                <c:if test="${sessionScope.userLoggedIn == true}">
                   <li class="nav-item">

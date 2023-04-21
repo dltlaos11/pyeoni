@@ -61,11 +61,12 @@
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
 									<a href="../page/cupage.jsp" class="nav__dropdown-item">CU</a>
-									<a href="#" class="nav__dropdown-item">GS25</a> <a href="#"
-										class="nav__dropdown-item">SEVEN-ELEVEN</a> <a href="#"
-										class="nav__dropdown-item">MINI-STOP</a> <a href="#"
-										class="nav__dropdown-item">emart-24</a> <a href="#"
-										class="nav__dropdown-item">C-SAPCE</a>
+									<a href="../page/GSpage.jsp" class="nav__dropdown-item">GS25</a> 
+									<a href="../page/Sevenpage.jsp" class="nav__dropdown-item">SEVEN-ELEVEN</a> 
+									<a href="../page/Minipage.jsp" class="nav__dropdown-item">MINI-STOP</a> 
+									<a href="../page/Emartpage.jsp" class="nav__dropdown-item">emart-24</a> 
+									<a href="../page/Cspacepage.jsp" class="nav__dropdown-item">C-SAPCE</a>
+									<a href="../page/Allpage.jsp" class="nav__dropdown-item">All</a>
 								</div>
 							</div>
 
