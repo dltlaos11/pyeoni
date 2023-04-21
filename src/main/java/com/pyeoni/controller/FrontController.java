@@ -14,7 +14,7 @@ import javax.servlet.http.HttpSession;
 /**
  * Servlet implementation class FrontController
  */
-@WebServlet("*.view")
+@WebServlet({"*.view","*.do"})
 public class FrontController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
@@ -44,6 +44,10 @@ public class FrontController extends HttpServlet {
 		
 		case "/page/cu.view":
 			controll = new CuController();
+			break;
+			
+		case "/admin/update.do":
+			controll = new ProductUpdateController();
 			break;
 			
 		default:

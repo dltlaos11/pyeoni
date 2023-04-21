@@ -34,4 +34,10 @@ public class ProductServices {
 	public List<ProductVO> selectProductByKind(String kind){
 		return pDAO.selectProductByKind(kind);
 	}
+	
+	// Product table 내용 삭제
+	public int cleanProductTable() {
+		// 삭제한 튜플 개수 반환
+		return pDAO.cleanProductTable();
+	}
 }
