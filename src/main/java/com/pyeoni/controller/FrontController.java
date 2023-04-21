@@ -32,11 +32,20 @@ public class FrontController extends HttpServlet {
 		System.out.println("프론트 컨트롤러에서 "+path);
 		
 		switch (path) {
-		case "/site-result/layout.do":
-			controll = null;
+		case "/page/main.view":
+			controll = new MainpageController();
+			break;
+		case "/auth/login.view":
+			controll = new LoginController();
+			break;
+		case "/auth/signup.view":
+			controll = new SignUpController();
 			break;
 		
-		
+		case "/page/cu.view":
+			controll = new CuController();
+			break;
+			
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + path);
 		}
@@ -48,7 +57,7 @@ public class FrontController extends HttpServlet {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	
+		System.out.println("return : "+page);
 		HttpSession session = request.getSession();
 		for(String key : data.keySet()) {
 			if(key.equals("loginUser")) {
@@ -69,6 +78,7 @@ public class FrontController extends HttpServlet {
 		}
 		// forward 처리
 		else {
+			System.out.println("포워드 함");
 			request.getRequestDispatcher(page).forward(request, response);
 		}
 	}
