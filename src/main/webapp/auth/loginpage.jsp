@@ -96,6 +96,11 @@ $(function(){
 		});
 	
 
+	
+
+	
+
+
 	function signUp(){
 		  var email = $("#emailinput").val();
 		  var username = $("#userinput").val();
@@ -135,6 +140,31 @@ $(function(){
 		  $("form").submit();
 	}
 	
+	
+	$('#btnsignin').on("click", function() {
+	    alert("btnclick");
+	    $.ajax({
+	        //url : '${pageContext.request.servletPath}' + "/auth/login.view",
+	        url : "/auth/login.view",
+	        data : {
+	            "email" : $("#signinemail").val(),
+	            "password" : $("#signinpass").val()
+	        },
+	        success : function(responseData) {
+	            var success = responseData
+	            if (responseData == "true") {
+	                window.location.href = "mainpage.jsp";
+	            }
+	            else{    
+	                $("#signinemail").focus("");
+	            }
+	        },
+	        error: function() { // 괄호 추가
+	            alert("연결실패");    
+	        }
+	    });
+	});
+	
 });
 
 </script>
@@ -152,20 +182,20 @@ $(function(){
 						action="<%=request.getContextPath()%>/auth/signup.view">
 						<div class="form sign-up">
 							<div class="input-group">
-								<i class='bx bxs-user'></i> <input id="emailinput" type="text" name = "email"
-									placeholder="Email">
+								<i class='bx bxs-user'></i> <input id="emailinput" type="text"
+									name="email" placeholder="Email">
 								<p id="emailcheck">
 								<p>
 							</div>
 							<div class="input-group">
-								<i class='bx bx-mail-send'></i> <input id="userinput" name = "username"
-									type="text" placeholder="Username">
+								<i class='bx bx-mail-send'></i> <input id="userinput"
+									name="username" type="text" placeholder="Username">
 								<p id="usernamecheck">
 								<p>
 							</div>
 							<div class="input-group">
-								<i class='bx bxs-lock-alt'></i> <input id="passwordinput" name = "password"
-									type="password" placeholder="Password">
+								<i class='bx bxs-lock-alt'></i> <input id="passwordinput"
+									name="password" type="password" placeholder="Password">
 							</div>
 							<div class="input-group">
 								<i class='bx bxs-lock-alt'></i> <input id="confirmpasswordinput"
@@ -189,14 +219,14 @@ $(function(){
 				<div class="form-wrapper align-items-center">
 					<div class="form sign-in">
 						<div class="input-group">
-							<i class='bx bxs-user'></i> <input type="text"
-								placeholder="Email" name = "email">
+							<i class='bx bxs-user'></i> <input id="signinemail" type="text"
+								placeholder="Email" name="email">
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i> <input type="password" name = "password"
-								placeholder="Password">
+							<i class='bx bxs-lock-alt'></i> <input id="signinpass"
+								type="password" name="password" placeholder="Password">
 						</div>
-						<button>Sign in</button>
+						<button id="btnsignin">Sign in</button>
 						<p>
 							<span> Don't have an account? </span> <b onclick="toggle()"
 								class="pointer"> Sign up here </b>
