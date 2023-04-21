@@ -31,27 +31,26 @@ body {
 }
 
 .nav-link:hover {
-   background-color: purple;
+   background-color: rgb(0,0,0);
    color: white;
    border-radius: 10px;
 }
 
 a.nav-link{
-   color: purple;
+   color: rgb(0,0,0);
    font-size: 20px;
 }
-
 
 #login_btn{
    margin-right: 50px;
    background-color: white;
-   border-color: purple;
-   color: #751485;
+   border-color: rgb(0,0,0);
+   color: rgb(0,0,0);
    font-weight: bold;
 }
 
 #login_btn:hover{
-   background-color: #751485;
+   background-color: rgb(0,0,0);
    color: white;
    font-weight: bold;
 }
@@ -78,28 +77,29 @@ a.nav-link{
 }
 
 #search_btn{
-   color: #751485;
-   border-color: #751485;
+   color: rgb(0,0,0);
+   border-color: rgb(0,0,0);
    border-width: 2px;
    font-weight: bold;
 }
 
 #search_btn:hover{
-   background-color:#751485;
+   background-color: rgb(0,0,0);
    color: white;
    font-weight: bold;
 }
 
-/* cu페이지 css시작 */
-#logo_cu{
-   width: 360px;
-   height: 170px;
+/* All페이지 css시작 */
+#logo_all{
+   width: 200px;
+   height: 200px;
+   margin-bottom: 20px;
 }
 
 .change_event{
 	text-align: center;
 	margin-bottom:30px;
-	color: #751485;
+	color: rgb(0,0,0);
 	font-size: 25px;
 	font-weight: bold;
 }
@@ -162,7 +162,7 @@ footer {
       <div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
       <!-- 애니메이션 적용 -->
       <div class="w3-container w3-center w3-animate-opacity">        
-         <img src="../img/logo_CU.png" id="logo_cu">
+         <img src="../img/logo_all.png" id="logo_all">
          
             <form class="d-flex" id="main_search">
                <div class="input-group">
@@ -177,7 +177,7 @@ footer {
    <!-- 1+1, 2+1 텍스트 -->
    <div class="change_event">
    	
-	   <i class='bx bxs-megaphone'></i>
+	   <i class='bx bxs-megaphone'></i>	   
 	   <span id="1+1">1+1 행사상품입니다.</span><br>
 	   <!-- <span id="2+1">2+1 행사상품입니다.</span><br>  
 	   <span id="allproduct">전체 상품목록입니다.</span><br>  -->

@@ -1,3 +1,12 @@
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.Map"%>
+<%@page import="com.pyeoni.vo.MemberVO"%>
+<%@page import="org.eclipse.jdt.internal.compiler.ast.MemberValuePair"%>
+<%@page import="com.pyeoni.model.MemberServices"%>
+<%@page import="java.util.ArrayList"%>
+
+<%@page import="java.util.List"%>
+
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -14,46 +23,163 @@ https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%
 <link rel="stylesheet" href="../css/login.css">
 
 <style>
-
 .navbar-brand>img {
-  height: 80px;
-  width: auto;
-  max-width: 100%;
+	height: 80px;
+	width: auto;
+	max-width: 100%;
 }
 </style>
 </head>
-<body>
-	<a href="#" class = "navbar-brand"><img src="../img/logo_pyeoni.png" alt="Pyeoni">Pyeoni</a>
+<%
+MemberServices ms = new MemberServices();
+MemberVO mv = new MemberVO();
+List<MemberVO> mlist = new ArrayList<>();
+mlist = ms.selectAll();
+Map<String, MemberVO> emailMap = new HashMap<String, MemberVO>();
+Map<String, MemberVO> usernameMap = new HashMap<String, MemberVO>();
+
+for (MemberVO member : mlist) {
+	emailMap.put(member.getEmail(), member);
+}
+for (MemberVO member : mlist) {
+	usernameMap.put(member.getUserName(), member);
+}
+
+/* if (map.containsKey("key1")) */
+%>
+<script>
+$(function(){	
+	var validemail = true;
+	var validusername = true;
+	$('#btnsignup').on('click', function(event) {
+	    event.preventDefault(); // 기본 동작(form 전송) 막음
+	    signUp();
+	});
+
+	const inputElement = document.getElementById("emailinput");
+
+	inputElement.addEventListener("input", function() {
+	  // input 요소의 값이 변경될 때마다 실행되는 코드
+	  var value = inputElement.value;
+	  var emailMap = {};
+	  <%for (MemberVO member : mlist) {%>
+	    emailMap['<%=member.getEmail()%>'] = '<%=member.getUserName()%>';
+	  <%}%>
+	  if(emailMap[value]){
+		  $('#emailcheck').html("이미 등록된 이메일입니다.");		
+		  validemail = false;
+		}
+	  else {
+		  $('#emailcheck').html("");	
+		  validemail = true;
+	  } 		
+	  
+	 
+	});
+	const userinputElement = document.getElementById("userinput");
+	userinputElement.addEventListener("input", function() {
+		  // input 요소의 값이 변경될 때마다 실행되는 코드
+		  var value = userinputElement.value;
+		  var userMap = {};
+		  <%for (MemberVO member : mlist) {%>
+		  userMap['<%=member.getUserName()%>'] = '<%=member.getUserName()%>';
+		  <%}%>
+		  if(userMap[value]){
+			  $('#usernamecheck').html("이미 등록된 닉네임입니다.");	
+			  validusername = false;
+				
+			  }	  else {
+				  $('#usernamecheck').html("");	
+				  validusername = true;
+			  } 
+		 
+		});
 	
+
+	function signUp(){
+		  var email = $("#emailinput").val();
+		  var username = $("#userinput").val();
+		  var password = $("#passwordinput").val();
+		  var confirmPassword = $("#confirmpasswordinput").val();
+
+		  if (email === "" || username === "" || password === "" || confirmPassword === "") {
+			    alert("Please fill in all fields");
+			    return;
+			  }
+		  var emailRegex = /\S+@\S+\.\S+/;
+		  if (!emailRegex.test(email)) {
+		    alert("Please enter a valid email address");
+		    return;
+		  }
+		  if(!validemail){
+			  alert("Please enter another email address");
+			  return;
+		  }
+		  if(!validusername){
+			  alert("Please enter another username");
+			  return;
+		  }
+		  
+		  // Check if passwords match
+		  if (password !== confirmPassword) {
+		    alert("Passwords do not match");
+		    return;
+		  }
+		  // Check if passwords match
+		  if (password !== confirmPassword) {
+		    alert("Passwords do not match");
+		    return;
+		  }
+		  
+		  alert("Sign up successful!");
+		  $("form").submit();
+	}
+	
+});
+
+</script>
+<body>
+	<a href="#" class="navbar-brand"><img src="../img/logo_pyeoni.png"
+		alt="Pyeoni">Pyeoni</a>
+
 	<div id="container" class="container">
 		<!-- FORM SECTION -->
 		<div class="row">
 			<!-- SIGN UP -->
 			<div class="col align-items-center flex-col sign-up">
 				<div class="form-wrapper align-items-center">
-					<div class="form sign-up">
-						<div class="input-group">
-							<i class='bx bxs-user'></i> <input type="text"
-								placeholder="Username">
+					<form method="post"
+						action="<%=request.getContextPath()%>/auth/signup.view">
+						<div class="form sign-up">
+							<div class="input-group">
+								<i class='bx bxs-user'></i> <input id="emailinput" type="text" name = "email"
+									placeholder="Email">
+								<p id="emailcheck">
+								<p>
+							</div>
+							<div class="input-group">
+								<i class='bx bx-mail-send'></i> <input id="userinput" name = "username"
+									type="text" placeholder="Username">
+								<p id="usernamecheck">
+								<p>
+							</div>
+							<div class="input-group">
+								<i class='bx bxs-lock-alt'></i> <input id="passwordinput" name = "password"
+									type="password" placeholder="Password">
+							</div>
+							<div class="input-group">
+								<i class='bx bxs-lock-alt'></i> <input id="confirmpasswordinput"
+									type="password" placeholder="Confirm password">
+							</div>
+							<button id="btnsignup">Sign up</button>
+							<!-- <input type="submit" id = "btnsignup" value="Sign up"> -->
+
+							<p>
+								<span> Already have an account? </span> <b onclick="toggle()"
+									class="pointer"> Sign in here </b>
+							</p>
 						</div>
-						<div class="input-group">
-							<i class='bx bx-mail-send'></i> <input type="email"
-								placeholder="Email">
-						</div>
-						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i> <input type="password"
-								placeholder="Password">
-						</div>
-						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i> <input type="password"
-								placeholder="Confirm password">
-						</div>
-						<button>Sign up</button>
-						<p>
-							<span> Already have an account? </span> <b onclick="toggle()"
-								class="pointer"> Sign in here </b>
-						</p>
-					</div>
+					</form>
 				</div>
 
 			</div>
@@ -64,10 +190,10 @@ https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%
 					<div class="form sign-in">
 						<div class="input-group">
 							<i class='bx bxs-user'></i> <input type="text"
-								placeholder="Username">
+								placeholder="Email" name = "email">
 						</div>
 						<div class="input-group">
-							<i class='bx bxs-lock-alt'></i> <input type="password"
+							<i class='bx bxs-lock-alt'></i> <input type="password" name = "password"
 								placeholder="Password">
 						</div>
 						<button>Sign in</button>
@@ -116,5 +242,19 @@ toggle = () => {
 setTimeout(() => {
   container.classList.add('sign-in')
 }, 200)
+
+/*  $("#usernametext").on("focus", function() {
+  $(this).attr("placeholder", $(this).data("placeholder"));
+});
+
+$("#usernametext").on("input", function() {
+  var inputVal = $(this).val();
+  if (usernameMap[inputVal]) {
+    $(this).attr("placeholder", "사용 불가");
+    $(this).focus();
+  } else {
+    $(this).attr("placeholder", $(this).data("placeholder"));
+  }
+});  */
 </script>
 </html>

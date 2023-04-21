@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class JspFilter
  */
-@WebFilter("*.jsp")
+@WebFilter("*.bb")
 public class JspFilter extends HttpFilter implements Filter {
        
     /**
@@ -36,18 +36,16 @@ public class JspFilter extends HttpFilter implements Filter {
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		HttpServletRequest req = (HttpServletRequest)request;
-		HttpServletResponse res = (HttpServletResponse)response;
-		
-		String page = req.getRequestURI();
-		page = page.replace("page.jsp", ".view");
-		
-		System.out.println(page);
-		
-		res.sendRedirect(page);
-		return;
-		//chain.doFilter(request, response);
-	}
+		/*
+		 * HttpServletRequest req = (HttpServletRequest)request; HttpServletResponse res
+		 * = (HttpServletResponse)response;
+		 * 
+		 * String page = req.getRequestURI(); page = page.replace("page.jsp", ".view");
+		 * 
+		 * System.out.println(page);
+		 * 
+		 * res.sendRedirect(page); return; //chain.doFilter(request, response);
+		 */	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
