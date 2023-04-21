@@ -195,7 +195,7 @@ public class MemberDAO {
 	private MemberVO makeMem(ResultSet re) throws SQLException {
 		MemberVO mem = new MemberVO();
 		mem.setEmail(re.getString("email"));
-		mem.setIsAdmin(re.getInt("isAdmin"));
+		mem.setIsAdmin(re.getInt("is_admin"));
 		mem.setUserName(re.getString("userName"));
 		mem.setPassword(re.getString("password"));
 		mem.setWithDraw(re.getInt("withDraw"));
