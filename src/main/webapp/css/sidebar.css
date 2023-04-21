@@ -108,6 +108,16 @@ img {
 }
 
 /* For Google Chrome and others */
+.sidebarimage {
+  width: 80px;
+  height: 80px;
+  overflow: hidden;
+}
+
+.sidebarimage img {
+  width: 100%;
+  height: auto;
+}
 .nav__container::-webkit-scrollbar {
   display: none;
 }
