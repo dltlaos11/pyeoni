@@ -186,6 +186,25 @@ public class ProductDAO {
 		return productList; 
 	}
 	
+	// Product table 내용 삭제
+	public int cleanProductTable() {
+		int result=0;
+		String sql = """
+				DELETE FROM product
+				""";
+		conn = OracleUtill.getConnection();
+		try {
+			st=conn.createStatement();
+			result = st.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(null, conn, st);
+		}
+		
+		return result;
+	}
+	
 	// 상품 정보를 담은 개체 생성함수
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
