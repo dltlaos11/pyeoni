@@ -139,19 +139,18 @@ public class MemberDAO {
 		return result;
 	}
 	
-	public int memUpdate(MemberVO mem) {
+	public int memUpdate(String password, String email) {
 		int result = 0;
 		String sql = """
 				 update member 
-				 set username = ? , password = ? 
+				 set password = ? 
 				 where email = ? 
 				""";
 		conn = OracleUtill.getConnection();
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, mem.getUserName());
-			pst.setString(2, mem.getPassword());
-			pst.setString(3, mem.getEmail());
+			pst.setString(1, password);
+			pst.setString(2, email);
 			
 			result = pst.executeUpdate();
 			

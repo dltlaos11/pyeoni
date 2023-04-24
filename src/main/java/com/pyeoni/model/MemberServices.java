@@ -33,8 +33,8 @@ public class MemberServices {
 	}
 	
 	/* 회원 정보 수정 */
-	public int memUpdate(MemberVO mem) {
-		return dao.memUpdate(mem);
+	public int memUpdate(String password, String email) {
+		return dao.memUpdate(password, email);
 	}
 	
 	/* 회원 전체 정보 */

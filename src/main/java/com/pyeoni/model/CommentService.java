@@ -13,7 +13,7 @@ public class CommentService {
 	}
 	
 	// 댓글 조회
-	public CommentVO selectComment(String product_name, String promotion, String brand, int price) {
+	public List<CommentVO> selectComment(String product_name, String promotion, String brand, int price) {
 		return cDAO.selectComment(product_name, promotion, brand, price);
 	}
 	
@@ -25,5 +25,10 @@ public class CommentService {
 	// 댓글 작성
 	public int writeComment(CommentVO comment) {
 		return cDAO.writeComment(comment);
+	}
+	
+	/* 댓글 수정 */
+	public int updateComment(String content, int id) {
+		return cDAO.updateComment(content, id);
 	}
 }

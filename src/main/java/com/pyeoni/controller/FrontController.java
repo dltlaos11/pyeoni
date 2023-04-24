@@ -78,10 +78,25 @@ public class FrontController extends HttpServlet {
 		case "/memeber/memberSignout.view":
 			controll = new MemberSignOutController();
 			break;
-		
 			
 		case "/admin/update.do":
 			controll = new ProductUpdateController();
+			break;
+			
+		case "/comment/selectAllComment.view":
+			controll = new CommentSelectAllController();
+			break;
+		case "/comment/selectComment.view":
+			controll = new CommentSelectController();
+			break;
+		case "/comment/deleteComment.view":
+			controll = new CommentDeleteController();
+			break;
+		case "/comment/writeComment.view":
+			controll = new CommentWriteController();
+			break;
+		case "/comment/updateComment.view":
+			controll = new CommentUpdateController();
 			break;
 			
 		default:

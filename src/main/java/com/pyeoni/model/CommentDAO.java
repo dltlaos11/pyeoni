@@ -22,11 +22,13 @@ public class CommentDAO {
 	public List<CommentVO> selectAllComment(){
 		List<CommentVO> commentList = new ArrayList<>();
 		String sql = """
-				SELECT comment_id, content 
-				TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
-				product_name, 
-				promotion, brand, price, email 
-				FROM comments ORDER BY comment_id asc 
+				SELECT c.comment_id, c.content, 
+				TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
+				c.product_name, c.promotion, c.brand, c.price, c.email, m.username 
+				FROM comments c 
+				LEFT JOIN member m 
+				ON c.email = m.email 
+				ORDER BY c.comment_id asc 
 				""";
 		
 		conn = OracleUtill.getConnection();
@@ -49,15 +51,19 @@ public class CommentDAO {
 	}
 	
 	// 댓글 조회
-	public CommentVO selectComment(String product_name, String promotion, String brand, int price) {
-		CommentVO comment = new CommentVO();
+	public List<CommentVO> selectComment(String product_name, String promotion, String brand, int price) {
+
+		List<CommentVO> commentList = new ArrayList<>();
 		String sql = """
-				SELECT comment_id, content 
-				TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
-				product_name, 
-				promotion, brand, price, email 
-				FROM comments ORDER BY comment_id asc 
-				WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ? 
+				SELECT c.comment_id, c.content, 
+				TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
+				c.product_name, c.promotion, c.brand, c.price, c.email, m.username 
+				FROM comments c 
+				LEFT JOIN member m 
+				ON c.email = m.email 
+				WHERE c.brand = ? AND c.price = ? AND c.product_name = ? 
+				AND c.promotion = ? 
+				ORDER BY c.comment_id asc 
 				""";
 		conn = OracleUtill.getConnection();
 		
@@ -70,7 +76,8 @@ public class CommentDAO {
 			
 			re=pst.executeQuery();
 			while(re.next()) {
-				comment = makeComment(re);
+				CommentVO comment = makeComment(re);
+				commentList.add(comment);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -78,7 +85,7 @@ public class CommentDAO {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
 		
-		return comment;
+		return commentList;
 	}
 	
 	// 댓글 삭제
@@ -132,7 +139,7 @@ public class CommentDAO {
 		return result;
 	}
 	/* 댓글 수정 */
-	public int commentUpdate(String content, int id) {
+	public int updateComment(String content, int id) {
 		int result = 0;
 		String sql="""
 				update comments 

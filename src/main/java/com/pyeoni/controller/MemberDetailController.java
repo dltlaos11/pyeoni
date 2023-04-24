@@ -6,6 +6,7 @@ import java.util.Map;
 
 import javax.servlet.ServletContext;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.pyeoni.model.MemberServices;
 import com.pyeoni.vo.MemberVO;
@@ -16,40 +17,27 @@ public class MemberDetailController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		String method = (String)data.get("method");
-		String page ="memberDetail.jsp";
+
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
 		if(method.equals("GET")) {
 
 		}else {
-			MemberVO mem = makeMem(request);
+			String password =  request.getParameter("password");
+			String email =  request.getParameter("email");
+			
 			MemberServices service = new MemberServices();
-			int msg = service.memUpdate(mem);
-			page = "redirect:/page/main.view";
+			int result = service.memUpdate(password, email);
+			if (result == 0 ) {
+				/* 성공 */
+				return "responseBody:false";
+			}else {
+				/* 실패 */
+				return "responseBody:true";
+			}
 		}
 		
-		return page;
-	}
-
-	private MemberVO makeMem(HttpServletRequest request) throws Exception {
-		request.setCharacterEncoding("utf-8");
-		
-		String username = request.getParameter("username");
-		String password = request.getParameter("password");
-		String email = request.getParameter("email");
-		int isAdmin = Integer.parseInt(request.getParameter("isAdmin"));
-		int withDraw = Integer.parseInt(request.getParameter("withDraw"));
-		
-		MemberVO mem = new MemberVO();
-		
-		mem.setEmail(email);
-		mem.setIsAdmin(isAdmin);
-		mem.setPassword(password);
-		mem.setUserName(username);
-		mem.setWithDraw(withDraw);
-		
-		return mem;
-
+		return "responseBody:false";
 	}
 
 }
