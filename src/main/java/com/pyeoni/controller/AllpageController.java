@@ -16,8 +16,12 @@ public class AllpageController implements CommonControllerInterface {
 		
 		if(method.equals("GET")) {
 			String searchValue = req.getParameter("search_bar");
-			System.out.println("값 : "+searchValue);
-			System.out.println("길이 : "+searchValue.length());
+			if(searchValue!=null) {
+				System.out.println("값 : "+searchValue);
+				System.out.println("길이 : "+searchValue.length());
+			}
+			
+			
 			String sortValue = req.getParameter("sort_type");
 			if(sortValue!=null) {
 				System.out.println("값 : "+sortValue);

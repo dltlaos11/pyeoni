@@ -66,7 +66,7 @@ body {
 					<div class="nav__items">
 						<h3 class="nav__subtitle">SideBar</h3>
 
-						<a href="../page/mainpage.jsp" class="nav__link"> <i
+						<a href="../page/main.view" class="nav__link"> <i
 							class="bx bx-home nav__icon"></i> <span class="nav__name">Home</span>
 						</a>
 

@@ -41,7 +41,7 @@ public class JspFilter extends HttpFilter implements Filter {
 		  
 		 String page = req.getRequestURI(); 
 		 page = page.replace("page.jsp", ".view");
-		  
+		 page = page.toLowerCase();
 		 System.out.println(page);
 		  
 		 res.sendRedirect(page); 

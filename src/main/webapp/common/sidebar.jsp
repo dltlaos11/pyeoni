@@ -75,7 +75,7 @@
 					<div class="nav__items">
 						<h3 class="nav__subtitle">SideBar</h3>
 
-						<a style="text-decoration: none" href="../page/mainpage.view"
+						<a style="text-decoration: none" href="../page/main.view"
 							class="nav__link"> <i class="bx bx-home nav__icon"></i> <span
 							class="nav__name">Home</span>
 						</a>
@@ -95,13 +95,13 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<a href="../page/cupage.view" class="nav__dropdown-item">CU</a>
-									<a href="../page/gspage.view" class="nav__dropdown-item">GS25</a>
-									<a href="../page/sevenpage.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
-									<a href="../page/minipage.view" class="nav__dropdown-item">MINI-STOP</a>
-									<a href="../page/emartpage.view" class="nav__dropdown-item">emart-24</a>
-									<a href="../page/cspacepage.view" class="nav__dropdown-item">C-SAPCE</a>
-									<a href="../page/allpage.view" class="nav__dropdown-item">All</a>
+									<a href="../page/cu.view" class="nav__dropdown-item">CU</a>
+									<a href="../page/gs.view" class="nav__dropdown-item">GS25</a>
+									<a href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
+									<a href="../page/mini.view" class="nav__dropdown-item">MINI-STOP</a>
+									<a href="../page/emart.view" class="nav__dropdown-item">emart-24</a>
+									<a href="../page/cspace.view" class="nav__dropdown-item">C-SAPCE</a>
+									<a href="../page/all.view" class="nav__dropdown-item">All</a>
 								</div>
 							</div>
 
@@ -149,12 +149,12 @@
 			</div>
 
 			<c:if test="${sessionScope.loginUser==null}">			
-				<a href="../auth/loginpage.view" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 
+				<a href="../auth/login.view" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 
 					<span class="nav__name">Login</span>
 				</a>
 			</c:if>
 			<c:if test="${sessionScope.loginUser!=null}">
-				<a href="../page/mainpage.view" onclick="logout()" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
+				<a href="../page/main.view" onclick="logout()" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
 					<span class="nav__name">Log Out</span>
 				</a>
 			</c:if>
