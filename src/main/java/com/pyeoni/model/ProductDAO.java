@@ -22,7 +22,7 @@ public class ProductDAO {
 		List<ProductVO> productList = new ArrayList();
 
 		String sql = """
-					select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum 
+					select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum
 					FROM product p WHERE ROWNUM <= ?
 				)  WHERE rnum >= ?
 					""";
@@ -34,7 +34,7 @@ public class ProductDAO {
 			pst.setInt(1, end);
 			pst.setInt(2, start);
 			re = pst.executeQuery();
-			
+
 			while (re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
@@ -110,12 +110,132 @@ public class ProductDAO {
 		return product;
 	}
 
-	// 상품 편의점 회사별 조회
-	public List<ProductVO> selectProductByBrand(String brand) {
-		List<ProductVO> productList = new ArrayList<>();
+//	// 상품 편의점 회사별 조회
+//	public List<ProductVO> selectProductByBrand(String brand) {
+//		List<ProductVO> productList = new ArrayList<>();
+//		String sql = """
+//				SELECT * FROM product where brand = ?
+//				""";
+//		conn = OracleUtill.getConnection();
+//
+//		try {
+//			pst = conn.prepareStatement(sql);
+//			pst.setString(1, brand);
+//			re = pst.executeQuery();
+//			while (re.next()) {
+//				ProductVO product = makeProduct(re);
+//				productList.add(product);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			OracleUtill.dbDisconnection(re, conn, pst);
+//		}
+//
+//		return productList;
+//	}
+//
+//	// 상품 행사별 조회
+//	public List<ProductVO> selectProductByPromotion(String promotion) {
+//		List<ProductVO> productList = new ArrayList<>();
+//		String sql = """
+//				SELECT * FROM product where promotion = ?
+//				""";
+//		conn = OracleUtill.getConnection();
+//
+//		try {
+//			pst = conn.prepareStatement(sql);
+//			pst.setString(1, promotion);
+//			re = pst.executeQuery();
+//			while (re.next()) {
+//				ProductVO product = makeProduct(re);
+//				productList.add(product);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			OracleUtill.dbDisconnection(re, conn, pst);
+//		}
+//
+//		return productList;
+//	}
+//
+//	// 상품 유형별 조회
+//	public List<ProductVO> selectProductByKind(String kind) {
+//		List<ProductVO> productList = new ArrayList<>();
+//		String sql = """
+//				SELECT * FROM product where kind= ?
+//				""";
+//		conn = OracleUtill.getConnection();
+//
+//		try {
+//			pst = conn.prepareStatement(sql);
+//			re = pst.executeQuery();
+//			while (re.next()) {
+//				ProductVO product = makeProduct(re);
+//				productList.add(product);
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			OracleUtill.dbDisconnection(re, conn, pst);
+//		}
+//
+//		return productList;
+//	}
+//
+	// Product table 내용 삭제
+	public int cleanProductTable() {
+		int result = 0;
 		String sql = """
-				SELECT * FROM product where brand = ?
+				DELETE FROM product
 				""";
+		conn = OracleUtill.getConnection();
+		try {
+			st = conn.createStatement();
+			result = st.executeUpdate(sql);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(null, conn, st);
+		}
+
+		return result;
+	}
+
+	// 상품 고급 검색
+	public List<ProductVO> selectAdvancedProduct(int start, int end, String pname, String arrange, String kind, String event, String brand) {
+		List<ProductVO> productList = new ArrayList<>();
+		StringBuffer tempSb = new StringBuffer();
+		
+		String sql = """
+				select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum
+				FROM product p WHERE ROWNUM <= ?
+			)  WHERE rnum >= ?
+				""";
+		
+		tempSb.append(sql);
+		if(pname!=null) {
+			tempSb.append("and product_name like %"+pname+"%");
+		}
+		if(kind!=null) {
+			tempSb.append("and kind ="+kind);
+		}
+		if(event!=null) {
+			tempSb.append("and promotion ="+event);
+		}
+		if(brand!=null) {
+			tempSb.append("and brand ="+brand);
+		}
+		if(arrange!=null) {
+			tempSb.append(arrange);
+		}
+		
+		sql = tempSb.toString();
+		
 		conn = OracleUtill.getConnection();
 
 		try {
@@ -134,76 +254,6 @@ public class ProductDAO {
 		}
 
 		return productList;
-	}
-
-	// 상품 행사별 조회
-	public List<ProductVO> selectProductByPromotion(String promotion) {
-		List<ProductVO> productList = new ArrayList<>();
-		String sql = """
-				SELECT * FROM product where promotion = ?
-				""";
-		conn = OracleUtill.getConnection();
-
-		try {
-			pst = conn.prepareStatement(sql);
-			pst.setString(1, promotion);
-			re = pst.executeQuery();
-			while (re.next()) {
-				ProductVO product = makeProduct(re);
-				productList.add(product);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			OracleUtill.dbDisconnection(re, conn, pst);
-		}
-
-		return productList;
-	}
-
-	// 상품 유형별 조회
-	public List<ProductVO> selectProductByKind(String kind) {
-		List<ProductVO> productList = new ArrayList<>();
-		String sql = """
-				SELECT * FROM product where kind= ?
-				""";
-		conn = OracleUtill.getConnection();
-
-		try {
-			pst = conn.prepareStatement(sql);
-			re = pst.executeQuery();
-			while (re.next()) {
-				ProductVO product = makeProduct(re);
-				productList.add(product);
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			OracleUtill.dbDisconnection(re, conn, pst);
-		}
-
-		return productList;
-	}
-
-	// Product table 내용 삭제
-	public int cleanProductTable() {
-		int result = 0;
-		String sql = """
-				DELETE FROM product
-				""";
-		conn = OracleUtill.getConnection();
-		try {
-			st = conn.createStatement();
-			result = st.executeUpdate(sql);
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			OracleUtill.dbDisconnection(null, conn, st);
-		}
-
-		return result;
 	}
 
 	// 상품 정보를 담은 개체 생성함수
