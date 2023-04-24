@@ -35,6 +35,28 @@ public class FrontController extends HttpServlet {
 		case "/page/main.view":
 			controll = new MainpageController();
 			break;
+		case "/page/all.view":
+			controll = new AllpageController();
+			break;
+		case "/page/cu.view":
+			controll = new CuController();
+			break;
+		case "/page/gs.view":
+			controll = new PageController();
+			break;
+		case "/page/emart.view":
+			controll = new PageController();
+			break;
+		case "/page/seven.view":
+			controll = new PageController();
+			break;
+		case "/page/mini.view":
+			controll = new PageController();
+			break;
+		case "/page/cspace.view":
+			controll = new PageController();
+			break;
+			
 		case "/auth/login.view":
 			controll = new LoginController();
 			break;
@@ -56,9 +78,7 @@ public class FrontController extends HttpServlet {
 		case "/memeber/memberSignout.view":
 			controll = new MemberSignOutController();
 			break;
-		case "/page/cu.view":
-			controll = new CuController();
-			break;
+		
 			
 		case "/admin/update.do":
 			controll = new ProductUpdateController();
@@ -85,6 +105,7 @@ public class FrontController extends HttpServlet {
 		
 		// 리다이렉트 처리
 		if(page.indexOf("redirect:")>=0) {
+			System.out.println("리다이렉트 함");
 			response.sendRedirect(page.substring(9));
 		}
 		else if(page.indexOf("download")>=0) {

@@ -7,8 +7,8 @@ import com.pyeoni.vo.ProductVO;
 public class ProductServices {
 	ProductDAO pDAO = new ProductDAO();
 	
-	public List<ProductVO> selectAllProduct() {
-		return pDAO.selectAllProduct();
+	public List<ProductVO> selectAllProduct(int start, int end) {
+		return pDAO.selectAllProduct(start, end);
 	}
 	
 	public int insertProduct(ProductVO product) {
