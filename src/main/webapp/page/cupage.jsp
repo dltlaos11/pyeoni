@@ -188,7 +188,7 @@ footer {
 			<div class="w3-container w3-center w3-animate-opacity">
 				<img src="../img/logo_CU.png" id="logo_cu">
 
-				<form action="" class="d-flex" id="main_search">
+				<form method="get" action="cupage.jsp" class="d-flex" id="main_search">
 					<div class="input-group">
 						<input class="form-control" type="search" id="search_bar"
 							name="search_bar" placeholder="찾으시는 상품을 입력하세요">
@@ -197,7 +197,7 @@ footer {
 
 					<div class="select">
 						<div class="select_sort">
-							<select name="sort_type" class="form-control">
+							<select name="sort_type" class="form-control" id="id_sort">
 								<option selected>가격-정렬</option>
 								<option value="1">낮은가격순</option>
 								<option value="2">높은가격순</option>
@@ -238,7 +238,7 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%-- <%@ include file="../product/ProductSelectAll.jsp"%> --%>
+	<%@ include file="../product/ProductSelectAll.jsp"%>
 
 
 	<!-- <footer>
