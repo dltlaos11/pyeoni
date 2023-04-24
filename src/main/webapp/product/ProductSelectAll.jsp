@@ -59,14 +59,14 @@
 </script>
 </head>
 <body>
-	<%
+<%-- 	<%
 	ProductServices ps = new ProductServices();
 	List<ProductVO> plist = ps.selectAllProduct(1,20);
 	request.setAttribute("plist", plist);
-	%>
+	%> --%>
 	<div class="selectall">
-		<c:forEach items="${plist}" var="p">
-
+		<c:forEach items="${productList}" var="p">
+	
 			<button data-bs-toggle="modal" data-bs-target="#exampleModal"
 				data-bs-whatever="@mdo" data-pname="${p.productName}"
 				data-ppro="${p.promotion}" data-pprice="${p.price}"

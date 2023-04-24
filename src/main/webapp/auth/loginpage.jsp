@@ -155,7 +155,7 @@ $(function(){
 	            //console.log(responseData);
 	            if (responseData == "true") {
 	            	//alert("true");
-	                window.location.href = "../page/mainpage.jsp";
+	                window.location.href = "../page/main.view";
 	            }
 	            else{
 	            	alert("아이디 또는 비밀번호가 일치하지 않습니다.");

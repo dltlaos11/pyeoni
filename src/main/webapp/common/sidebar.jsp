@@ -20,26 +20,26 @@
 		var logoImage = document.getElementById("pagelogo");
 
 		// URL 주소가 cupage.jsp 인 경우
-		if (currentUrl.indexOf("cupage") != -1) {
+		if (currentUrl.indexOf("cu") != -1) {
 			logoImage.src = "../img/logo_CU.png";
-		} else if (currentUrl.indexOf("Emartpage") != -1) {
+		} else if (currentUrl.indexOf("emart") != -1) {
 			logoImage.src = "../img/logo_emart24.png";
-		} else if (currentUrl.indexOf("GSpage") != -1) {
+		} else if (currentUrl.indexOf("gs") != -1) {
 			logoImage.src = "../img/logo_GS.png";
-		} else if (currentUrl.indexOf("Minipage") != -1) {
+		} else if (currentUrl.indexOf("mini") != -1) {
 			logoImage.src = "../img/logo_mini.png";
-		} else if (currentUrl.indexOf("Sevenpage") != -1) {
+		} else if (currentUrl.indexOf("seven") != -1) {
 			logoImage.src = "../img/logo_seven3.png";
-		} else if (currentUrl.indexOf("Cspacepage") != -1) {
+		} else if (currentUrl.indexOf("cspace") != -1) {
 			logoImage.src = "../img/logo_cSpace.svg";
 		} else {
 			logoImage.src = "../img/logo_pyeoni.png";
-			imageSize = "80";
+			$("#${imageId}").css({
+				"height" : "80px",
+				"width" : "80px"
+			});
 		}
-		$(logoImage).css({
-			"height" : imageSize + "px",
-			"width" : imageSize + "px"
-		});
+
 	});
 </script>
 <style>
@@ -75,7 +75,7 @@
 					<div class="nav__items">
 						<h3 class="nav__subtitle">SideBar</h3>
 
-						<a style="text-decoration: none" href="../page/mainpage.view"
+						<a style="text-decoration: none" href="../page/main.view"
 							class="nav__link"> <i class="bx bx-home nav__icon"></i> <span
 							class="nav__name">Home</span>
 						</a>
@@ -95,13 +95,13 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<a href="../page/cupage.view" class="nav__dropdown-item">CU</a>
-									<a href="../page/gspage.view" class="nav__dropdown-item">GS25</a>
-									<a href="../page/sevenpage.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
-									<a href="../page/minipage.view" class="nav__dropdown-item">MINI-STOP</a>
-									<a href="../page/emartpage.view" class="nav__dropdown-item">emart-24</a>
-									<a href="../page/cspacepage.view" class="nav__dropdown-item">C-SAPCE</a>
-									<a href="../page/allpage.view" class="nav__dropdown-item">All</a>
+									<a href="../page/cu.view" class="nav__dropdown-item">CU</a> <a
+										href="../page/gs.view" class="nav__dropdown-item">GS25</a> <a
+										href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
+									<a href="../page/mini.view" class="nav__dropdown-item">MINI-STOP</a>
+									<a href="../page/emart.view" class="nav__dropdown-item">emart-24</a>
+									<a href="../page/cspace.view" class="nav__dropdown-item">C-SAPCE</a>
+									<a href="../page/all.view" class="nav__dropdown-item">All</a>
 								</div>
 							</div>
 
@@ -148,35 +148,36 @@
 				</div>
 			</div>
 
-			<c:if test="${sessionScope.loginUser==null}">			
-				<a href="../auth/loginpage.view" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 
-					<span class="nav__name">Login</span>
+			<c:if test="${sessionScope.loginUser==null}">
+				<a href="../auth/login.view" class="nav__link nav__logout"> <i
+					class="bx bx-log-out nav__icon"></i> <span class="nav__name">Login</span>
 				</a>
 			</c:if>
 			<c:if test="${sessionScope.loginUser!=null}">
-				<a href="../page/mainpage.view" onclick="logout()" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
-					<span class="nav__name">Log Out</span>
+				<a href="../page/main.view" onclick="logout()"
+					class="nav__link nav__logout"> <i
+					class="bx bx-log-out nav__icon"></i> <span class="nav__name">Log
+						Out</span>
 				</a>
 			</c:if>
 		</nav>
 	</div>
-	
+
 	<script>
-		function logout(){
+		function logout() {
 			$.ajax({
-				url:"../auth/logout.view",
-				success:function(responseData){
-					if(responseData=="OK"){
+				url : "../auth/logout.view",
+				success : function(responseData) {
+					if (responseData == "OK") {
 						alert("로그아웃되었습니다.");
-					}					
+					}
 				},
-				error:function(message){
+				error : function(message) {
 					alert("message");
 				}
 			});
-			
+
 		}
-	
 	</script>
 
 </body>

@@ -60,17 +60,15 @@
 			var prodbrand = $('#prodbrand img').attr('alt');
 			$.ajax({
 				method : 'POST',
-				url : '/pyeoni/auth/...........',//댓글컨트롤러
-				//url : "/auth/login.view",
+				url : '/pyeoni/auth/...........',//댓글컨트롤러----------------------------------------------수정하기
 				data : {
 					"comment" : comment,
 					"productname" : prodname,
-					"promotion" :prodpromotion,
-					"price" :prodprice,
+					"promotion" : prodpromotion,
+					"price" : prodprice,
 					"brand" : prodbrand
 				},
 				success : function(responseData) {
-					//console.log(responseData);
 					if (responseData == "OK") {
 						//댓글 추가 성공
 						//댓글 refresh
@@ -81,9 +79,8 @@
 				}
 			});
 		}
-		
-		
-		function viewComment() {//모달이 열리면 실행되어야함
+
+		function viewComment() {//댓글 부분을 수정
 			var comment = $('#textComment').val();
 			var prodname = $('#prodname').val();
 			var prodpromotion = $('#prodpromotion').val();
@@ -91,13 +88,29 @@
 			var prodbrand = $('#prodbrand img').attr('alt');
 			$.ajax({
 				method : 'GET',
-				url : '/pyeoni/auth/...........',//댓글컨트롤러
+				url : '/pyeoni/auth/...........',//댓글컨트롤러------------------------------------------------수정하기
 				//url : "/auth/login.view",
 				success : function(responseData) {
 					//console.log(responseData);
 					if (responseData == "OK") {
 						//댓글 refresh
 						//div commentsection에 쓰기
+						var commentList = ${commentlist};//---------------------------------------------------------commentlist수정하기
+						let commentHTML = "";
+						for (let i = 0; i < commentList.length; i++) {
+  							const comment = commentList[i];
+  							commentHTML += `
+    							<div class="comment">
+      							<span class="comment-id">${comment.commentId}</span>
+      							<span class="comment-id">${comment.commentDate}</span>
+      							<span class="comment-username">${comment.email}</span>   /* username으로 바꾸기 --------------------수정하기*/
+      							<span class="comment-text">${comment.content}</span>
+      		//삭제버튼을 추가한다. ex ) <button id = "deltbn" onclick 삭제함수. ajax를통해 삭제요청을 보낸다. 삭제 요청이 성공하면 viewcomment를 호출한다>
+    							</div>
+    							<hr>
+  								`;
+							}
+						$('#commentsection').html(commentHTML);
 					}
 				},
 				error : function() { // 괄호 추가
@@ -105,7 +118,6 @@
 				}
 			});
 		}
-		
 
 	});
 </script>
@@ -130,7 +142,8 @@
 									<img id="cokeimg" src="../img/coke.png">
 								</div>
 								<div class="detail">
-									<span id = "prodbrand"><img id="cu_logo" src="../img/logo_CU.png"
+									<span id="prodbrand"><img id="cu_logo"
+										src="../img/logo_CU.png"
 										style="object-fit: contain; max-width: 100%; max-height: 100%;"></span><br>
 									<div class="product">
 										<span id="prodname"></span><br> <span id="prodpromotion"></span><br>
@@ -143,7 +156,6 @@
 						<li class="modalcomment">
 							<hr>
 							<div id="commentsection">댓글</div>
-							<hr>
 							<div class="card mb-2">
 								<textarea id="textComment" rows="3"></textarea>
 								<button type="button" class="btn btn-dark mt-3"

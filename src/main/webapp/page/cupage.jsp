@@ -6,6 +6,7 @@
 <!DOCTYPE html>
 <html>
 <head>
+	
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
@@ -137,12 +138,19 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("CU");
+		
+	});
+
+</script>
 
 </head>
 <body>
 	<%@ include file="../common/sidebar.jsp"%>
 	 <%@include file="../common/pageheader.jsp" %>
-
+<script>console.log("여기까지옴 cupage")</script>
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">

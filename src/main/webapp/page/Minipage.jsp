@@ -137,6 +137,13 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("MINISTOP");
+		
+	});
+
+</script>
 
 </head>
 <body>

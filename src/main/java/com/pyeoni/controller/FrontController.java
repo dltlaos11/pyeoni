@@ -36,23 +36,11 @@ public class FrontController extends HttpServlet {
 			controll = new MainpageController();
 			break;
 		case "/page/all.view":
-			controll = new AllpageController();
-			break;
 		case "/page/cu.view":
-			controll = new CuController();
-			break;
 		case "/page/gs.view":
-			controll = new PageController();
-			break;
-		case "/page/emart.view":
-			controll = new PageController();
-			break;
+		case "/page/emart.view":		
 		case "/page/seven.view":
-			controll = new PageController();
-			break;
 		case "/page/mini.view":
-			controll = new PageController();
-			break;
 		case "/page/cspace.view":
 			controll = new PageController();
 			break;

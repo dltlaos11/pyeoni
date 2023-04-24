@@ -137,6 +137,13 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("7-ELEVEn");
+		
+	});
+
+</script>
 
 </head>
 <body>

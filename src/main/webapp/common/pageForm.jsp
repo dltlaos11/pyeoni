@@ -10,15 +10,15 @@
 	<div class="select">
 		<div class="select_sort">
 			<select name="sort_type" class="form-control">
-				<option selected value="">가격-정렬</option>
-				<option value="낮은가격순">낮은가격순</option>
-				<option value="높은가격순">높은가격순</option>
+				<option ${param.sort_type==""?"selected":""} value="">가격-정렬</option>
+				<option value="order by price asc">낮은가격순</option>
+				<option value="order by price desc">높은가격순</option>
 			</select>
 		</div>
 
 		<div class="select_product">
 			<select name="product_type" class="form-control">
-				<option selected value="">상품-전체</option>
+				<option ${param.product_type==""?"selected":""} value="">상품-전체</option>
 				<option value="음료">음료</option>
 				<option value="아이스크림">아이스크림</option>
 				<option value="생활용품">생활용품</option>
@@ -29,11 +29,33 @@
 
 		<div class="select_event">
 			<select name="event_type" class="form-control">
-				<option selected value="">행사-전체</option>
+				<option ${param.event_type==""?"selected":""} value="">행사-전체</option>
 				<option value="1+1">1+1</option>
 				<option value="2+1">2+1</option>
 				<option value="3+1">3+1</option>
 			</select>
 		</div>
 	</div>
+	
+	<input type="hidden" name="brand" id="brandid"></input>
+	
 </form>
+
+<!-- 고급검색 정렬 -->
+<!-- <script>
+	$(function(){
+		$("#main_search").on("click", function(){
+			$.ajax({
+				url:"../auth/selectProductByPromotion .....",
+				data:"",
+				success:function(data){
+					$(".selectall").html(data);
+				},
+				error: function(request, status, error){
+					alert(error);
+				}
+			})
+		});
+	});
+
+</script> -->

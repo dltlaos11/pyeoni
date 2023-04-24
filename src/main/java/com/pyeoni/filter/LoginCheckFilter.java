@@ -18,7 +18,9 @@ import com.pyeoni.vo.MemberVO;
 /**
  * Servlet Filter implementation class LoginCheck
  */
-@WebFilter("*.view")
+
+@WebFilter("*.vi")
+
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
 
