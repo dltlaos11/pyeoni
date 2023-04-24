@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.pyeoni.vo.ProductVO"%>
 <%@page import="java.util.List"%>
 <%@page import="com.pyeoni.model.ProductServices"%>
@@ -61,7 +62,8 @@
 <body>
 	<%
 	ProductServices ps = new ProductServices();
-	List<ProductVO> plist = ps.selectAllProduct(1,20);
+	List<ProductVO> plist = new ArrayList<>();
+	plist.add(ps.detailProduct("질러)부드러운육포30", "2+1", "MINISTOP", 4400));
 	request.setAttribute("plist", plist);
 	%>
 	<div class="selectall">
@@ -118,10 +120,11 @@
 					var prodname = $(event.relatedTarget).data('pname');
 					var prodpromotion = $(event.relatedTarget).data('ppro');
 					var prodprice = $(event.relatedTarget).data('pprice');
-					var prodbrand = $(event.relatedTarget).data('pbrand');
+					var prodbrand = $(event.relatedTarget).find('img').attr('alt');
 					$("#prodname").text(prodname);
 					$("#prodpromotion").text(prodpromotion);
 					$("#prodprice").text(prodprice + "원");
+					$("#prodbrand").text(prodbrand);
 				});
 			});
 		</script>

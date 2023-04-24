@@ -142,46 +142,8 @@ footer {
 </head>
 <body>
 	<%@ include file="../common/sidebar.jsp"%>
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="../page/mainpage.jsp"><img
-				src="../img/logo_pyeoni.png">Pyeoni</a>
-			<!--토글러 -->
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
+	 <%@include file="../common/pageheader.jsp" %>
 
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link"
-						href="../page/cupage.jsp">CU</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/GSpage.jsp">GS25</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Sevenpage.jsp">SEVENELEVEN</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Minipage.jsp">MINISTOP</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Emartpage.jsp">emart24</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Cspacepage.jsp">CSPACE</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Allpage.jsp">ALL</a></li>
-					<!-- Session에서 관리자인지 확인하기 -->
-					<c:if test="${sessionScope.userLoggedIn == true}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a>
-						</li>
-					</c:if>
-				</ul>
-				<form action="#">
-					<button class="btn" type="button" id="login_btn">login/register</button>
-				</form>
-			</div>
-		</div>
-	</nav>
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
@@ -189,41 +151,7 @@ footer {
 			<div class="w3-container w3-center w3-animate-opacity">
 				<img src="../img/logo_cSpace.svg" id="logo_cspace">
 
-				<form class="d-flex" id="main_search">
-					<div class="input-group">
-						<input class="form-control" type="search" id="search_bar"
-							name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn" id="search_btn" type="submit">검색</button>
-					</div>
-
-					<div class="select">
-						<div class="select_sort">
-							<select name="sort_type" class="form-control">
-								<option selected>가격-정렬</option>
-								<option value="1">낮은가격순</option>
-								<option value="2">높은가격순</option>
-							</select>
-						</div>
-
-						<div class="select_product">
-							<select name="product_type" class="form-control">
-								<option selected>분류-전체</option>
-								<option value="1">음료</option>
-								<option value="2">아이스크림</option>
-								<option value="3">생활용품</option>
-							</select>
-						</div>
-
-						<div class="select_event">
-							<select name="event_type" class="form-control">
-								<option selected>행사-전체</option>
-								<option value="1">1+1</option>
-								<option value="2">2+1</option>
-								<option value="3">3+1</option>
-							</select>
-						</div>
-					</div>
-				</form>
+				<%@ include file="../common/pageForm.jsp" %>
 			</div>
 		</div>
 	</div>
@@ -237,7 +165,7 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%@ include file="../product/ProductSelectAll.jsp"%>
+	<%-- <%@ include file="../product/ProductSelectAll.jsp"%> --%>
 
 
 	<!-- <footer>

@@ -158,7 +158,7 @@ $(function(){
 	                window.location.href = "../page/mainpage.jsp";
 	            }
 	            else{
-	            	//alert("false");
+	            	alert("아이디 또는 비밀번호가 일치하지 않습니다.");
 	                $("#signinemail").focus("");
 	            }
 	        },
