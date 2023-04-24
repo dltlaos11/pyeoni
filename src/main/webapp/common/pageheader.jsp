@@ -34,7 +34,7 @@
 				<!-- Session에서 관리자인지 확인하기 -->
 				<c:if test="${sessionScope.loginUser.email=='admin@admin.com'}">
                   <li class="nav-item">
-                     <a class="nav-link" href="#">관리자 페이지</a>
+                     <a class="nav-link" href="../admin/adminpage.jsp">관리자 페이지</a>
                   </li>
                </c:if>
 			</ul>
@@ -46,10 +46,29 @@
             </c:if>
             
             <c:if test="${sessionScope.loginUser!=null }">
-	            <form action="../auth/loginpage.jsp">
+	            <form action="../page/mainpage.jsp">
 	               <button class="btn" type="submit" id="logout_btn">Logout</button>
 	            </form>
             </c:if>
 		</div>
 	</div>
 </nav>
+
+<script>
+	$(function(){
+		$("#logout_btn").on("click", function(){
+			$.ajax({
+				url:"../auth/logout.view",
+				success:function(responseData){
+					if(responseData=="OK"){
+						alert("로그아웃되었습니다.");
+					}					
+				},
+				error:function(message){
+					alert("message");
+				}
+			});	
+		})
+	});
+		
+</script>

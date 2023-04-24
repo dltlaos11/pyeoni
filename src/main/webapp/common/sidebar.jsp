@@ -153,14 +153,31 @@
 					<span class="nav__name">Login</span>
 				</a>
 			</c:if>
-					
 			<c:if test="${sessionScope.loginUser!=null}">
-				<a href="../page/mainpage.jsp" onclick="" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
+				<a href="../page/mainpage.jsp" onclick="logout()" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
 					<span class="nav__name">Log Out</span>
 				</a>
 			</c:if>
 		</nav>
 	</div>
+	
+	<script>
+		function logout(){
+			$.ajax({
+				url:"../auth/logout.view",
+				success:function(responseData){
+					if(responseData=="OK"){
+						alert("로그아웃되었습니다.");
+					}					
+				},
+				error:function(message){
+					alert("message");
+				}
+			});
+			
+		}
+	
+	</script>
 
 </body>
 </html>
