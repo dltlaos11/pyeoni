@@ -233,7 +233,6 @@ public class ProductDAO {
 		if(arrange!=null) {
 			tempSb.append(arrange);
 		}
-		
 		sql = tempSb.toString();
 		
 		conn = OracleUtill.getConnection();
