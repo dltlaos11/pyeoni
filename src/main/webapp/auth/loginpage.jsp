@@ -137,15 +137,15 @@ $(function(){
 		  }
 		  
 		  alert("Sign up successful!");
-		  $("form").submit();
+		  $("#signupform").submit();
 	}
 	
 	
 	$('#btnsignin').on("click", function() {
 	    alert("btnclick");
 	    $.ajax({
-	        //url : '${pageContext.request.servletPath}' + "/auth/login.view",
-	        url : "/auth/login.view",
+	        url : '/pyeoni/auth/login.view',
+	        //url : "/auth/login.view",
 	        data : {
 	            "email" : $("#signinemail").val(),
 	            "password" : $("#signinpass").val()
@@ -178,7 +178,7 @@ $(function(){
 			<!-- SIGN UP -->
 			<div class="col align-items-center flex-col sign-up">
 				<div class="form-wrapper align-items-center">
-					<form method="post"
+					<form id = "signupform" method="post"
 						action="<%=request.getContextPath()%>/auth/signup.view">
 						<div class="form sign-up">
 							<div class="input-group">
