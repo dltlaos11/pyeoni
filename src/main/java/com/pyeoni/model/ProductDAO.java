@@ -16,25 +16,29 @@ public class ProductDAO {
 	PreparedStatement pst;
 	Statement st;
 	ResultSet re;
-	
+
 	// 상품 전체 조회
-	public List<ProductVO> selectAllProduct(){
+	public List<ProductVO> selectAllProduct(int start, int end) {
 		List<ProductVO> productList = new ArrayList();
-		
-		String sql="""
-				select * from PRODUCT
-				""";
-		
+
+		String sql = """
+					select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum 
+					FROM product p WHERE ROWNUM <= ?
+				)  WHERE rnum >= ?
+					""";
+
 		conn = OracleUtill.getConnection();
-		
+
 		try {
-			st = conn.createStatement();
-			re = st.executeQuery(sql);
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, end);
+			pst.setInt(2, start);
+			re = pst.executeQuery();
 			
-			while(re.next()) {
+			while (re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
-				
+
 			}
 
 		} catch (Exception e) {
@@ -43,14 +47,14 @@ public class ProductDAO {
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, st);
 		}
-		
+
 		return productList;
 	}
 
 	// 상품 추가
 	public int insertProduct(ProductVO product) {
-		int result=0;
-		String sql="""
+		int result = 0;
+		String sql = """
 				INSERT INTO PRODUCT VALUES(?,?,?,?,?,?)
 				""";
 
@@ -71,140 +75,137 @@ public class ProductDAO {
 		} finally {
 			OracleUtill.dbDisconnection(null, conn, pst);
 		}
-		
+
 		return result;
 	}
-	
+
 	// 상품 개별 조회
 	public ProductVO detailProduct(String product_name, String promotion, String brand, int price) {
 		ProductVO product = null;
-		String sql="""
+		String sql = """
 				SELECT * FROM PRODUCT WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?
 				""";
-		
+
 		conn = OracleUtill.getConnection();
-		
+
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, brand);
 			pst.setInt(2, price);
 			pst.setString(3, product_name);
 			pst.setString(4, promotion);
-		
+
 			re = pst.executeQuery();
-			
-			while(re.next()) {
+
+			while (re.next()) {
 				product = makeProduct(re);
 			}
-			
+
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
-		
+
 		return product;
 	}
-	
+
 	// 상품 편의점 회사별 조회
-	public List<ProductVO> selectProductByBrand(String brand){
+	public List<ProductVO> selectProductByBrand(String brand) {
 		List<ProductVO> productList = new ArrayList<>();
 		String sql = """
 				SELECT * FROM product where brand = ?
 				""";
 		conn = OracleUtill.getConnection();
-		
+
 		try {
-			pst=conn.prepareStatement(sql);
+			pst = conn.prepareStatement(sql);
 			pst.setString(1, brand);
-			re=pst.executeQuery();
-			while(re.next()) {
+			re = pst.executeQuery();
+			while (re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
-		
-		
-		return productList; 
+
+		return productList;
 	}
-	
+
 	// 상품 행사별 조회
-	public List<ProductVO> selectProductByPromotion(String promotion){
+	public List<ProductVO> selectProductByPromotion(String promotion) {
 		List<ProductVO> productList = new ArrayList<>();
 		String sql = """
 				SELECT * FROM product where promotion = ?
 				""";
 		conn = OracleUtill.getConnection();
-		
+
 		try {
-			pst=conn.prepareStatement(sql);
+			pst = conn.prepareStatement(sql);
 			pst.setString(1, promotion);
-			re=pst.executeQuery();
-			while(re.next()) {
+			re = pst.executeQuery();
+			while (re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
-		
-		
-		return productList; 
+
+		return productList;
 	}
-	
+
 	// 상품 유형별 조회
-	public List<ProductVO> selectProductByKind(String kind){
+	public List<ProductVO> selectProductByKind(String kind) {
 		List<ProductVO> productList = new ArrayList<>();
 		String sql = """
 				SELECT * FROM product where kind= ?
 				""";
 		conn = OracleUtill.getConnection();
-		
+
 		try {
-			pst=conn.prepareStatement(sql);
-			re=pst.executeQuery();
-			while(re.next()) {
+			pst = conn.prepareStatement(sql);
+			re = pst.executeQuery();
+			while (re.next()) {
 				ProductVO product = makeProduct(re);
 				productList.add(product);
 			}
-			
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
-		
-		
-		return productList; 
+
+		return productList;
 	}
-	
+
 	// Product table 내용 삭제
 	public int cleanProductTable() {
-		int result=0;
+		int result = 0;
 		String sql = """
 				DELETE FROM product
 				""";
 		conn = OracleUtill.getConnection();
 		try {
-			st=conn.createStatement();
+			st = conn.createStatement();
 			result = st.executeUpdate(sql);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
 			OracleUtill.dbDisconnection(null, conn, st);
 		}
-		
+
 		return result;
 	}
-	
+
 	// 상품 정보를 담은 개체 생성함수
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
@@ -216,7 +217,6 @@ public class ProductDAO {
 		product.setKind(re.getString("kind"));
 		product.setProductImg(re.getString("product_img"));
 
-		
 		return product;
 	}
 }

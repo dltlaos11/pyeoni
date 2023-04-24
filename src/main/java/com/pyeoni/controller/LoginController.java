@@ -27,17 +27,10 @@ public class LoginController implements CommonControllerInterface {
 			String password = request.getParameter("password");
 			MemberServices service = new MemberServices();
 			MemberVO member = service.login(email, password);
-			System.out.println("mmmmmmmmmmmmmmm" + member);
-			
-			ServletContext app = request.getServletContext();
-			Object obj = app.getAttribute("userList");
-			// List<MemberVO> userList = null;
-			 List<MemberVO> userList = new ArrayList<>();
+
 			 if(member != null) {				
-				userList.add(member);
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", member);
-				String path = request.getContextPath();
 				return "responseBody:true";
 			} else {
 				/* 로그인 실패 */

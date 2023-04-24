@@ -11,43 +11,39 @@ import javax.servlet.annotation.WebFilter;
 import javax.servlet.http.HttpFilter;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
+
+import com.pyeoni.vo.MemberVO;
 
 /**
- * Servlet Filter implementation class JspFilter
+ * Servlet Filter implementation class LoginCheck
  */
-@WebFilter("*.jsp")
-public class JspFilter extends HttpFilter implements Filter {
+@WebFilter("*.view")
+public class LoginCheckFilter extends HttpFilter implements Filter {
        
-    /**
-     * @see HttpFilter#HttpFilter()
-     */
-    public JspFilter() {
-    	System.out.println("jsp 체크 필터 생성");
-    }
-
-	/**
-	 * @see Filter#destroy()
-	 */
-	public void destroy() {
-		System.out.println("jsp 체크 필터 파괴");
-	}
 
 	/**
 	 * @see Filter#doFilter(ServletRequest, ServletResponse, FilterChain)
 	 */
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
-		 HttpServletRequest req = (HttpServletRequest)request; 
-		 HttpServletResponse res = (HttpServletResponse)response;
-		  
-		 String page = req.getRequestURI(); 
-		 page = page.replace("page.jsp", ".view");
-		  
-		 System.out.println(page);
-		  
-		 res.sendRedirect(page); 
-		 return; 
-		 //chain.doFilter(request, response);
-		 }
+
+		HttpServletRequest req =(HttpServletRequest)request;
+		HttpServletResponse res = (HttpServletResponse)response;
+		
+		if(req.getServletPath().equals("/auth/login.view")) {
+			
+		} else {
+			HttpSession browser = req.getSession();
+			MemberVO user = (MemberVO)browser.getAttribute("loginUser");
+			if(user == null) {
+				res.sendRedirect(req.getContextPath()+"/auth/login.view");
+				return;
+			}
+			System.out.println("user: "+user);
+		}
+		
+		chain.doFilter(request, response);
+	}
 
 	/**
 	 * @see Filter#init(FilterConfig)
