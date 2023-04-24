@@ -34,12 +34,12 @@
 			logoImage.src = "../img/logo_cSpace.svg";
 		} else {
 			logoImage.src = "../img/logo_pyeoni.png";
-			
+			$("#${imageId}").css({
+				"height" : "80px",
+				"width" : "80px"
+			});
 		}
-		$(logoImage).css({
-			"height" : "80px",
-			"width" : "80px"
-		});
+
 	});
 </script>
 <style>
@@ -95,9 +95,9 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<a href="../page/cu.view" class="nav__dropdown-item">CU</a>
-									<a href="../page/gs.view" class="nav__dropdown-item">GS25</a>
-									<a href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
+									<a href="../page/cu.view" class="nav__dropdown-item">CU</a> <a
+										href="../page/gs.view" class="nav__dropdown-item">GS25</a> <a
+										href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
 									<a href="../page/mini.view" class="nav__dropdown-item">MINI-STOP</a>
 									<a href="../page/emart.view" class="nav__dropdown-item">emart-24</a>
 									<a href="../page/cspace.view" class="nav__dropdown-item">C-SAPCE</a>
@@ -148,35 +148,36 @@
 				</div>
 			</div>
 
-			<c:if test="${sessionScope.loginUser==null}">			
-				<a href="../auth/login.view" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 
-					<span class="nav__name">Login</span>
+			<c:if test="${sessionScope.loginUser==null}">
+				<a href="../auth/login.view" class="nav__link nav__logout"> <i
+					class="bx bx-log-out nav__icon"></i> <span class="nav__name">Login</span>
 				</a>
 			</c:if>
 			<c:if test="${sessionScope.loginUser!=null}">
-				<a href="../page/main.view" onclick="logout()" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
-					<span class="nav__name">Log Out</span>
+				<a href="../page/main.view" onclick="logout()"
+					class="nav__link nav__logout"> <i
+					class="bx bx-log-out nav__icon"></i> <span class="nav__name">Log
+						Out</span>
 				</a>
 			</c:if>
 		</nav>
 	</div>
-	
+
 	<script>
-		function logout(){
+		function logout() {
 			$.ajax({
-				url:"../auth/logout.view",
-				success:function(responseData){
-					if(responseData=="OK"){
+				url : "../auth/logout.view",
+				success : function(responseData) {
+					if (responseData == "OK") {
 						alert("로그아웃되었습니다.");
-					}					
+					}
 				},
-				error:function(message){
+				error : function(message) {
 					alert("message");
 				}
 			});
-			
+
 		}
-	
 	</script>
 
 </body>
