@@ -61,7 +61,7 @@
 <body>
 	<%
 	ProductServices ps = new ProductServices();
-	List<ProductVO> plist = ps.selectAllProduct();
+	List<ProductVO> plist = ps.selectAllProduct(1,20);
 	request.setAttribute("plist", plist);
 	%>
 	<div class="selectall">

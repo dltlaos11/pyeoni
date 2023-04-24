@@ -18,19 +18,19 @@
 		<div class="collapse navbar-collapse" id="navbarSupportedContent">
 			<ul class="navbar-nav me-auto mb-2 mb-lg-0">
 				<li class="nav-item"><a class="nav-link"
-					href="../page/cupage.jsp">CU</a></li>
+					href="../page/cupage.view">CU</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/GSpage.jsp">GS25</a></li>
+					href="../page/gspage.view">GS25</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/Sevenpage.jsp">SEVENELEVEN</a></li>
+					href="../page/sevenpage.view">SEVENELEVEN</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/Minipage.jsp">MINISTOP</a></li>
+					href="../page/minipage.view">MINISTOP</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/Emartpage.jsp">emart24</a></li>
+					href="../page/emartpage.view">emart24</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/Cspacepage.jsp">CSPACE</a></li>
+					href="../page/cspacepage.view">CSPACE</a></li>
 				<li class="nav-item"><a class="nav-link"
-					href="../page/Allpage.jsp">ALL</a></li>
+					href="../page/allpage.view">ALL</a></li>
 				<!-- Session에서 관리자인지 확인하기 -->
 				<c:if test="${sessionScope.loginUser.email=='admin@admin.com'}">
                   <li class="nav-item">
@@ -40,13 +40,13 @@
 			</ul>
 			<!-- 로그인한 사용자는 login/register 버튼 안뜨게 -->
 			<c:if test="${sessionScope.loginUser==null }">
-	            <form action="../auth/loginpage.jsp">
+	            <form action="../auth/loginpage.view">
 	               <button class="btn" type="submit" id="login_btn">login/register</button>
 	            </form>
             </c:if>
             
             <c:if test="${sessionScope.loginUser!=null }">
-	            <form action="../page/mainpage.jsp">
+	            <form action="../page/mainpage.view">
 	               <button class="btn" type="submit" id="logout_btn">Logout</button>
 	            </form>
             </c:if>
