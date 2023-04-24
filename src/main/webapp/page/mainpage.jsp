@@ -140,7 +140,7 @@ footer {
                </c:if>
             </ul>
             <form action="../auth/loginpage.jsp">
-               <button class="btn" type="button" id="login_btn">login/register</button>
+               <button class="btn" type="submit" id="login_btn">login/register</button>
             </form>
          </div>
       </div>
