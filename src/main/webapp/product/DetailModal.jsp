@@ -6,6 +6,10 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+
+<!-- 미완성 코드 -->
+
+
 <style>
 .products {
 	display: flex;
@@ -43,7 +47,41 @@
 	height: 300px;
 }
 </style>
+<script>
+	$(function() {
 
+		$('#btnaddcomment').on('click', addComment);
+
+		function addComment() {
+			var comment = $('#textComment').val();
+			$.ajax({
+				method : 'GET',
+				url : '/pyeoni/auth/login.view',
+				//url : "/auth/login.view",
+				data : {
+					"text" : $("#signinemail").val(),
+					"password" : $("#signinpass").val()
+				},
+				success : function(responseData) {
+					//console.log(responseData);
+					if (responseData == "true") {
+						//alert("true");
+						window.location.href = "../page/mainpage.jsp";
+					} else {
+						//alert("false");
+						$("#signinemail").focus("");
+					}
+				},
+				error : function() { // 괄호 추가
+					alert("연결실패");
+				}
+			});
+
+		}
+		
+
+	});
+</script>
 
 </head>
 <body>
@@ -59,7 +97,7 @@
 
 				<div class="modal-body">
 					<ul>
-						<li class = "modalcomment">
+						<li class="modalcomment">
 							<div class="products">
 								<div>
 									<img id="cokeimg" src="../img/coke.png">
@@ -68,30 +106,21 @@
 									<span><img id="cu_logo" src="../img/logo_CU.png"
 										style="object-fit: contain; max-width: 100%; max-height: 100%;"></span><br>
 									<div class="product">
-										<span id  = "prodname"></span><br> 
-										<span id  = "prodpromotion"></span><br> 
-										<span id  = "prodprice"></span><br>
+										<span id="prodname"></span><br> <span id="prodpromotion"></span><br>
+										<span id="prodprice"></span><br>
 									</div>
 								</div>
 							</div>
 						</li>
 						<!-- 댓글 목록 -->
-						<li class = "modalcomment">
-							<div class="comments">
-								<h3>댓글 목록</h3>
-								<ul>
-									<li class = "modalcomment">첫 번째 댓글입니다.</li>
-									<li class = "modalcomment">두 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-									<li class = "modalcomment">세 번째 댓글입니다.</li>
-								</ul>
+						<li class="modalcomment">
+							<hr>
+							<div id="commentsection">댓글</div>
+							<hr>
+							<div class="card mb-2">
+								<textarea id="textComment" rows="3"></textarea>
+								<button type="button" class="btn btn-dark mt-3"
+									id="btnaddcomment" onClick="addComment;">댓글 작성</button>
 							</div>
 						</li>
 					</ul>
@@ -106,4 +135,5 @@
 
 
 </body>
+
 </html>
