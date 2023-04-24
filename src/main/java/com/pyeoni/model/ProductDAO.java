@@ -218,23 +218,24 @@ public class ProductDAO {
 				""";
 		
 		tempSb.append(sql);
-		if(pname!=null) {
+		if(!pname.equals("")) {
 			tempSb.append("and product_name like '%"+pname+"%'");
 		}
-		if(kind!=null) {
+		if(!kind.equals("")) {
 			tempSb.append("and kind ='"+kind+"'");
 		}
-		if(event!=null) {
+		if(!event.equals("")) {
 			tempSb.append("and promotion ='"+event+"'");
 		}
-		if(brand!=null) {
+		if(!brand.equals("")) {
 			tempSb.append("and brand ='"+brand+"'");
 		}
-		if(arrange!=null) {
+		if(!arrange.equals("")) {
 			tempSb.append(arrange);
 		}
 		sql = tempSb.toString();
 		
+		System.out.println("sql : "+sql);
 		conn = OracleUtill.getConnection();
 
 		try {
@@ -261,7 +262,7 @@ public class ProductDAO {
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
 
-		product.setProductName(re.getString("product_name"));
+		product.setProductName(re.getString("productName"));
 		product.setPromotion(re.getString("promotion"));
 		product.setBrand(re.getString("brand"));
 		product.setPrice(re.getInt("price"));

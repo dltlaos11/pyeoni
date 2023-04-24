@@ -138,6 +138,13 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("emart24");
+		
+	});
+
+</script>
 
 </head>
 <body>

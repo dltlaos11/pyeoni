@@ -37,7 +37,8 @@ public class PageController implements CommonControllerInterface {
 				page = "cupage.jsp";
 
 			String searchValue = req.getParameter("search_bar");
-
+			if(searchValue!=null)
+				System.out.println("검색어 : "+searchValue);
 			String sortValue = req.getParameter("sort_type");
 
 			String productValue = req.getParameter("product_type");

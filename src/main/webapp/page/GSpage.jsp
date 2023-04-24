@@ -139,6 +139,13 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("GS25");
+		
+	});
+
+</script>
 
 </head>
 <body>

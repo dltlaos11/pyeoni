@@ -138,6 +138,14 @@ footer {
 }
 </style>
 
+<script>
+	$(function(){
+		$("#brandid").val("C·SPACE");
+		
+	});
+
+</script>
+
 
 </head>
 <body>
