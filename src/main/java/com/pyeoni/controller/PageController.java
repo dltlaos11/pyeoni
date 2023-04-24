@@ -15,7 +15,7 @@ public class PageController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		String page = null;
-		String brand = null;
+		String brandValue = null;
 
 		String method = (String) data.get("method");
 		System.out.println(method + " : 메소드");
@@ -24,21 +24,40 @@ public class PageController implements CommonControllerInterface {
 		if (method.equals("GET")) {
 			if (req.getRequestURI().contains("gs")) {
 				page = "GSpage.jsp";
-				brand = "gs";
+				brandValue = "GS";
 			}
 				
-			else if (req.getRequestURI().contains("emart"))
+			else if (req.getRequestURI().contains("emart")) {
 				page = "Emartpage.jsp";
-			else if (req.getRequestURI().contains("cspace"))
+				brandValue = "emart24";
+			}
+				
+			else if (req.getRequestURI().contains("cspace")) {
 				page = "Cspacepage.jsp";
-			else if (req.getRequestURI().contains("mini"))
+				brandValue = "C·SPACE";
+			}
+				
+			else if (req.getRequestURI().contains("mini")) {
 				page = "Minipage.jsp";
-			else if (req.getRequestURI().contains("seven"))
+				brandValue = "MINISTOP";
+			}
+				
+			else if (req.getRequestURI().contains("seven")) {
 				page = "Sevenpage.jsp";
-			else if (req.getRequestURI().contains("all"))
+				brandValue = "7-ELEVEn";
+			}
+				
+			else if (req.getRequestURI().contains("all")) {
 				page = "Allpage.jsp";
-			else if (req.getRequestURI().contains("cu"))
+				brandValue = req.getParameter("brand");
+			}
+				
+			
+			else if (req.getRequestURI().contains("cu")) {
 				page = "cupage.jsp";
+				brandValue = "CU";
+			}
+				
 
 			String searchValue = req.getParameter("search_bar");
 
@@ -49,8 +68,6 @@ public class PageController implements CommonControllerInterface {
 			String eventValue = req.getParameter("event_type");
 			
 			String kindValue = req.getParameter("product_type");
-			
-			String brandValue = req.getParameter("brand");
 			
 			ProductServices services = new ProductServices();
 			List<ProductVO> productList = new ArrayList<>();
