@@ -16,7 +16,6 @@ public class LoginController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		String method = (String)data.get("method");
-
 		
 		if(method.equals("GET")) {
 			
@@ -39,7 +38,7 @@ public class LoginController implements CommonControllerInterface {
 	
 		}
 
-		return "redirect:loginpage.jsp";
+		return "loginpage.jsp";
 		
 	}
 

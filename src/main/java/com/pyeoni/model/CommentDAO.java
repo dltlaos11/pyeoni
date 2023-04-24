@@ -22,9 +22,9 @@ public class CommentDAO {
 	public List<CommentVO> selectAllComment(){
 		List<CommentVO> commentList = new ArrayList<>();
 		String sql = """
-				SELECT comment_id, 
+				SELECT comment_id, content 
 				TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
-				comment_date, product_name, 
+				product_name, 
 				promotion, brand, price, email 
 				FROM comments ORDER BY comment_id asc 
 				""";
@@ -52,7 +52,12 @@ public class CommentDAO {
 	public CommentVO selectComment(String product_name, String promotion, String brand, int price) {
 		CommentVO comment = new CommentVO();
 		String sql = """
-				SELECT * FROM comments WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?
+				SELECT comment_id, content 
+				TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
+				product_name, 
+				promotion, brand, price, email 
+				FROM comments ORDER BY comment_id asc 
+				WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ? 
 				""";
 		conn = OracleUtill.getConnection();
 		
@@ -127,11 +132,27 @@ public class CommentDAO {
 		return result;
 	}
 	/* 댓글 수정 */
-	public int commentUpdate(CommentVO comment) {
+	public int commentUpdate(String content, int id) {
 		int result = 0;
 		String sql="""
-				insert into comments VALUES(?, ?, SYSDATE, ?, ?, ?, ?, ?)
+				update comments 
+				set content = ? 
+				where comment_id = ? 
 				""";
+		conn = OracleUtill.getConnection();
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setString(1, content);
+			pst.setInt(2, id);
+			
+			result = pst.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			OracleUtill.dbDisconnection(null, conn, pst);
+		}
+		
 		return result;
 	}
 	
