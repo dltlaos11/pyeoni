@@ -10,6 +10,7 @@ import java.util.List;
 
 import com.pyeoni.util.OracleUtill;
 import com.pyeoni.vo.CommentVO;
+import com.pyeoni.vo.MemberVO;
 
 public class CommentDAO {
 	Connection conn;
@@ -21,7 +22,11 @@ public class CommentDAO {
 	public List<CommentVO> selectAllComment(){
 		List<CommentVO> commentList = new ArrayList<>();
 		String sql = """
-				select * from comments
+				SELECT comment_id, 
+				TO_CHAR(comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
+				comment_date, product_name, 
+				promotion, brand, price, email 
+				FROM comments ORDER BY comment_id asc 
 				""";
 		
 		conn = OracleUtill.getConnection();
@@ -119,6 +124,14 @@ public class CommentDAO {
 			OracleUtill.dbDisconnection(null, conn, pst);
 		}
 		
+		return result;
+	}
+	/* 댓글 수정 */
+	public int commentUpdate(CommentVO comment) {
+		int result = 0;
+		String sql="""
+				insert into comments VALUES(?, ?, SYSDATE, ?, ?, ?, ?, ?)
+				""";
 		return result;
 	}
 	

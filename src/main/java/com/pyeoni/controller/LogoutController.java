@@ -16,24 +16,8 @@ public class LogoutController implements CommonControllerInterface {
 		
 		HttpServletRequest request =  (HttpServletRequest)data.get("request");
 		
-		
 		/* 세션 지우기 */
 		request.getSession(false).invalidate(); 
-		
-		ServletContext app = request.getServletContext();
-		HttpSession session = request.getSession();
-		
-		Object obj = app.getAttribute("userList");
-		MemberVO member = (MemberVO) session.getAttribute("loginUser");
-		
-		List<MemberVO> userList = null;
-		if(obj!=null) {
-			userList = (List<MemberVO>) obj;
-			userList.remove(obj);
-			app.setAttribute("userList", userList);
-		}
-		
-		
 		
 		return "responseBody:OK";
 	}
