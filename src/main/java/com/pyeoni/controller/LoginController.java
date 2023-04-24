@@ -16,10 +16,10 @@ public class LoginController implements CommonControllerInterface {
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
 		String method = (String)data.get("method");
-		String page = "";
+
 		
 		if(method.equals("GET")) {
-			page = "loginpage.jsp";
+			
 		} else {
 			HttpServletRequest request = (HttpServletRequest)data.get("request");
 			
@@ -30,34 +30,23 @@ public class LoginController implements CommonControllerInterface {
 			
 			ServletContext app = request.getServletContext();
 			Object obj = app.getAttribute("userList");
-			List<MemberVO> userList = null;
-			if(member != null) {
-				/* 로그인 성공 */
-				if(obj == null) {
-					userList = new ArrayList<>();
-				} else {
-					userList = (List<MemberVO>) obj;
-				}
+			 List<MemberVO> userList = null;
+			
+			 if(member != null) {				
 				userList.add(member);
-				app.setAttribute("userList", userList);
-				System.out.println("================로그인 한 사람 ======================");
-				for(MemberVO mem: userList) {
-					System.out.println(mem);
-				}
-				System.out.println("================================================");
-				
 				HttpSession session = request.getSession();
-				session.setAttribute("userList", member);
+				session.setAttribute("loginUser", member);
 				String path = request.getContextPath();
-				page = "redirect:"+path+"/auth/login.view";
+				return "responseBody:true";
 			} else {
 				/* 로그인 실패 */
-				page = "redirect:login.view";
+				return "responseBody:false";
 			}
-			
+	
 		}
+
+		return "responseBody:false";
 		
-		return page;
 	}
 
 }

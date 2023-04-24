@@ -22,7 +22,7 @@ public class MemberDAO {
 	public int insertMem(MemberVO mem) {
 		int result = 0;
 		String sql = """
-					insert into MEMBER values(?,?,?,?,?)
+					insert into MEMBER values(?,0,?,?,0)
 				""";
 
 		conn = OracleUtill.getConnection();
@@ -30,10 +30,8 @@ public class MemberDAO {
 		try {
 			pst = conn.prepareStatement(sql);
 			pst.setString(1, mem.getEmail());
-			pst.setInt(2, mem.getIsAdmin());
-			pst.setString(3, mem.getUserName());
-			pst.setString(4, mem.getPassword());
-			pst.setInt(5, mem.getWithDraw());
+			pst.setString(2, mem.getUserName());
+			pst.setString(3, mem.getPassword());
 
 			result = pst.executeUpdate();
 
@@ -197,7 +195,7 @@ public class MemberDAO {
 	private MemberVO makeMem(ResultSet re) throws SQLException {
 		MemberVO mem = new MemberVO();
 		mem.setEmail(re.getString("email"));
-		mem.setIsAdmin(re.getInt("isAdmin"));
+		mem.setIsAdmin(re.getInt("is_admin"));
 		mem.setUserName(re.getString("userName"));
 		mem.setPassword(re.getString("password"));
 		mem.setWithDraw(re.getInt("withDraw"));

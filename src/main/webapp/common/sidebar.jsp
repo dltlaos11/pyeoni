@@ -10,24 +10,26 @@
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="../css/sidebar.css">
 <script>
-/* 	$(function() {
-		// 문서 객체 모델이 로드된 후 실행될 코드
+	/* 	$(function() {
+	 // 문서 객체 모델이 로드된 후 실행될 코드
 
-		// 현재 URL의 주소를 가져오기
-		var currentUrl = window.location.href;
+	 // 현재 URL의 주소를 가져오기
+	 var currentUrl = window.location.href;
 
-		// URL 주소가 cupage.jsp 인 경우
-		if (currentUrl.indexOf("cupage.jsp") != -1) {
-			// 이미지 요소를 가져와서 src 속성 값을 변경
-			var logoImage = document.getElementById("pagelogo");
-			logoImage.src = "../img/logo_cu.png";
-		}
-	}); */
+	 // URL 주소가 cupage.jsp 인 경우
+	 if (currentUrl.indexOf("cupage.jsp") != -1) {
+	 // 이미지 요소를 가져와서 src 속성 값을 변경
+	 var logoImage = document.getElementById("pagelogo");
+	 logoImage.src = "../img/logo_cu.png";
+	 }
+	 }); */
 </script>
 <style>
 </style>
 </head>
 <body>
+	<%@ include file="../page/MypageModal.jsp"%>
+
 	<div class="nav" id="navbar">
 		<nav class="nav__container">
 			<div>
@@ -47,9 +49,13 @@
 						</a>
 
 						<div class="nav__dropdown">
-							<a href="#" class="nav__link"> <i
+
+							<a href="#" class="nav__link" data-bs-toggle="modal"
+								data-bs-target="#exampleModal" data-bs-whatever="@mdo"> <i
 								class="bx bx-user nav__icon"></i> <span class="nav__name">MyPage</span>
+
 							</a>
+
 						</div>
 
 						<div class="nav__dropdown">
@@ -61,10 +67,10 @@
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
 									<a href="../page/cupage.jsp" class="nav__dropdown-item">CU</a>
-									<a href="../page/GSpage.jsp" class="nav__dropdown-item">GS25</a> 
-									<a href="../page/Sevenpage.jsp" class="nav__dropdown-item">SEVEN-ELEVEN</a> 
-									<a href="../page/Minipage.jsp" class="nav__dropdown-item">MINI-STOP</a> 
-									<a href="../page/Emartpage.jsp" class="nav__dropdown-item">emart-24</a> 
+									<a href="../page/GSpage.jsp" class="nav__dropdown-item">GS25</a>
+									<a href="../page/Sevenpage.jsp" class="nav__dropdown-item">SEVEN-ELEVEN</a>
+									<a href="../page/Minipage.jsp" class="nav__dropdown-item">MINI-STOP</a>
+									<a href="../page/Emartpage.jsp" class="nav__dropdown-item">emart-24</a>
 									<a href="../page/Cspacepage.jsp" class="nav__dropdown-item">C-SAPCE</a>
 									<a href="../page/Allpage.jsp" class="nav__dropdown-item">All</a>
 								</div>
