@@ -105,7 +105,7 @@ public class MemberDAO {
 			pst.setString(2, password);
 			re = pst.executeQuery();
 			while(re.next()) {
-				member = new MemberVO(email, re.getInt("isAdmin"),re.getString("userName"), password, re.getInt("withDraw"));
+				member = new MemberVO(email, re.getInt("is_Admin"),re.getString("userName"), password, re.getInt("withDraw"));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
