@@ -219,16 +219,16 @@ public class ProductDAO {
 		
 		tempSb.append(sql);
 		if(pname!=null) {
-			tempSb.append("and product_name like %"+pname+"%");
+			tempSb.append("and product_name like '%"+pname+"%'");
 		}
 		if(kind!=null) {
-			tempSb.append("and kind ="+kind);
+			tempSb.append("and kind ='"+kind+"'");
 		}
 		if(event!=null) {
-			tempSb.append("and promotion ="+event);
+			tempSb.append("and promotion ='"+event+"'");
 		}
 		if(brand!=null) {
-			tempSb.append("and brand ="+brand);
+			tempSb.append("and brand ='"+brand+"'");
 		}
 		if(arrange!=null) {
 			tempSb.append(arrange);
@@ -240,7 +240,9 @@ public class ProductDAO {
 
 		try {
 			pst = conn.prepareStatement(sql);
-			pst.setString(1, brand);
+			pst.setInt(1, end);
+			pst.setInt(2, start);
+			
 			re = pst.executeQuery();
 			while (re.next()) {
 				ProductVO product = makeProduct(re);
