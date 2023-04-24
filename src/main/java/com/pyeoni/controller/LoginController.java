@@ -45,7 +45,7 @@ public class LoginController implements CommonControllerInterface {
 	
 		}
 
-		return "responseBody:false";
+		return "redirect:loginpage.jsp";
 		
 	}
 
