@@ -10,45 +10,33 @@
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="../css/sidebar.css">
 <script>
-	$(function() {
-		// 문서 객체 모델이 로드된 후 실행될 코드
+	/* 	$(function() {
+	 // 문서 객체 모델이 로드된 후 실행될 코드
 
-		// 현재 URL의 주소를 가져오기
-		var currentUrl = window.location.href;
-		var logoImage = document.getElementById("pagelogo");
-		// URL 주소가 cupage.jsp 인 경우
-		if (currentUrl.indexOf("cupage") != -1) {
-			// 이미지 요소를 가져와서 src 속성 값을 변경
-			logoImage.src = "../img/logo_CU.png";
-		} else if (currentUrl.indexOf("Emartpage") != -1) {
-			logoImage.src = "../img/logo_emart24.png";
-		} else if (currentUrl.indexOf("GSpage") != -1) {
-			logoImage.src = "../img/logo_GS.png";
-		} else if (currentUrl.indexOf("Minipage") != -1) {
-			logoImage.src = "../img/logo_mini.png";
-		} else if (currentUrl.indexOf("Sevenpage") != -1) {
-			logoImage.src = "../img/logo_seven3.png";
-		} else if (currentUrl.indexOf("Cspacepage") != -1) {
-			logoImage.src = "../img/logo_cSpace.svg";
-		} else {
-			logoImage.src = "../img/logo_pyeoni.png";
-			$(logoImage).css({
-			    "height": "80px",
-			    "width": "80px"
-			});
-		}
-	});
+	 // 현재 URL의 주소를 가져오기
+	 var currentUrl = window.location.href;
+
+	 // URL 주소가 cupage.jsp 인 경우
+	 if (currentUrl.indexOf("cupage.jsp") != -1) {
+	 // 이미지 요소를 가져와서 src 속성 값을 변경
+	 var logoImage = document.getElementById("pagelogo");
+	 logoImage.src = "../img/logo_cu.png";
+	 }
+	 }); */
 </script>
 <style>
 </style>
 </head>
 <body>
+	<%@ include file="../page/MypageModal.jsp"%>
+
 	<div class="nav" id="navbar">
 		<nav class="nav__container">
 			<div>
 				<a href="#" class="nav__link nav__logo"> <i
-					class="bx bxs-disc nav__icon"></i> <span class="nav__logo-name sidebarimage">					
-					<img id="pagelogo" src="../img/logo_pyeoni.png"> <br> </span>
+					class="bx bxs-disc nav__icon"></i> <span class="nav__logo-name"><img
+						id="pagelogo" src="../img/logo_pyeoni.png"
+						style="height: 80px; width: 80px;"> <br> </span>
 				</a>
 
 				<div class="nav__list">
@@ -61,9 +49,13 @@
 						</a>
 
 						<div class="nav__dropdown">
-							<a href="#" class="nav__link"> <i
+
+							<a href="#" class="nav__link" data-bs-toggle="modal"
+								data-bs-target="#exampleModal" data-bs-whatever="@mdo"> <i
 								class="bx bx-user nav__icon"></i> <span class="nav__name">MyPage</span>
+
 							</a>
+
 						</div>
 
 						<div class="nav__dropdown">

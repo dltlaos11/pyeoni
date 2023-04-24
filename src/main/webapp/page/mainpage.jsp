@@ -139,7 +139,7 @@ footer {
                   </li>
                </c:if>
             </ul>
-            <form action="#">
+            <form action="../auth/loginpage.jsp">
                <button class="btn" type="button" id="login_btn">login/register</button>
             </form>
          </div>
@@ -152,7 +152,7 @@ footer {
          <div class="w3-container w3-center w3-animate-opacity">
             <p id="main_title">PYEONI</p>
 
-            <form class="d-flex" id="main_search">
+            <form action="All.view" class="d-flex" id="main_search">
                <div class="input-group">
                   <input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요">
                   <button class="btn" id="search_btn" type="submit">검색</button>
