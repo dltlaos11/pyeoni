@@ -238,7 +238,7 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%@ include file="../product/ProductSelectAll.jsp"%>
+	<%@include file="../product/ProductSelectAll.jsp" %>
 
 
 	<!-- <footer>
