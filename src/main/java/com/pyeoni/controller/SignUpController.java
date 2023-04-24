@@ -33,7 +33,7 @@ public class SignUpController implements CommonControllerInterface {
 		memVO.setUserName(username);
 		
 		int result = service.insertMem(memVO);
-		page = "redirect:main.view";
+		page = "redirect:login.view";
 		}
 		
 		return page;
