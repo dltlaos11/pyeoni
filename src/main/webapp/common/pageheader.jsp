@@ -32,14 +32,24 @@
 				<li class="nav-item"><a class="nav-link"
 					href="../page/Allpage.jsp">ALL</a></li>
 				<!-- Session에서 관리자인지 확인하기 -->
-				<c:if test="${sessionScope.userLoggedIn == true}">
-					<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a>
-					</li>
-				</c:if>
+				<c:if test="${sessionScope.loginUser.email=='admin@admin.com'}">
+                  <li class="nav-item">
+                     <a class="nav-link" href="#">관리자 페이지</a>
+                  </li>
+               </c:if>
 			</ul>
-			<form action="../auth/loginpage.jsp">
-				<button class="btn" type="submit" id="login_btn">login/register</button>
-			</form>
+			<!-- 로그인한 사용자는 login/register 버튼 안뜨게 -->
+			<c:if test="${sessionScope.loginUser==null }">
+	            <form action="../auth/loginpage.jsp">
+	               <button class="btn" type="submit" id="login_btn">login/register</button>
+	            </form>
+            </c:if>
+            
+            <c:if test="${sessionScope.loginUser!=null }">
+	            <form action="../auth/loginpage.jsp">
+	               <button class="btn" type="submit" id="logout_btn">Logout</button>
+	            </form>
+            </c:if>
 		</div>
 	</div>
 </nav>

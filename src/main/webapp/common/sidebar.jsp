@@ -6,6 +6,8 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 <link rel="stylesheet" href="../css/sidebar.css">
@@ -79,13 +81,10 @@
 						</a>
 
 						<div class="nav__dropdown">
-
 							<a href="#" class="nav__link" data-bs-toggle="modal"
 								data-bs-target="#myPageModal" data-bs-whatever="@mdo"> <i
 								class="bx bx-user nav__icon"></i> <span class="nav__name">MyPage</span>
-
 							</a>
-
 						</div>
 
 						<div class="nav__dropdown">
@@ -123,6 +122,7 @@
 								<div class="nav__dropdown-content">
 									<button class="nav__dropdown-item side_btn">1+1</button>
 									<button class="nav__dropdown-item side_btn">2+1</button>
+									<button class="nav__dropdown-item side_btn">3+1</button>
 								</div>
 							</div>
 
@@ -139,6 +139,8 @@
 									<button class="nav__dropdown-item side_btn">음료</button>
 									<button class="nav__dropdown-item side_btn">아이스크림</button>
 									<button class="nav__dropdown-item side_btn">생활용품</button>
+									<button class="nav__dropdown-item side_btn">식품</button>
+									<button class="nav__dropdown-item side_btn">과자류</button>
 								</div>
 							</div>
 						</div>
@@ -146,10 +148,17 @@
 				</div>
 			</div>
 
-			<a href="#" class="nav__link nav__logout"> <i
-				class="bx bx-log-out nav__icon"></i> <span class="nav__name">Log
-					Out</span>
-			</a>
+			<c:if test="${sessionScope.loginUser==null}">			
+				<a href="../auth/loginpage.jsp" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 
+					<span class="nav__name">Login</span>
+				</a>
+			</c:if>
+					
+			<c:if test="${sessionScope.loginUser!=null}">
+				<a href="../page/mainpage.jsp" onclick="" class="nav__link nav__logout"> <i class="bx bx-log-out nav__icon"></i> 				
+					<span class="nav__name">Log Out</span>
+				</a>
+			</c:if>
 		</nav>
 	</div>
 

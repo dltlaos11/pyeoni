@@ -61,6 +61,20 @@ a.nav-link {
    font-weight: bold;
 }
 
+#logout_btn {
+   margin-right: 50px;
+   background-color: white;
+   border-color: #F69320;
+   color: #F69320;
+   font-weight: bold;
+}
+
+#logout_btn:hover {
+   background-color: #F69320;
+   color: white;
+   font-weight: bold;
+}
+
 .content {
    text-align: center;
    margin-top: 200px;

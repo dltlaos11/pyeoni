@@ -150,41 +150,7 @@ footer {
 			<div class="w3-container w3-center w3-animate-opacity">
 				<img src="../img/logo_CU.png" id="logo_cu">
 
-				<form method="get" action="cupage.jsp" class="d-flex" id="main_search">
-					<div class="input-group">
-						<input class="form-control" type="search" id="search_bar"
-							name="search_bar" placeholder="찾으시는 상품을 입력하세요">
-						<button class="btn" id="search_btn" type="submit">검색</button>
-					</div>
-
-					<div class="select">
-						<div class="select_sort">
-							<select name="sort_type" class="form-control" id="id_sort">
-								<option selected>가격-정렬</option>
-								<option value="1">낮은가격순</option>
-								<option value="2">높은가격순</option>
-							</select>
-						</div>
-
-						<div class="select_product">
-							<select name="product_type" class="form-control">
-								<option selected>분류-전체</option>
-								<option value="1">음료</option>
-								<option value="2">아이스크림</option>
-								<option value="3">생활용품</option>
-							</select>
-						</div>
-
-						<div class="select_event">
-							<select name="event_type" class="form-control">
-								<option selected>행사-전체</option>
-								<option value="1">1+1</option>
-								<option value="2">2+1</option>
-								<option value="3">3+1</option>
-							</select>
-						</div>
-					</div>
-				</form>
+				<%@ include file="../common/pageForm.jsp" %>
 
 			</div>
 		</div>
@@ -200,7 +166,7 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%@ include file="../product/ProductSelectAll.jsp"%>
+	<%-- <%@ include file="../product/ProductSelectAll.jsp"%> --%>
 
 
 	<!-- <footer>
