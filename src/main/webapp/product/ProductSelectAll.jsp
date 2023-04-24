@@ -65,7 +65,6 @@
 	request.setAttribute("plist", plist);
 	%> --%>
 	<div class="selectall">
-			<script>console.log("여기까지옴 psa")</script>
 		<c:forEach items="${productList}" var="p">
 	
 			<button data-bs-toggle="modal" data-bs-target="#exampleModal"
