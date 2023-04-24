@@ -76,7 +76,7 @@
                                       p.brand == 'SEVENELEVEN' ? 'btnSEVENELEVEN' :
                                       p.brand == 'MINISTOP' ? 'btnMINISTOP' :
                                       p.brand == 'C-SPACE' ? 'btnC-SPACE' : 'btnEMART24'}">
-				<!--                                       CU, GS25, emart24, 7-ELEVEn, MINISTOP, cspace -->
+				<!-- CU, GS25, emart24, 7-ELEVEn, MINISTOP, cspace -->
 				<table class="tg" style="table-layout: fixed; width: 625px">
 					<colgroup>
 						<col style="width: 144.333333px">
