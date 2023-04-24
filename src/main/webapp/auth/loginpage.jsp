@@ -144,6 +144,7 @@ $(function(){
 	$('#btnsignin').on("click", function() {
 	    alert("btnclick");
 	    $.ajax({
+	    	 method : 'POST',
 	        url : '/pyeoni/auth/login.view',
 	        //url : "/auth/login.view",
 	        data : {
@@ -151,11 +152,13 @@ $(function(){
 	            "password" : $("#signinpass").val()
 	        },
 	        success : function(responseData) {
-	            var success = responseData
+	            //console.log(responseData);
 	            if (responseData == "true") {
-	                window.location.href = "mainpage.jsp";
+	            	//alert("true");
+	                window.location.href = "../page/mainpage.jsp";
 	            }
-	            else{    
+	            else{
+	            	//alert("false");
 	                $("#signinemail").focus("");
 	            }
 	        },
