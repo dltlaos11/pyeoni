@@ -54,29 +54,56 @@
 
 		function addComment() {
 			var comment = $('#textComment').val();
+			var prodname = $('#prodname').val();
+			var prodpromotion = $('#prodpromotion').val();
+			var prodprice = $('#prodprice').val();
+			var prodbrand = $('#prodbrand img').attr('alt');
 			$.ajax({
-				method : 'GET',
-				url : '/pyeoni/auth/login.view',
+				method : 'POST',
+				url : '/pyeoni/auth/...........',//댓글컨트롤러
 				//url : "/auth/login.view",
 				data : {
-					"text" : $("#signinemail").val(),
-					"password" : $("#signinpass").val()
+					"comment" : comment,
+					"productname" : prodname,
+					"promotion" :prodpromotion,
+					"price" :prodprice,
+					"brand" : prodbrand
 				},
 				success : function(responseData) {
 					//console.log(responseData);
-					if (responseData == "true") {
-						//alert("true");
-						window.location.href = "../page/mainpage.jsp";
-					} else {
-						//alert("false");
-						$("#signinemail").focus("");
+					if (responseData == "OK") {
+						//댓글 추가 성공
+						//댓글 refresh
 					}
 				},
 				error : function() { // 괄호 추가
-					alert("연결실패");
+					alert("실패");
 				}
 			});
-
+		}
+		
+		
+		function viewComment() {//모달이 열리면 실행되어야함
+			var comment = $('#textComment').val();
+			var prodname = $('#prodname').val();
+			var prodpromotion = $('#prodpromotion').val();
+			var prodprice = $('#prodprice').val();
+			var prodbrand = $('#prodbrand img').attr('alt');
+			$.ajax({
+				method : 'GET',
+				url : '/pyeoni/auth/...........',//댓글컨트롤러
+				//url : "/auth/login.view",
+				success : function(responseData) {
+					//console.log(responseData);
+					if (responseData == "OK") {
+						//댓글 refresh
+						//div commentsection에 쓰기
+					}
+				},
+				error : function() { // 괄호 추가
+					alert("실패");
+				}
+			});
 		}
 		
 
@@ -103,7 +130,7 @@
 									<img id="cokeimg" src="../img/coke.png">
 								</div>
 								<div class="detail">
-									<span><img id="cu_logo" src="../img/logo_CU.png"
+									<span id = "prodbrand"><img id="cu_logo" src="../img/logo_CU.png"
 										style="object-fit: contain; max-width: 100%; max-height: 100%;"></span><br>
 									<div class="product">
 										<span id="prodname"></span><br> <span id="prodpromotion"></span><br>
@@ -120,7 +147,7 @@
 							<div class="card mb-2">
 								<textarea id="textComment" rows="3"></textarea>
 								<button type="button" class="btn btn-dark mt-3"
-									id="btnaddcomment" onClick="addComment;">댓글 작성</button>
+									id="btnaddcomment">댓글 작성</button>
 							</div>
 						</li>
 					</ul>

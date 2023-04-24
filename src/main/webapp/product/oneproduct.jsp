@@ -120,10 +120,11 @@
 					var prodname = $(event.relatedTarget).data('pname');
 					var prodpromotion = $(event.relatedTarget).data('ppro');
 					var prodprice = $(event.relatedTarget).data('pprice');
-					var prodbrand = $(event.relatedTarget).data('pbrand');
+					var prodbrand = $(event.relatedTarget).find('img').attr('alt');
 					$("#prodname").text(prodname);
 					$("#prodpromotion").text(prodpromotion);
 					$("#prodprice").text(prodprice + "원");
+					$("#prodbrand").text(prodbrand);
 				});
 			});
 		</script>
