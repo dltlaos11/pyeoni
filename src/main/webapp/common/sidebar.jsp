@@ -20,25 +20,25 @@
 		var logoImage = document.getElementById("pagelogo");
 
 		// URL 주소가 cupage.jsp 인 경우
-		if (currentUrl.indexOf("cupage") != -1) {
+		if (currentUrl.indexOf("cu") != -1) {
 			logoImage.src = "../img/logo_CU.png";
-		} else if (currentUrl.indexOf("Emartpage") != -1) {
+		} else if (currentUrl.indexOf("emart") != -1) {
 			logoImage.src = "../img/logo_emart24.png";
-		} else if (currentUrl.indexOf("GSpage") != -1) {
+		} else if (currentUrl.indexOf("gs") != -1) {
 			logoImage.src = "../img/logo_GS.png";
-		} else if (currentUrl.indexOf("Minipage") != -1) {
+		} else if (currentUrl.indexOf("mini") != -1) {
 			logoImage.src = "../img/logo_mini.png";
-		} else if (currentUrl.indexOf("Sevenpage") != -1) {
+		} else if (currentUrl.indexOf("seven") != -1) {
 			logoImage.src = "../img/logo_seven3.png";
-		} else if (currentUrl.indexOf("Cspacepage") != -1) {
+		} else if (currentUrl.indexOf("cspace") != -1) {
 			logoImage.src = "../img/logo_cSpace.svg";
 		} else {
 			logoImage.src = "../img/logo_pyeoni.png";
-			imageSize = "80";
+			
 		}
 		$(logoImage).css({
-			"height" : imageSize + "px",
-			"width" : imageSize + "px"
+			"height" : "80px",
+			"width" : "80px"
 		});
 	});
 </script>
