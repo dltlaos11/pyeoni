@@ -213,26 +213,30 @@ public class ProductDAO {
 		
 		String sql = """
 				select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum
-				FROM product p WHERE ROWNUM <= ?
+				FROM product p WHERE 
+				""";
+		String sqlEnd = """
+				ROWNUM <= ?
 			)  WHERE rnum >= ?
 				""";
-		
 		tempSb.append(sql);
-		if(!pname.equals("")) {
-			tempSb.append("and product_name like '%"+pname+"%'");
+		if(pname!=null && !pname.equals("")) {
+			tempSb.append("product_name like '%"+pname+"%' and ");
 		}
-		if(!kind.equals("")) {
-			tempSb.append("and kind ='"+kind+"'");
+		if(kind!=null && !kind.equals("")) {
+			tempSb.append("kind ='"+kind+"' and ");
 		}
-		if(!event.equals("")) {
-			tempSb.append("and promotion ='"+event+"'");
+		if(event!=null && !event.equals("")) {
+			tempSb.append("promotion ='"+event+"' and ");
 		}
-		if(!brand.equals("")) {
-			tempSb.append("and brand ='"+brand+"'");
+		if(brand!=null && !brand.equals("")) {
+			tempSb.append("brand ='"+brand+"' and ");
 		}
-		if(!arrange.equals("")) {
+		tempSb.append(sqlEnd);
+		if(arrange!=null && !arrange.equals("")) {
 			tempSb.append(arrange);
 		}
+		
 		sql = tempSb.toString();
 		
 		System.out.println("sql : "+sql);
@@ -262,7 +266,7 @@ public class ProductDAO {
 	private ProductVO makeProduct(ResultSet re) throws SQLException {
 		ProductVO product = new ProductVO();
 
-		product.setProductName(re.getString("productName"));
+		product.setProductName(re.getString("product_name"));
 		product.setPromotion(re.getString("promotion"));
 		product.setBrand(re.getString("brand"));
 		product.setPrice(re.getInt("price"));
