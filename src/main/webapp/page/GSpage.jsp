@@ -173,7 +173,7 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%@ include file="../product/ProductSelectAll.jsp"%>
+	<%@ include file="../product/ProductShow.jsp"%>
 	<div id="more_here">!!!!</div>
 	<button id="more_btn" type="submit">더보기</button>
 
@@ -199,12 +199,14 @@ footer {
 					var sortType = $("select[name='sort_type']").val();
 					var productType = $("select[name='product_type']").val();
 					var eventType = $("select[name='event_type']").val();
+					var start = parseInt($("#pageNum").val());
+					var end = parseInt($("#pageNum").val())+19;
 					
 					$.ajax({
 						url : "update.do",
 						data : {
-							"start" : 21,
-							"end" : 40,
+							"start" : start,
+							"end" : end,
 							"brand" : "GS25",
 							"sort_type" : sortType,
 							"product_type" : productType,
@@ -212,7 +214,8 @@ footer {
 						},
 						success : function(responseData) {
 							console.log(responseData);						 
-								$("#more_here").html(responseData);						 
+								$("#more_here").append(responseData);
+								$("#pageNum").val(start+20);
 						},
 						error : function(message) {
 							alert(message);

@@ -175,7 +175,7 @@ footer {
 
 	<!-- ProductSelectAll -->
 
-	<%@ include file="../product/ProductSelectAll.jsp"%>
+	<%@ include file="../product/ProductShow.jsp"%>
 
 
 
