@@ -224,7 +224,7 @@ public class ProductDAO {
 		tempSb.append(sql);
 		if(pname!=null && !pname.equals("")) {
 			
-			tempSb.append("where product_name like '%"+pname+"%");
+			tempSb.append("where product_name like '%"+pname+"%'");
 			pre=true;
 		}
 		if(kind!=null && !kind.equals("")) {

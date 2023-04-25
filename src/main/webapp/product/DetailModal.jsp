@@ -71,12 +71,9 @@ function commentdel(){
 	});	
 }
 
-	$(function() {
-		
+	$(function() {	
 		$('#btnaddcomment').on('click', addComment);
-
-		function addComment() {
-		
+		function addComment() {		
 			var comment = $('#textComment').val();
 			var prodname = $('#prodname').text();
 			var prodpromotion = $('#prodpromotion').text();
@@ -107,8 +104,6 @@ function commentdel(){
 				}
 			});
 		}
-
-
 
 	});
 	function viewComment() {//댓글 보이게
@@ -197,7 +192,8 @@ function commentdel(){
 						<li class="modalcomment">
 							<div class="products">
 								<div>
-									<img id="cokeimg" src="../img/coke.png">
+									<img id="modalimg" src="" style="width: 200px; height: 200px; object-fit: contain;">
+									
 								</div>
 								<div class="detail">
 									<span id="prodbrand"><img id="cu_logo"
@@ -232,13 +228,4 @@ function commentdel(){
 
 
 </body>
-<script>
-$(function(){
-	
-// 	$('.commentdelbtn').on('click', commentdel);
-
-});
-
-
-</script>
 </html>

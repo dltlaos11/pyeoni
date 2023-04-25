@@ -163,8 +163,9 @@ footer {
 
 </head>
 <body>
-	<%@ include file="../common/sidebar.jsp"%>
-	 <%@include file="../common/pageheader.jsp" %>
+	 <%@ include file="../common/sidebar.jsp"%>
+	 <%@ include file="../common/pageheader.jsp" %>
+	 <%@ include file="../common/ModalData.jsp" %>
 
 
 	<div class="content">
@@ -208,7 +209,7 @@ footer {
 						data : {
 							"start" : start,
 							"end" : end,
-							/* "brand" : "", */
+							"brand" : "", 
 							"sort_type" : sortType,
 							"product_type" : productType,
 							"event_type" : eventType

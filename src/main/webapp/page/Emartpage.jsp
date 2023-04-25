@@ -166,8 +166,9 @@ footer {
 
 </head>
 <body>
-	<%@ include file="../common/sidebar.jsp"%>
-	 <%@include file="../common/pageheader.jsp" %>
+	 <%@ include file="../common/sidebar.jsp"%>
+	 <%@ include file="../common/pageheader.jsp" %>
+	 <%@ include file="../common/ModalData.jsp" %>
 
 
 	<div class="content">
