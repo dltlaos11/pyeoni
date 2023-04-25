@@ -23,7 +23,7 @@ public class ProductDAO {
 
 		String sql = """
 					select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum
-					FROM product p WHERE ROWNUM <= ?
+					FROM product p ROWNUM <= ?
 				)  WHERE rnum >= ?
 					""";
 
@@ -215,7 +215,7 @@ public class ProductDAO {
 		
 		String sql = """
 				select * from(select pp.* , ROWNUM rnum from( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img 
-				FROM product p WHERE  
+				FROM product p 
 				""";
 		String sqlEnd = """
 			) pp  where ROWNUM <= ? )  WHERE rnum >= ?
@@ -223,24 +223,31 @@ public class ProductDAO {
 		
 		tempSb.append(sql);
 		if(pname!=null && !pname.equals("")) {
-			tempSb.append("product_name like '%"+pname+"%");
+			
+			tempSb.append("where product_name like '%"+pname+"%");
 			pre=true;
 		}
 		if(kind!=null && !kind.equals("")) {
 			if(pre==true)
 				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
 			tempSb.append("kind ='"+kind+"' ");
 			pre=true;
 		}
 		if(event!=null && !event.equals("")) {
 			if(pre==true)
 				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
 			tempSb.append("promotion ='"+event+"' ");
 			pre=true;
 		}
 		if(brand!=null && !brand.equals("")) {
 			if(pre==true)
 				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
 			tempSb.append("brand ='"+brand+"' ");
 		}
 		if(arrange!=null && !arrange.equals("")) {
