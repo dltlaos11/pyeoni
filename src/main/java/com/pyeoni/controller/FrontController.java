@@ -87,6 +87,10 @@ public class FrontController extends HttpServlet {
 			controll = new CommentUpdateController();
 			break;
 			
+		case "/page/update.do":
+			controll = new PageUpdateListController();
+			break;
+			
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + path);
 		}
