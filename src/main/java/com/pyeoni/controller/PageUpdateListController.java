@@ -44,7 +44,7 @@ public class PageUpdateListController implements CommonControllerInterface {
 
 		}
 		
-		return "responseBody:OK";
+		return "../product/AddList.jsp";
 	}
 
 }
