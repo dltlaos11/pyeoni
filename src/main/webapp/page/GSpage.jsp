@@ -97,12 +97,11 @@ a.nav-link {
 }
 
 .select {
-	text-align: center;	
+	text-align: center;
 	display: flex;
 	flex-direction: row;
 	justify-content: flex-start;
 	margin: 0 auto;
-
 }
 
 .select_product {
@@ -110,7 +109,7 @@ a.nav-link {
 }
 
 .select select {
-  text-align: center;
+	text-align: center;
 }
 
 /* gs페이지 css시작 */
@@ -140,17 +139,16 @@ footer {
 </style>
 
 <script>
-	$(function(){
+	$(function() {
 		$("#brandid").val("GS25");
-		
-	});
 
+	});
 </script>
 
 </head>
 <body>
-	<%@ include file="../common/sidebar.jsp"%>
-	 <%@include file="../common/pageheader.jsp" %>
+	<%@include file="../common/sidebar.jsp"%>
+	<%@include file="../common/pageheader.jsp"%>
 
 
 	<div class="content">
@@ -159,7 +157,7 @@ footer {
 			<div class="w3-container w3-center w3-animate-opacity">
 				<img src="../img/logo_GS.png" id="logo_gs">
 
-				<%@ include file="../common/pageForm.jsp" %>
+				<%@ include file="../common/pageForm.jsp"%>
 			</div>
 		</div>
 	</div>
@@ -175,8 +173,9 @@ footer {
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%-- <%@ include file="../product/ProductSelectAll.jsp" %> --%>
-
+	<%@ include file="../product/ProductShow.jsp"%>
+	<div id="more_here">!!!!</div>
+	<button id="more_btn" type="submit">더보기</button>
 
 	<!-- <footer>
          <hr>
@@ -191,4 +190,40 @@ footer {
    </footer> -->
 
 </body>
+
+<script>
+	$(function() {
+		$("#more_btn").on(
+				"click",
+				function() {
+					var sortType = $("select[name='sort_type']").val();
+					var productType = $("select[name='product_type']").val();
+					var eventType = $("select[name='event_type']").val();
+					var start = parseInt($("#pageNum").val());
+					var end = parseInt($("#pageNum").val())+19;
+					
+					$.ajax({
+						url : "update.do",
+						data : {
+							"start" : start,
+							"end" : end,
+							"brand" : "GS25",
+							"sort_type" : sortType,
+							"product_type" : productType,
+							"event_type" : eventType
+						},
+						success : function(responseData) {
+							console.log(responseData);						 
+								$("#more_here").append(responseData);
+								$("#pageNum").val(start+20);
+						},
+						error : function(message) {
+							alert(message);
+						}
+					});
+				});
+	});
+</script>
+
+
 </html>

@@ -1,9 +1,12 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <form class="d-flex" id="main_search">
+
+	<input type="hidden" value="${pagenum}" id="pageNum">
+
 	<div class="input-group">
 		<input class="form-control" type="search" id="search_bar"
-			name="search_bar" placeholder="찾으시는 상품을 입력하세요">
+			name="search_bar" placeholder="찾으시는 상품을 입력하세요" >
 		<button class="btn" id="search_btn" type="submit">검색</button>
 	</div>
 

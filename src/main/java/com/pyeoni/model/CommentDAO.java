@@ -58,7 +58,7 @@ public class CommentDAO {
 		String sql = """
 				SELECT c.comment_id, c.content, 
 				TO_CHAR(c.comment_date, 'YYYY-MM-DD HH24:MI:SS') as created_datetime, 
-				c.product_name, c.promotion, c.brand, c.price, c.email, m.username 
+				c.product_name, c.promotion, c.brand, c.price, c.email, m.username as username
 				FROM comments c 
 				LEFT JOIN member m 
 				ON c.email = m.email 
@@ -180,7 +180,7 @@ public class CommentDAO {
 		comment.setPromotion(re.getString("PROMOTION"));
 		comment.setBrand(re.getString("BRAND"));
 		comment.setPrice(re.getInt("PRICE"));
-		comment.setEmail(re.getString("EMAIL"));
+		comment.setEmail(re.getString("username"));
 		
 		
 		
