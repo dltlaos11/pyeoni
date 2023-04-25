@@ -14,28 +14,28 @@
 		<div class="select_sort">
 			<select name="sort_type" class="form-control">
 				<option ${param.sort_type==""?"selected":""} value="">가격-정렬</option>
-				<option value="order by price asc">낮은가격순</option>
-				<option value="order by price desc">높은가격순</option>
+				<option ${param.sort_type=="order by price asc"?"selected":""} value="order by price asc">낮은가격순</option>
+				<option ${param.sort_type=="order by price desc"?"selected":""} value="order by price desc">높은가격순</option>
 			</select>
 		</div>
 
 		<div class="select_product">
 			<select name="product_type" class="form-control">
 				<option ${param.product_type==""?"selected":""} value="">상품-전체</option>
-				<option value="음료">음료</option>
-				<option value="아이스크림">아이스크림</option>
-				<option value="생활용품">생활용품</option>
-				<option value="식품">식품</option>
-				<option value="식품">과자류</option>
+				<option ${param.product_type=="음료"?"selected":""} value="음료">음료</option>
+				<option ${param.product_type=="아이스크림"?"selected":""} value="아이스크림">아이스크림</option>
+				<option ${param.product_type=="생활용품"?"selected":""} value="생활용품">생활용품</option>
+				<option ${param.product_type=="식품"?"selected":""} value="식품">식품</option>
+				<option ${param.product_type=="과자류"?"selected":""} value="과자류">과자류</option>
 			</select>
 		</div>
 
 		<div class="select_event">
 			<select name="event_type" class="form-control">
 				<option ${param.event_type==""?"selected":""} value="">행사-전체</option>
-				<option value="1+1">1+1</option>
-				<option value="2+1">2+1</option>
-				<option value="3+1">3+1</option>
+				<option ${param.event_type=="1+1"?"selected":""} value="1+1">1+1</option>
+				<option ${param.event_type=="2+1"?"selected":""} value="2+1">2+1</option>
+				<option ${param.event_type=="3+1"?"selected":""} value="3+1">3+1</option>
 			</select>
 		</div>
 	</div>

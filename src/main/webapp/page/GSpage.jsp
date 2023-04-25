@@ -136,6 +136,24 @@ footer {
 	text-align: right;
 	font-size: 15px;
 }
+
+/* 더보기 버튼 */
+#more_btn{
+	display: block;
+	margin: 0 auto;	
+	width : 200px;
+	background-color: white;
+	border-color: rgb(0, 111, 186);
+	color: rgb(0, 111, 186);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#more_btn:hover {
+	background-color: rgb(0, 111, 186);
+	color: white;
+	font-weight: bold;
+}
 </style>
 
 <script>
@@ -147,16 +165,15 @@ footer {
 
 </head>
 <body>
-	<%@include file="../common/sidebar.jsp"%>
-	<%@include file="../common/pageheader.jsp"%>
-
-
+	<%@ include file="../common/sidebar.jsp"%>
+	<%@ include file="../common/pageheader.jsp"%>
+	<%@ include file="../common/ModalData.jsp" %>
+	
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
 			<!-- 애니메이션 적용 -->
 			<div class="w3-container w3-center w3-animate-opacity">
 				<img src="../img/logo_GS.png" id="logo_gs">
-
 				<%@ include file="../common/pageForm.jsp"%>
 			</div>
 		</div>
@@ -166,28 +183,15 @@ footer {
 
 	<!-- 1+1, 2+1 텍스트 -->
 	<div class="change_event">
-
-		<i class='bx bxs-megaphone'></i> <span id="1+1">1+1 행사상품입니다.</span><br>
-		<!-- <span id="2+1">2+1 행사상품입니다.</span><br>  
-	   <span id="allproduct">전체 상품목록입니다.</span><br>  -->
+		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
+		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
+		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
 	</div>
 
 	<!-- ProductSelectAll -->
 	<%@ include file="../product/ProductShow.jsp"%>
-	<div id="more_here">!!!!</div>
-	<button id="more_btn" type="submit">더보기</button>
-
-	<!-- <footer>
-         <hr>
-         <nav>
-            <a href="https://www.naver.com/">Naver</a> | <a
-               href="https://github.com/Jennorresothie/pyeoni">Github</a>
-         </nav>
-         <p>
-            <span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
-            <br> <span>Copyright 2023. All Rights Reserved.</span>
-         </p>
-   </footer> -->
+	<div id="more_here"></div>
+	<button class="btn" id="more_btn" type="submit">더보기</button>
 
 </body>
 

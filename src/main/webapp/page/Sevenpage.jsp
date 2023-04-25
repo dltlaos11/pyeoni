@@ -135,6 +135,24 @@ footer {
 	text-align: right;
 	font-size: 15px;
 }
+
+/* 더보기 버튼 */
+#more_btn{
+	display: block;
+	margin: 0 auto;	
+	width : 200px;
+	background-color: white;
+	border-color: rgb(0, 129, 98);
+	color: rgb(0, 129, 98);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#more_btn:hover {
+	background-color: rgb(0, 129, 98);
+	color: white;
+	font-weight: bold;
+}
 </style>
 
 <script>
@@ -148,46 +166,9 @@ footer {
 </head>
 <body>
 	<%@ include file="../common/sidebar.jsp"%>
-	<nav class="navbar navbar-expand-lg navbar-light">
-		<div class="container-fluid">
-			<a class="navbar-brand" href="../page/mainpage.jsp"><img
-				src="../img/logo_pyeoni.png">Pyeoni</a>
-			<!--토글러 -->
-			<button class="navbar-toggler" type="button"
-				data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent"
-				aria-controls="navbarSupportedContent" aria-expanded="false"
-				aria-label="Toggle navigation">
-				<span class="navbar-toggler-icon"></span>
-			</button>
-
-			<div class="collapse navbar-collapse" id="navbarSupportedContent">
-				<ul class="navbar-nav me-auto mb-2 mb-lg-0">
-					<li class="nav-item"><a class="nav-link"
-						href="../page/cupage.jsp">CU</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/GSpage.jsp">GS25</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Sevenpage.jsp">SEVENELEVEN</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Minipage.jsp">MINISTOP</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Emartpage.jsp">emart24</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Cspacepage.jsp">CSPACE</a></li>
-					<li class="nav-item"><a class="nav-link"
-						href="../page/Allpage.jsp">ALL</a></li>
-					<!-- Session에서 관리자인지 확인하기 -->
-					<c:if test="${sessionScope.userLoggedIn == true}">
-						<li class="nav-item"><a class="nav-link" href="#">관리자 페이지</a>
-						</li>
-					</c:if>
-				</ul>
-				<form action="#">
-					<button class="btn" type="button" id="login_btn">login/register</button>
-				</form>
-			</div>
-		</div>
-	</nav>
+	<%@ include file="../common/pageheader.jsp"%>
+	<%@ include file="../common/ModalData.jsp" %>
+	
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
@@ -202,15 +183,15 @@ footer {
 
 	<!-- 1+1, 2+1 텍스트 -->
 	<div class="change_event">
-
-		<i class='bx bxs-megaphone'></i> <span id="1+1">1+1 행사상품입니다.</span><br>
-		<!-- <span id="2+1">2+1 행사상품입니다.</span><br>  
-	   <span id="allproduct">전체 상품목록입니다.</span><br>  -->
+		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
+		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
+		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%-- <%@ include file="../product/ProductSelectAll.jsp"%> --%>
-
+	<%@ include file="../product/ProductShow.jsp"%>
+	<div id="more_here"></div>
+	<button class="btn" id="more_btn" type="submit">더보기</button>
 
 	<!-- <footer>
          <hr>
@@ -225,4 +206,38 @@ footer {
    </footer> -->
 
 </body>
-</html>
+
+<script>
+	$(function() {
+		$("#more_btn").on(
+				"click",
+				function() {
+					var sortType = $("select[name='sort_type']").val();
+					var productType = $("select[name='product_type']").val();
+					var eventType = $("select[name='event_type']").val();
+					var start = parseInt($("#pageNum").val());
+					var end = parseInt($("#pageNum").val())+19;
+					
+					$.ajax({
+						url : "update.do",
+						data : {
+							"start" : start,
+							"end" : end,
+							"brand" : "7-ELEVEn",
+							"sort_type" : sortType,
+							"product_type" : productType,
+							"event_type" : eventType
+						},
+						success : function(responseData) {
+							console.log(responseData);						 
+								$("#more_here").append(responseData);
+								$("#pageNum").val(start+20);
+						},
+						error : function(message) {
+							alert(message);
+						}
+					});
+				});
+	});
+</script>
+
