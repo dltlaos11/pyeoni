@@ -239,7 +239,6 @@ public class ProductDAO {
 		
 		sql = tempSb.toString();
 		
-		System.out.println("sql : "+sql);
 		conn = OracleUtill.getConnection();
 
 		try {

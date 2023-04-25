@@ -14,8 +14,11 @@ public class PageController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
+		// 처음 편의점 상품 검색 페이지 불러올 때
 		String page = null;
 		String brandValue = null;
+		
+		int start, end;
 
 		String method = (String) data.get("method");
 		System.out.println(method + " : 메소드");
@@ -24,7 +27,7 @@ public class PageController implements CommonControllerInterface {
 		if (method.equals("GET")) {
 			if (req.getRequestURI().contains("gs")) {
 				page = "GSpage.jsp";
-				brandValue = "GS";
+				brandValue = "GS25";
 			}
 				
 			else if (req.getRequestURI().contains("emart")) {
@@ -63,15 +66,12 @@ public class PageController implements CommonControllerInterface {
 
 			String sortValue = req.getParameter("sort_type");
 
-			String productValue = req.getParameter("product_type");
-
 			String eventValue = req.getParameter("event_type");
 			
 			String kindValue = req.getParameter("product_type");
 			
 			ProductServices services = new ProductServices();
 			List<ProductVO> productList = new ArrayList<>();
-			
 			
 			productList = services.selectAdvancedProduct(1, 20, searchValue, sortValue, kindValue, eventValue, brandValue);
 			
