@@ -59,7 +59,7 @@
 </style>
 </head>
 <body>
-	<%@ include file="../page/MypageModal.jsp"%>
+	<%@ include file="../common/MypageModal.jsp"%>
 
 	<div class="nav" id="navbar">
 		<nav class="nav__container">

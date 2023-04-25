@@ -142,7 +142,6 @@ $(function(){
 	
 	
 	$('#btnsignin').on("click", function() {
-	    alert("btnclick");
 	    $.ajax({
 	    	 method : 'POST',
 	        url : '/pyeoni/auth/login.view',
@@ -187,14 +186,14 @@ $(function(){
 							<div class="input-group">
 								<i class='bx bxs-user'></i> <input id="emailinput" type="text"
 									name="email" placeholder="Email">
-								<p id="emailcheck">
-								<p>
+								<span id="emailcheck">
+								</span>
 							</div>
 							<div class="input-group">
 								<i class='bx bx-mail-send'></i> <input id="userinput"
 									name="username" type="text" placeholder="Username">
-								<p id="usernamecheck">
-								<p>
+								<span id="usernamecheck">
+								</span>
 							</div>
 							<div class="input-group">
 								<i class='bx bxs-lock-alt'></i> <input id="passwordinput"
