@@ -211,34 +211,45 @@ public class ProductDAO {
 		List<ProductVO> productList = new ArrayList<>();
 		StringBuffer tempSb = new StringBuffer();
 		
+		boolean pre = false;
+		
 		String sql = """
-				select * from ( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img , ROWNUM rnum
-				FROM product p WHERE 
+				select * from(select pp.* , ROWNUM rnum from( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img 
+				FROM product p WHERE  
 				""";
 		String sqlEnd = """
-				ROWNUM <= ?
-			)  WHERE rnum >= ?
+			) pp  where ROWNUM <= ? )  WHERE rnum >= ?
 				""";
+		
 		tempSb.append(sql);
 		if(pname!=null && !pname.equals("")) {
-			tempSb.append("product_name like '%"+pname+"%' and ");
+			tempSb.append("product_name like '%"+pname+"%");
+			pre=true;
 		}
 		if(kind!=null && !kind.equals("")) {
-			tempSb.append("kind ='"+kind+"' and ");
+			if(pre==true)
+				tempSb.append(" and ");
+			tempSb.append("kind ='"+kind+"' ");
+			pre=true;
 		}
 		if(event!=null && !event.equals("")) {
-			tempSb.append("promotion ='"+event+"' and ");
+			if(pre==true)
+				tempSb.append(" and ");
+			tempSb.append("promotion ='"+event+"' ");
+			pre=true;
 		}
 		if(brand!=null && !brand.equals("")) {
-			tempSb.append("brand ='"+brand+"' and ");
+			if(pre==true)
+				tempSb.append(" and ");
+			tempSb.append("brand ='"+brand+"' ");
 		}
-		tempSb.append(sqlEnd);
 		if(arrange!=null && !arrange.equals("")) {
 			tempSb.append(arrange);
 		}
+		tempSb.append(sqlEnd);
 		
 		sql = tempSb.toString();
-		
+		System.out.println("sql " + sql);
 		conn = OracleUtill.getConnection();
 
 		try {
