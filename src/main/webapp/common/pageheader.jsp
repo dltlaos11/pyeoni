@@ -34,7 +34,7 @@
 				<!-- Session에서 관리자인지 확인하기 -->
 				<c:if test="${sessionScope.loginUser.email=='admin@admin.com'}">
                   <li class="nav-item">
-                     <a class="nav-link" href="../admin/adminpage.jsp">관리자 페이지</a>
+                     <a class="nav-link" href="../admin/admin.view">관리자 페이지</a>
                   </li>
                </c:if>
 			</ul>

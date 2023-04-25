@@ -6,8 +6,9 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <script>
-	$(function() {
+/* 	$(function() {
 		$("#updateStore").click(function() {
+			console.log("sidebar");
 			$("#here").load("update.jsp");
 		});
 		$("#manageMember").click(function() {
@@ -17,9 +18,9 @@
 			$("#here").load("manageComments.jsp");
 		});
 
-	});
-	
+	}); */
 </script>
+
 <style>
 body {
 	z-index: 100;

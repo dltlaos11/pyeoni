@@ -67,6 +67,12 @@ public class FrontController extends HttpServlet {
 			controll = new MemberSignOutController();
 			break;
 			
+		case "/admin/admin.view":
+			controll = new AdminMainController();
+			break;
+		case "/admin/manageComments.view":
+			controll = new AdminCommentsController();
+			break;
 		case "/admin/update.do":
 			controll = new ProductUpdateController();
 			break;
