@@ -20,6 +20,8 @@ public class SignUpController implements CommonControllerInterface {
 		} else {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
+		request.setCharacterEncoding("utf-8");
+		
 		MemberServices service = new MemberServices();
 		
 		MemberVO memVO = new MemberVO();

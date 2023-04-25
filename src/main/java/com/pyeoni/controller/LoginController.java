@@ -22,6 +22,8 @@ public class LoginController implements CommonControllerInterface {
 		} else {
 			HttpServletRequest request = (HttpServletRequest)data.get("request");
 			
+			request.setCharacterEncoding("utf-8");
+			
 			String email = request.getParameter("email");
 			String password = request.getParameter("password");
 			MemberServices service = new MemberServices();
@@ -30,6 +32,7 @@ public class LoginController implements CommonControllerInterface {
 			 if(member != null) {				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", member);
+//				System.out.println(session.getAttribute("loginUser"));
 				return "responseBody:true";
 			} else {
 				/* 로그인 실패 */
