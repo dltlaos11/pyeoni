@@ -49,12 +49,34 @@
 }
 </style>
 <script>
-	$(function() {
 
+function commentdel(){	
+	alert("delbtnclick");
+	var commentId = event.target.parentNode.id;
+	$.ajax({
+		method : 'GET',
+		url : '/pyeoni/comment/deleteComment.view',
+		data : {
+			"commentId" : commentId
+			//어떤 댓글을 지울지
+			//댓글 아이디를 주면 된다.
+		},
+		success : function(responseData) {
+			if(responseData == "true")
+				viewComment();
+		},
+		error : function() { // 괄호 추가
+			
+		}
+	});	
+}
+
+	$(function() {
+		
 		$('#btnaddcomment').on('click', addComment);
 
 		function addComment() {
-			alert('btnclick');
+		
 			var comment = $('#textComment').val();
 			var prodname = $('#prodname').text();
 			var prodpromotion = $('#prodpromotion').text();
@@ -74,12 +96,14 @@
 					"email" : "${loginUser.email}"
 				},
 				success : function(responseData) {
-
-					alert("댓글 추가 성공");
-
+					if(responseData=="false" ){
+						alert("로그인을 해주세요");
+					}else
+						alert("댓글 추가 성공");
+					viewComment();
 				},
 				error : function() { // 괄호 추가
-					alert("실패");
+					alert("로그인해주세요");
 				}
 			});
 		}
@@ -89,17 +113,17 @@
 	});
 	function viewComment() {//댓글 보이게
 		console.log("viewcomment 실행");
-		
+		$('#commentsection').html("");
 		var prodname = $('#prodname').text();
 		var prodpromotion = $('#prodpromotion').text();
 		var prodprice = $('#prodprice').text();
 		var prodbrand = $('#prodbrand').text();
+		var loginuser = "${sessionScope.loginUser.userName}";
 		prodprice = prodprice.slice(0, -1);
 		$.ajax({
 			method : 'GET',
 			url : '/pyeoni/comment/selectComment.view',
 			data : {
-
 				"product_name" : prodname,
 				"promotion" : prodpromotion,
 				"price" : prodprice,
@@ -108,23 +132,43 @@
 			success : function(responseData) {
 				var datas = JSON.parse(responseData);
 				var commentList = datas.commentList;
+				console.log("username:" + loginuser);
 				
 				//댓글 refresh
 				//div commentsection에 쓰기
 				var commentHTML = '';
 				$.each(commentList,function(index,comment) {
-
+					console.log("commentid is")
+					console.log(comment['commentId']);
+					var commentid = comment['commentId'];
+					console.log(commentid);
 				/* 	const comment = commentList[i]; */
-					commentHTML += `
-						  <div class="comment">
-						  <span class="comment-id">${"${comment['commentId']}"}</span><br>
-						 <span class="comment-id">${"${comment['commentDate']}"}</span><br>
-						  <span class="comment-email">${"${comment['email']}"}</span><br>
-						  <span class="comment-text">${"${comment['content']}"}</span>
-						  </div>
-						  <hr>
-						 `;
-				})
+				if(loginuser == comment['email']|| loginuser == "관리자") {
+          		commentHTML += `
+            		<div id=${"${comment['commentId']}"} class="comment" >
+              		<span class="comment-id">${"${comment['commentId']}"}</span><br>
+              		<span class="comment-id">${"${comment['commentDate']}"}</span><br>
+              		<span class="comment-email">${"${comment['email']}"}</span><br>
+              		<span class="comment-text">${"${comment['content']}"}</span>		
+              		<button class="commentdelbtn" onclick="commentdel()">댓글 삭제</button>
+            		</div>
+            		<hr>
+          			`;
+				}
+				else{
+					
+		    		commentHTML += `
+	            		<div class="comment">
+	              		<span class="comment-id">${"${comment['commentId']}"}</span><br>
+	              		<span class="comment-id">${"${comment['commentDate']}"}</span><br>
+	              		<span class="comment-email">${"${comment['email']}"}</span><br>
+	              		<span class="comment-text">${"${comment['content']}"}</span>		
+	            		</div>
+	            		<hr>
+	          			`;
+				
+				}
+				});
 				console.log("html" + commentHTML);
 				$('#commentsection').append(commentHTML);
 
@@ -188,5 +232,13 @@
 
 
 </body>
+<script>
+$(function(){
+	
+// 	$('.commentdelbtn').on('click', commentdel);
 
+});
+
+
+</script>
 </html>
