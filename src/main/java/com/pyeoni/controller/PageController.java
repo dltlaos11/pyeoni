@@ -73,6 +73,7 @@ public class PageController implements CommonControllerInterface {
 		productList = services.selectAdvancedProduct(1, 20, searchValue, sortValue, kindValue, eventValue, brandValue);
 
 		req.setAttribute("productList", productList);
+		req.setAttribute("pagenum", 1);
 
 		return page;
 	}
