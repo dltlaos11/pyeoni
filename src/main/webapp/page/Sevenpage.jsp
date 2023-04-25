@@ -135,6 +135,24 @@ footer {
 	text-align: right;
 	font-size: 15px;
 }
+
+/* 더보기 버튼 */
+#more_btn{
+	display: block;
+	margin: 0 auto;	
+	width : 200px;
+	background-color: white;
+	border-color: rgb(0, 129, 98);
+	color: rgb(0, 129, 98);
+	font-weight: bold;
+	margin-bottom: 20px;
+}
+
+#more_btn:hover {
+	background-color: rgb(0, 129, 98);
+	color: white;
+	font-weight: bold;
+}
 </style>
 
 <script>
@@ -202,15 +220,15 @@ footer {
 
 	<!-- 1+1, 2+1 텍스트 -->
 	<div class="change_event">
-
-		<i class='bx bxs-megaphone'></i> <span id="1+1">1+1 행사상품입니다.</span><br>
-		<!-- <span id="2+1">2+1 행사상품입니다.</span><br>  
-	   <span id="allproduct">전체 상품목록입니다.</span><br>  -->
+		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
+		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
+		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
 	</div>
 
 	<!-- ProductSelectAll -->
-	<%-- <%@ include file="../product/ProductSelectAll.jsp"%> --%>
-
+	<%@ include file="../product/ProductShow.jsp"%>
+	<div id="more_here"></div>
+	<button class="btn" id="more_btn" type="submit">더보기</button>
 
 	<!-- <footer>
          <hr>
@@ -225,4 +243,38 @@ footer {
    </footer> -->
 
 </body>
-</html>
+
+<script>
+	$(function() {
+		$("#more_btn").on(
+				"click",
+				function() {
+					var sortType = $("select[name='sort_type']").val();
+					var productType = $("select[name='product_type']").val();
+					var eventType = $("select[name='event_type']").val();
+					var start = parseInt($("#pageNum").val());
+					var end = parseInt($("#pageNum").val())+19;
+					
+					$.ajax({
+						url : "update.do",
+						data : {
+							"start" : start,
+							"end" : end,
+							"brand" : "7-ELEVEn",
+							"sort_type" : sortType,
+							"product_type" : productType,
+							"event_type" : eventType
+						},
+						success : function(responseData) {
+							console.log(responseData);						 
+								$("#more_here").append(responseData);
+								$("#pageNum").val(start+20);
+						},
+						error : function(message) {
+							alert(message);
+						}
+					});
+				});
+	});
+</script>
+
