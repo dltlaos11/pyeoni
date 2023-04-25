@@ -16,10 +16,7 @@ public class MemberSignOutController implements CommonControllerInterface {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		String page ="memberDetail.jsp";
 		
-		if(method.equals("GET")) {
-
-		}else {
-			
+		if(method.equals("POST")) {
 			MemberServices service = new MemberServices();
 			
 			String email = request.getParameter("email");

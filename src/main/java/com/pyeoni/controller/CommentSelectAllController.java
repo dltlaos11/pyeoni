@@ -18,24 +18,30 @@ public class CommentSelectAllController implements CommonControllerInterface {
 	public String execute(Map<String, Object> data) throws Exception {
 		CommentService service = new CommentService();
 		List<CommentVO> commentList = service.selectAllComment();
-
+		JSONObject commentsObj = new JSONObject();
 		
-		JSONArray arr = new JSONArray();
-		for(CommentVO comment: commentList) {
-			JSONObject obj = new JSONObject();
-			obj.put("commentId", comment.getCommentId());
-			obj.put("content", comment.getContent());
-			obj.put("commentDate", comment.getCommentDate());
-			obj.put("productName", comment.getProductName());
-			obj.put("promotion", comment.getPromotion());
-			obj.put("brand", comment.getBrand());
-			obj.put("price", comment.getPrice());
-			obj.put("email", comment.getEmail());
-			arr.add(obj);
+		String method = (String)data.get("method");
+		
+		if(method.equals("GET")) {
+			JSONArray arr = new JSONArray();
+			for(CommentVO comment: commentList) {
+				JSONObject obj = new JSONObject();
+				obj.put("commentId", comment.getCommentId());
+				obj.put("content", comment.getContent());
+				obj.put("commentDate", comment.getCommentDate());
+				obj.put("productName", comment.getProductName());
+				obj.put("promotion", comment.getPromotion());
+				obj.put("brand", comment.getBrand());
+				obj.put("price", comment.getPrice());
+				obj.put("email", comment.getEmail());
+				arr.add(obj);
+			}
+			
+			commentsObj = new JSONObject();
+			commentsObj.put("commentList", arr);
 		}
 		
-		JSONObject commentsObj = new JSONObject();
-		commentsObj.put("commentList", arr);
+
 		
 		return "responseBody:"+commentsObj.toJSONString();
 	}

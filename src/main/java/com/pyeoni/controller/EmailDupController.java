@@ -12,9 +12,16 @@ public class EmailDupController implements CommonControllerInterface {
 	public String execute(Map<String, Object> data) throws Exception {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
-		String email = request.getParameter("email");
-		MemberServices service = new MemberServices();
-		int result = service.emailDupCheck(email);
+		String method = (String)data.get("method");
+		int result=0;
+		
+		if(method.equals("GET")) {
+			
+			String email = request.getParameter("email");
+			MemberServices service = new MemberServices();
+			result = service.emailDupCheck(email);
+		}
+
 		
 		return "responseBody:" + result;
 	}

@@ -12,9 +12,16 @@ public class UserNameController implements CommonControllerInterface {
 	public String execute(Map<String, Object> data) throws Exception {
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
-		String username = request.getParameter("username");
-		MemberServices service = new MemberServices();
-		int result = service.usernameDupCheck(username);
+		String method = (String)data.get("method");
+		int result=0;
+		
+		if(method.equals("GET")) {
+			String username = request.getParameter("username");
+			MemberServices service = new MemberServices();
+			result = service.usernameDupCheck(username);
+		}
+		
+
 		
 		return "responseBody:" + result;
 	}

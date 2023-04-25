@@ -20,9 +20,7 @@ public class MemberDetailController implements CommonControllerInterface {
 
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
-		if(method.equals("GET")) {
-
-		}else {
+		if(method.equals("POST")) {
 			String password =  request.getParameter("password");
 			String email =  request.getParameter("email");
 			

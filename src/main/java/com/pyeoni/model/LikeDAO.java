@@ -61,7 +61,7 @@ public class LikeDAO {
 	}
 	
 	// 해당 상품의 좋아요 개수 조회
-	public int selectLike(LikeVO like){
+	public int selectLike(String brand, int price, String productName, String promotion){
 		int likeCount=0;
 		String sql = """
 			SELECT COUNT(*) FROM likes WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?;
@@ -70,10 +70,10 @@ public class LikeDAO {
 		conn=OracleUtill.getConnection();
 		try {
 			pst=conn.prepareStatement(sql);
-			pst.setString(1, like.getBrand());
-			pst.setInt(2, like.getPrice());
-			pst.setString(3, like.getProductName());
-			pst.setString(4, like.getPromotion());
+			pst.setString(1, brand);
+			pst.setInt(2, price);
+			pst.setString(3, productName);
+			pst.setString(4, promotion);
 			
 			re=pst.executeQuery();
 			while(re.next()) {
@@ -82,7 +82,7 @@ public class LikeDAO {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
-			OracleUtill.dbDisconnection(null, conn, pst);
+			OracleUtill.dbDisconnection(re, conn, pst);
 		}
 		
 		return likeCount;

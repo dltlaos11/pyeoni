@@ -4,33 +4,34 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
-import com.pyeoni.model.CommentService;
+import com.pyeoni.model.LikeServices;
+import com.pyeoni.vo.LikeVO;
 
-public class CommentDeleteController implements CommonControllerInterface {
+public class LikeDeleteController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-
+		
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		
 		String method = (String)data.get("method");
 		
 		if(method.equals("DELETE")) {
-			int commentId = Integer.parseInt(request.getParameter("commentId"));
+			LikeVO like = LikeAddController.makeLike(request);
 			
-			CommentService service = new CommentService();
-			int result = service.deleteComment(commentId);
+			LikeServices service = new LikeServices();
+			int result = service.deleteLike(like);
+			
 			if (result == 0 ) {
-				/* 실패 */
+				/* 성공 */
 				return "responseBody:false";
 			}else {
-				/* 성공 */
+				/* 실패 */
 				return "responseBody:true";
 			}
 		}
-
+		
 		return "responseBody:false";
-
 	}
 
 }

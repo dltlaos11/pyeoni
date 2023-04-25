@@ -87,6 +87,15 @@ public class FrontController extends HttpServlet {
 			controll = new CommentUpdateController();
 			break;
 			
+		case "/like/addLike.do":
+			controll = new LikeAddController();
+			break;
+		case "/like/deleteLike.do":
+			controll = new LikeDeleteController();
+			break;	
+		case "/like/selectLike.do":
+			controll = new LikeSelectController();
+			break;	
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + path);
 		}

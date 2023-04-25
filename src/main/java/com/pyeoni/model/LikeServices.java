@@ -16,7 +16,7 @@ public class LikeServices {
 	}
 	
 	// 해당 상품의 좋아요 개수 조회
-	public int selectLike(LikeVO like){
-		return lDAO.selectLike(like);
+	public int selectLike(String brand, int price, String productName, String promotion){
+		return lDAO.selectLike(brand, price, productName, promotion);
 	}
 }
