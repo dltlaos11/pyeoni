@@ -220,10 +220,9 @@ public class ProductDAO {
 		String sqlEnd = """
 			) pp  where ROWNUM <= ? )  WHERE rnum >= ?
 				""";
-		
 		tempSb.append(sql);
-		if(pname!=null && !pname.equals("")) {
-			
+		if(pname!=null && !pname.equals("")) {	
+			pname = pname.replace(" ", "%");
 			tempSb.append("where product_name like '%"+pname+"%'");
 			pre=true;
 		}
