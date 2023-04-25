@@ -13,7 +13,7 @@ import lombok.NoArgsConstructor;
 public class CommentVO {
 	private int commentId;
 	private String content;
-	private Date commentDate;
+	private String commentDate;
 	private String productName; 
 	private String promotion;
 	private String brand;

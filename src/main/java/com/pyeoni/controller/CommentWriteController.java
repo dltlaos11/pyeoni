@@ -19,11 +19,16 @@ public class CommentWriteController implements CommonControllerInterface {
 		String page = "";
 		
 		String method = (String)data.get("method");
+		
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		if(method.equals("POST")) {
+			
 			CommentVO comment = makeComment(request);
+			
 			CommentService service = new CommentService();
+			
 			int result = service.writeComment(comment);
+		
 			if (result == 0 ) {
 				/* 성공 */
 				return "responseBody:false";
@@ -36,20 +41,23 @@ public class CommentWriteController implements CommonControllerInterface {
 	}
 	private CommentVO makeComment(HttpServletRequest request) throws UnsupportedEncodingException {
 		request.setCharacterEncoding("utf-8");
+	
+//		int comment_id = Integer.parseInt(request.getParameter("COMMENT_ID"));
+		String content = request.getParameter("comment");
 		
-		int comment_id = Integer.parseInt(request.getParameter("COMMENT_ID"));
-		String content = request.getParameter("content");
-		Date comment_date = DateUtill.convertToDate(request.getParameter("commentdate"));
-		String product_name = request.getParameter("productname");
+//		Date comment_date = DateUtill.convertToDate(request.getParameter("commentdate"));
+		String product_name = request.getParameter("product_name");
 		String promotion = request.getParameter("promotion");
+	
 		String brand = request.getParameter("brand");
 		int price = Integer.parseInt(request.getParameter("price"));
 		String email = request.getParameter("email");
+		System.out.println(email);
 		
 		CommentVO comment = new CommentVO();
-		comment.setCommentId(comment_id);
+//		comment.setCommentId(comment_id);
 		comment.setContent(content);
-		comment.setCommentDate(comment_date);
+//		comment.setCommentDate(comment_date);
 		comment.setProductName(product_name);
 		comment.setPromotion(promotion);
 		comment.setBrand(brand);

@@ -8,6 +8,7 @@ import java.sql.Statement;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.pyeoni.util.DateUtill;
 import com.pyeoni.util.OracleUtill;
 import com.pyeoni.vo.CommentVO;
 import com.pyeoni.vo.MemberVO;
@@ -52,7 +53,7 @@ public class CommentDAO {
 	
 	// 댓글 조회
 	public List<CommentVO> selectComment(String product_name, String promotion, String brand, int price) {
-
+		System.out.println(product_name + "/n" + promotion + "\n" + brand + "\n" +  price);
 		List<CommentVO> commentList = new ArrayList<>();
 		String sql = """
 				SELECT c.comment_id, c.content, 
@@ -73,10 +74,13 @@ public class CommentDAO {
 			pst.setInt(2, price);
 			pst.setString(3, product_name);
 			pst.setString(4, promotion);
-			
+
 			re=pst.executeQuery();
+		
 			while(re.next()) {
+				
 				CommentVO comment = makeComment(re);
+				
 				commentList.add(comment);
 			}
 		} catch (SQLException e) {
@@ -113,6 +117,7 @@ public class CommentDAO {
 	
 	// 댓글 작성
 	public int writeComment(CommentVO comment) {
+
 		int result=0;
 		String sql="""
 				insert into comments VALUES(SEQ_COMMENT_ID.nextval, ?, SYSDATE, ?, ?, ?, ?, ?)
@@ -165,16 +170,19 @@ public class CommentDAO {
 	
 	// 댓글 객체 생성
 	private CommentVO makeComment(ResultSet re) throws SQLException {
+		
 		CommentVO comment = new CommentVO();
 		
 		comment.setCommentId(re.getInt("COMMENT_ID"));
 		comment.setContent(re.getString("CONTENT"));
-		comment.setCommentDate(re.getDate("COMMENT_DATE"));
+		comment.setCommentDate(re.getString("created_datetime"));
 		comment.setProductName(re.getString("PRODUCT_NAME"));
 		comment.setPromotion(re.getString("PROMOTION"));
 		comment.setBrand(re.getString("BRAND"));
 		comment.setPrice(re.getInt("PRICE"));
 		comment.setEmail(re.getString("EMAIL"));
+		
+		
 		
 		return comment;
 	}

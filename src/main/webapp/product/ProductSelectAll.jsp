@@ -122,6 +122,8 @@
 					$("#prodname").text(prodname);
 					$("#prodpromotion").text(prodpromotion);
 					$("#prodprice").text(prodprice + "원");
+					$("#prodbrand").text(prodbrand);
+					viewComment();
 				});
 			});
 		</script>

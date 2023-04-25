@@ -6,6 +6,7 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
 <!-- 미완성 코드 -->
 
@@ -53,26 +54,29 @@
 		$('#btnaddcomment').on('click', addComment);
 
 		function addComment() {
+			alert('btnclick');
 			var comment = $('#textComment').val();
-			var prodname = $('#prodname').val();
-			var prodpromotion = $('#prodpromotion').val();
-			var prodprice = $('#prodprice').val();
-			var prodbrand = $('#prodbrand img').attr('alt');
+			var prodname = $('#prodname').text();
+			var prodpromotion = $('#prodpromotion').text();
+			var prodprice = $('#prodprice').text();
+			var prodbrand = $('#prodbrand').text();
+			prodprice = prodprice.slice(0, -1);
+			console.log("a" + prodbrand);
 			$.ajax({
-				method : 'POST',
-				url : '/pyeoni/auth/...........',//댓글컨트롤러----------------------------------------------수정하기
+				method : "POST",
+				url : '/pyeoni/comment/writeComment.view',//댓글컨트롤러----------------------------------------------수정하기
 				data : {
 					"comment" : comment,
-					"productname" : prodname,
+					"product_name" : prodname,
 					"promotion" : prodpromotion,
 					"price" : prodprice,
-					"brand" : prodbrand
+					"brand" : prodbrand,
+					"email" : "${loginUser.email}"
 				},
 				success : function(responseData) {
-					if (responseData == "OK") {
-						//댓글 추가 성공
-						//댓글 refresh
-					}
+
+					alert("댓글 추가 성공");
+
 				},
 				error : function() { // 괄호 추가
 					alert("실패");
@@ -80,46 +84,56 @@
 			});
 		}
 
-		function viewComment() {//댓글 부분을 수정
-			var comment = $('#textComment').val();
-			var prodname = $('#prodname').val();
-			var prodpromotion = $('#prodpromotion').val();
-			var prodprice = $('#prodprice').val();
-			var prodbrand = $('#prodbrand img').attr('alt');
-			$.ajax({
-				method : 'GET',
-				url : '/pyeoni/auth/...........',//댓글컨트롤러------------------------------------------------수정하기
-				//url : "/auth/login.view",
-				success : function(responseData) {
-					//console.log(responseData);
-					if (responseData == "OK") {
-						//댓글 refresh
-						//div commentsection에 쓰기
-						var commentList = ${commentlist};//---------------------------------------------------------commentlist수정하기
-						let commentHTML = "";
-						for (let i = 0; i < commentList.length; i++) {
-  							const comment = commentList[i];
-  							commentHTML += `
-    							<div class="comment">
-      							<span class="comment-id">${comment.commentId}</span>
-      							<span class="comment-id">${comment.commentDate}</span>
-      							<span class="comment-username">${comment.email}</span>   /* username으로 바꾸기 --------------------수정하기*/
-      							<span class="comment-text">${comment.content}</span>
-      		//삭제버튼을 추가한다. ex ) <button id = "deltbn" onclick 삭제함수. ajax를통해 삭제요청을 보낸다. 삭제 요청이 성공하면 viewcomment를 호출한다>
-    							</div>
-    							<hr>
-  								`;
-							}
-						$('#commentsection').html(commentHTML);
-					}
-				},
-				error : function() { // 괄호 추가
-					alert("실패");
-				}
-			});
-		}
+
 
 	});
+	function viewComment() {//댓글 보이게
+		console.log("viewcomment 실행");
+		
+		var prodname = $('#prodname').text();
+		var prodpromotion = $('#prodpromotion').text();
+		var prodprice = $('#prodprice').text();
+		var prodbrand = $('#prodbrand').text();
+		prodprice = prodprice.slice(0, -1);
+		$.ajax({
+			method : 'GET',
+			url : '/pyeoni/comment/selectComment.view',
+			data : {
+
+				"product_name" : prodname,
+				"promotion" : prodpromotion,
+				"price" : prodprice,
+				"brand" : prodbrand
+			},
+			success : function(responseData) {
+				var datas = JSON.parse(responseData);
+				var commentList = datas.commentList;
+				
+				//댓글 refresh
+				//div commentsection에 쓰기
+				var commentHTML = '';
+				$.each(commentList,function(index,comment) {
+
+				/* 	const comment = commentList[i]; */
+					commentHTML += `
+						  <div class="comment">
+						  <span class="comment-id">${"${comment['commentId']}"}</span><br>
+						 <span class="comment-id">${"${comment['commentDate']}"}</span><br>
+						  <span class="comment-email">${"${comment['email']}"}</span><br>
+						  <span class="comment-text">${"${comment['content']}"}</span>
+						  </div>
+						  <hr>
+						 `;
+				})
+				console.log("html" + commentHTML);
+				$('#commentsection').append(commentHTML);
+
+			},
+			error : function() { // 괄호 추가
+				alert("실패");
+			}
+		});
+	}
 </script>
 
 </head>
@@ -155,7 +169,7 @@
 						<!-- 댓글 목록 -->
 						<li class="modalcomment">
 							<hr>
-							<div id="commentsection">댓글</div>
+							<div id="commentsection"></div>
 							<div class="card mb-2">
 								<textarea id="textComment" rows="3"></textarea>
 								<button type="button" class="btn btn-dark mt-3"

@@ -15,17 +15,18 @@ public class CommentSelectController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		
+	
 		CommentService service = new CommentService();
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
-		String productName = request.getParameter("productname");
+		String productName = request.getParameter("product_name");
 		String promotion = request.getParameter("promotion");
 		String brand = request.getParameter("brand");
+		
 		int price = Integer.parseInt(request.getParameter("price"));
 		
 		List<CommentVO> commentList 
 			= service.selectComment(productName, promotion, brand, price);
-		
+		System.out.println(commentList);
 		
 		JSONArray arr = new JSONArray();
 		for(CommentVO comment: commentList) {
@@ -43,7 +44,7 @@ public class CommentSelectController implements CommonControllerInterface {
 		
 		JSONObject commentsObj = new JSONObject();
 		commentsObj.put("commentList", arr);
-				
+		
 		return "responseBody:"+commentsObj.toJSONString();
 	}
 
