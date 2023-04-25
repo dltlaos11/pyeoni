@@ -15,7 +15,7 @@ import javax.servlet.http.HttpServletResponse;
 /**
  * Servlet Filter implementation class JspFilter
  */
-@WebFilter("*.jsp")
+@WebFilter("/*page.jsp")
 public class JspFilter extends HttpFilter implements Filter {
        
     /**
