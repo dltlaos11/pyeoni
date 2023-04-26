@@ -31,5 +31,7 @@ CommentService cs = new CommentService();
 out.print(cs.selectAllComment());
 
 %>
+<!--  -->
 </body>
 </html>
+
