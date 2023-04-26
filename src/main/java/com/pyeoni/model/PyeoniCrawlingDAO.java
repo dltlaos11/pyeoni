@@ -13,23 +13,8 @@ import com.pyeoni.vo.MemberVO;
 import com.pyeoni.vo.ProductVO;
 
 public class PyeoniCrawlingDAO {
-	/*
-	 * Test
-	 * 
-	 * public static void main(String[] args) throws IOException { String URL =
-	 * "https://pyony.com/search/"; document가져오는것 Document doc =
-	 * Jsoup.connect(URL).get(); page 마지막 값 String stringpage = doc.select(
-	 * "body > div > div > div.col-md-12.col-lg-8 > div.pagination.justify-content-center.mt-2.mb-3 > ul > li:last-child > a"
-	 * ) .attr("href"); 숫자만 int page =
-	 * Integer.parseInt(stringpage.replaceAll("[^0-9]", "")); List<ProductVO>
-	 * productList = new ArrayList<>(); for (int i = 1; i <= page; i++) {
-	 * document가져오는것 doc = Jsoup.connect(URL + "?page=" + i).get(); 한줄씩 받아오는 것여기서
-	 * 고른다 Elements _product = doc.select("div.col-md-6"); ProductVO one_product =
-	 * getNames(doc, _product); productList.add(one_product);
-	 * System.out.println(productList); }
-	 * 
-	 * }
-	 */
+	
+	
 	public List<ProductVO> getCrawalingList() {
 		String URL = "https://pyony.com/search/";
 		/* document가져오는것 */
@@ -49,8 +34,8 @@ public class PyeoniCrawlingDAO {
 				doc = Jsoup.connect(URL + "?page=" + i).get();
 				/* 한줄씩 받아오는 것여기서 고른다 */
 				Elements productEle = doc.select("div.col-md-6");
-				ProductVO one_product = getNames(doc, productEle);
-				productList.add(one_product);
+				getNames(doc, productEle, productList);
+				
 //				System.out.println(productList);
 			}
 		} catch (IOException e) {
@@ -61,16 +46,19 @@ public class PyeoniCrawlingDAO {
 
 	}
 
-	public static ProductVO getNames(Document doc, Elements products) {
+	public static void getNames(Document doc, Elements products, List<ProductVO> productList) {
 		ProductVO product = null;
+		
 		String[] names = new String[products.size()];
 
 		for (int i = 0; i < products.size(); ++i) {
 			/* name */
 			String name = (String) products.get(i).select("div.card-body > div > strong").get(0).text();
 			names[i] = name;
-			String stringprice = (String) products.get(i).select("div.card-body > div > i.fa-coins + span").get(0)
-					.text();
+			String stringprice = products.get(i).select("div.card-body > div > i")
+                    .first()
+                    .nextSibling()
+                    .toString();
 			/* price */
 			int price = Integer.parseInt(stringprice.replaceAll("[^0-9]", ""));
 			/* brand */
@@ -114,12 +102,11 @@ public class PyeoniCrawlingDAO {
 			product.setKind(kind);
 			product.setPromotion(promotion);
 			product.setProductImg(productImg);
-
+			
+			productList.add(product);
 //			System.out.println(product);
 
 		}
-
-		return product;
 	}
 
 }
