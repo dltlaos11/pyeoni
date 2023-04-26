@@ -5,8 +5,7 @@
 	<input type="hidden" value="${pagenum}" id="pageNum">
 
 	<div class="input-group">
-		<input class="form-control" type="search" id="search_bar"
-			name="search_bar" placeholder="찾으시는 상품을 입력하세요" >
+		<input class="form-control" type="search" id="search_bar" name="search_bar" placeholder="찾으시는 상품을 입력하세요" value='${param.search_bar}'>
 		<button class="btn" id="search_btn" type="submit">검색</button>
 	</div>
 

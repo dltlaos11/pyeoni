@@ -18,8 +18,60 @@
 <title>Insert title here</title>
 <style>
 #delmember {
-	margin: 0 auto;
 	background-color: red;
+	border-color: red;
+	color: white;
+	font-weight: bold;
+}
+
+#delmember:hover {
+	background-color: white;
+	color: red;
+	font-weight: bold;
+}
+
+.mypage_head {
+	font-size: 20px;
+	font-weight: bold;
+}
+
+#passwordcheck {
+	margin-top: 8px;
+	background-color: white;
+	border-color: black;
+	color: black;
+	font-weight: bold;
+	background-color: white;
+}
+
+#passwordcheck:hover {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+#passwordchange {
+	margin-top: 8px;
+	background-color: white;
+	border-color: black;
+	color: black;
+	font-weight: bold;
+}
+
+#passwordchange:hover {
+	background-color: black;
+	color: white;
+	font-weight: bold;
+}
+
+.mypagepass_btn {
+	text-align: right;
+}
+
+#mypage_delbtn {
+	text-align: center;
+	margin-top: 10px;
+	margin-bottom: 10px;
 }
 </style>
 </head>
@@ -35,118 +87,131 @@
 				</div>
 
 				<div class="modal-body">
-					<!-- <form method="post" action="/memeber/memberDetail.view" class="mb-3"> -->
+
 					<table>
 						<tr class="form-floating">
-							<td><label for="employee_id">회원정보 수정</label></td>
+							<td><label class="mypage_head">비밀번호 확인</label></td>
 						</tr>
 						<tr>
 							<td>이메일</td>
-							<td><input id = "emailinput" type="email" name="email" maxlength="20"
-								value="${loginUser.email }" disabled="disabled"></td>
+							<td><input id="emailinput" type="email" name="email"
+								maxlength="20" value="${loginUser.email}" disabled="disabled"></td>
 						</tr>
 						<tr>
 							<td>비밀번호 확인</td>
-							<td><input id = "passwordinput" type="password" name="password"
-								required="required"></td>
+							<td><input id="passwordinput" type="password"
+								name="password" required="required"></td>
 						</tr>
-
-						<tr style="text-align: right;">
-							<td colspan="2"><button id = "passwordchange">비밀번호 변경</button></td>
+						<tr class="mypagepass_btn">
+							<td colspan="2"><button class="btn" id="passwordcheck">비밀번호
+									확인</button></td>
 						</tr>
 					</table>
-					<!-- </form> -->
-				</div>
-				<!-- <form action="#"> -->
-					<div class="modal-footer">
-						<button type="button" id="delmember" class="btn btn-secondary"
-							data-bs-dismiss="modal">회원탈퇴</button>
+
+					<hr>
+
+					<table>
+						<tr class="form-floating">
+							<td><label class="mypage_head">비밀번호 변경</label></td>
+						</tr>
+						<tr>
+							<td>새 비밀번호</td>
+							<td><input id="passwordinput" type="password"
+								name="password" required="required"></td>
+						</tr>
+						<tr>
+							<td>새 비밀번호 확인</td>
+							<td><input id="passwordinput" type="password"
+								name="password" required="required"></td>
+						</tr>
+
+						<tr class="mypagepass_btn">
+							<td colspan="2"><button class="btn" id="passwordchange">비밀번호
+									변경</button></td>
+						</tr>
+					</table>
+
+					<hr>
+					<label class="mypage_head">회원탈퇴</label>
+
+					<div id="mypage_delbtn">
+						<button class="btn" id="delmember">회원 탈퇴</button>
 					</div>
-			<!-- 	</form> -->
+
+				</div>
 			</div>
 		</div>
 	</div>
-
 </body>
 
 <script>
-$(function(){
-	
+	$(function() {
 
-	
-	$('#delmember').on('click',deletemember);
-	function deletemember(){
-		var email = $('#emailinput').val();
-		var password = $('#passwordinput').val();
-		$.ajax({
+		$('#delmember').on('click', deletemember);
+		function deletemember() {
+			var email = $('#emailinput').val();
+			var password = $('#passwordinput').val();
+			$.ajax({
 
-			method : 'POST',
-			url : '/pyeoni/memeber/memberSignout.view',
-			data : {
-				"email" : email,
-				"password" : password
-			},
-			success : function(responseData) {
-				if(responseData == "true")
-					alert("회원 탈퇴 완료");
-				else console.log("실패");
-			},
-			error : function() { // 괄호 추가
-				
-			}
-		});		
-		$.ajax({
+				method : 'POST',
+				url : '/pyeoni/memeber/memberSignout.view',
+				data : {
+					"email" : email,
+					"password" : password
+				},
+				success : function(responseData) {
+					if (responseData == "true")
+						alert("회원 탈퇴 완료");
+					else
+						console.log("실패");
+				},
+				error : function() { // 괄호 추가
 
-			method : 'POST',
-			url : '/pyeoni/auth/logout.view',
-			data : {
-				"email" : email,
-				"password" : password
-			},
-			success : function(responseData) {
+				}
+			});
+			$.ajax({
+				method : 'POST',
+				url : '/pyeoni/auth/logout.view',
+				data : {
+					"email" : email,
+					"password" : password
+				},
+				success : function(responseData) {
 					alert("로그아웃 성공");
 					window.location.href = "../page/main.view";
-			},
-			error : function() { // 괄호 추가
-				
-			}
-		});	
-		
-		
-	}
-	
-	
-	$('#passwordchange').on('click',changepassword);
-	function changepassword(){
-		var email = $('#emailinput').val();
-		var password = $('#passwordinput').val();
-		$.ajax({
+				},
+				error : function() { // 괄호 추가
+				}
+			});
 
-			method : 'POST',
-			url : '/pyeoni/memeber/memberDetail.view',
-			data : {
-				"email" : email,
-				"password" : password
-			},
-			success : function(responseData) {
-				if(responseData == "true")
-					alert("비밀번호 변경 완료");
-			},
-			error : function() { // 괄호 추가
-				
-			}
-		});			
-	}
-	
-	function vertifypassword(){
-		
-		
-		
-		
-	}
-	
-	
-});
+		}
 
+		$('#passwordchange').on('click', changepassword);
+		function changepassword() {
+			var email = $('#emailinput').val();
+			var password = $('#passwordinput').val();
+			$.ajax({
+
+				method : 'POST',
+				url : '/pyeoni/memeber/memberDetail.view',
+				data : {
+					"email" : email,
+					"password" : password
+				},
+				success : function(responseData) {
+					if (responseData == "true")
+						alert("비밀번호 변경 완료");
+				},
+				error : function() { // 괄호 추가
+
+				}
+			});
+		}
+
+		function vertifypassword() {
+
+		}
+
+	});
 </script>
 </html>
