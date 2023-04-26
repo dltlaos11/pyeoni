@@ -14,7 +14,8 @@
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <link rel="stylesheet"
 	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
-
+<link rel="stylesheet"
+	href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css">
 
 <%@ include file="../common/commonfiles.jsp"%>
 
@@ -52,6 +53,20 @@ a.nav-link {
 }
 
 #login_btn:hover {
+	background-color: #751485;
+	color: white;
+	font-weight: bold;
+}
+
+#logout_btn {
+	margin-right: 50px;
+	background-color: white;
+	border-color: purple;
+	color: #751485;
+	font-weight: bold;
+}
+
+#logout_btn:hover {
 	background-color: #751485;
 	color: white;
 	font-weight: bold;
@@ -154,12 +169,23 @@ footer {
 	color: white;
 	font-weight: bold;
 }
+
+#up_btn {
+  font-size: 3rem; /* 크기 조정 */
+  position: fixed;
+  bottom: 20px;
+  right: 500px;
+}
+
+#up_btn:hover {
+    color: blue;
+}
+
 </style>
 
 <script>
 	$(function() {
 		$("#brandid").val("CU");
-
 	});
 </script>
 
@@ -167,7 +193,7 @@ footer {
 <body>
 	<%@ include file="../common/sidebar.jsp"%>
 	<%@ include file="../common/pageheader.jsp"%>
-	<%@ include file="../common/ModalData.jsp" %>
+	<%@ include file="../common/ModalData.jsp"%>
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
@@ -179,13 +205,8 @@ footer {
 		</div>
 	</div>
 
-	<!-- 1+1, 2+1 텍스트 -->
-	<div class="change_event">
-		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체
-			상품목록입니다.</span><br>
-		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
-		<span id="2+1">2+1 행사상품입니다.</span><br>   -->
-	</div>
+	<!-- textChange -->
+	<%@ include file="../common/textChange.jsp" %>
 
 	<!-- ProductSelectAll -->
 	<%@ include file="../product/ProductShow.jsp"%>
@@ -193,18 +214,7 @@ footer {
 
 	<button class="btn" id="more_btn" type="submit">더보기</button>
 
-	<!-- <footer>
-         <hr>
-         <nav>
-            <a href="https://www.naver.com/">Naver</a> | <a
-               href="https://github.com/Jennorresothie/pyeoni">Github</a>
-         </nav>
-         <p>
-            <span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
-            <br> <span>Copyright 2023. All Rights Reserved.</span>
-         </p>
-   </footer> -->
-
+	<i class='bx bx-up-arrow-circle' id="up_btn" onClick="javascript:window.scrollTo(0,0)"></i>
 </body>
 
 <script>

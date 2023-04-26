@@ -76,8 +76,9 @@
 </style>
 </head>
 <body>
-	<div class="modal fade" id="myPageModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myPageModal" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -110,7 +111,7 @@
 
 					<hr>
 
-					<table>
+					<table id="changepass">
 						<tr class="form-floating">
 							<td><label class="mypage_head">비밀번호 변경</label></td>
 						</tr>
@@ -133,7 +134,6 @@
 
 					<hr>
 					<label class="mypage_head">회원탈퇴</label>
-
 					<div id="mypage_delbtn">
 						<button class="btn" id="delmember">회원 탈퇴</button>
 					</div>
@@ -146,44 +146,38 @@
 
 <script>
 	$(function() {
-
 		$('#delmember').on('click', deletemember);
 		function deletemember() {
 			var email = $('#emailinput').val();
 			var password = $('#passwordinput').val();
 			$.ajax({
-
 				method : 'POST',
-				url : '/pyeoni/memeber/memberSignout.view',
+				url : '/pyeoni/member/memberSignout.view',
 				data : {
 					"email" : email,
 					"password" : password
 				},
 				success : function(responseData) {
-					if (responseData == "true")
+					if (responseData == "true") {
 						alert("회원 탈퇴 완료");
-					else
-						console.log("실패");
-				},
-				error : function() { // 괄호 추가
-
+						$.ajax({
+							method : 'POST',
+							url : '../memeber/memberSignout.view',
+							data : {
+								"email" : email,
+								"password" : password
+							},
+							success : function(responseData) {
+								alert("회원탈퇴 성공");
+								window.location.href = "../page/main.view";
+							},
+							error : function() {
+								console.log("회원탈퇴 실패");
+							}
+						});
+					}
 				}
 			});
-			$.ajax({
-				method : 'POST',
-				url : '/pyeoni/auth/logout.view',
-				data : {
-					"email" : email,
-					"password" : password
-				},
-				success : function(responseData) {
-					alert("로그아웃 성공");
-					window.location.href = "../page/main.view";
-				},
-				error : function() { // 괄호 추가
-				}
-			});
-
 		}
 
 		$('#passwordchange').on('click', changepassword);
@@ -207,11 +201,33 @@
 				}
 			});
 		}
+		
+		/* 비밀번호 확인하기 */
+		$('#passwordcheck').on("click", function() {
+			var email = $('#emailinput').val();
+			var password = $('#passwordinput').val();
 
-		function vertifypassword() {
+			$.ajax({
+				method : 'POST',
+				url : '../auth/login.view',
+				data : {
+					"email" : email,
+					"password" : password
+				},
+				success : function(responseData) {
+					if (responseData == "true") {
+						alert("비밀번호 확인완료");
 
-		}
-
+					} else {
+						alert("비밀번호가 일치하지 않습니다.");
+					}
+				},
+				error : function() {
+					alert("연결실패");
+				}
+			});
+	
+		});
 	});
 </script>
 </html>
