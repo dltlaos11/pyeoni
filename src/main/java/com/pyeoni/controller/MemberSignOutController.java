@@ -14,7 +14,6 @@ public class MemberSignOutController implements CommonControllerInterface {
 		
 		String method = (String)data.get("method");
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
-		String page ="memberDetail.jsp";
 		
 		if(method.equals("POST")) {
 			MemberServices service = new MemberServices();
@@ -23,10 +22,16 @@ public class MemberSignOutController implements CommonControllerInterface {
 			String password = request.getParameter("password");
 
 			int result = service.signout(email,password);
-			page = "redirect:main.view";
+			if (result == 0 ) {
+				/* 실패 */
+				return "responseBody:false";
+			}else {
+				/* 성공 */
+				return "responseBody:true";
+			}
 		}
 		
-		return page;
+		return "responseBody:false";
 	}
 
 }

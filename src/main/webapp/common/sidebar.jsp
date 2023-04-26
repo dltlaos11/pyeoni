@@ -34,7 +34,7 @@
 			logoImage.src = "../img/logo_cSpace.svg";
 		} else {
 			logoImage.src = "../img/logo_pyeoni.png";
-			$("#${imageId}").css({
+			$("#imageId").css({
 				"height" : "80px",
 				"width" : "80px"
 			});
@@ -120,9 +120,9 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<button class="nav__dropdown-item side_btn">1+1</button>
-									<button class="nav__dropdown-item side_btn">2+1</button>
-									<button class="nav__dropdown-item side_btn">3+1</button>
+									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("1+1")'>1+1</button>
+									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("2+1")'>2+1</button>
+									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("3+1")'>3+1</button>
 								</div>
 							</div>
 

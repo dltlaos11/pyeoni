@@ -30,8 +30,11 @@ div.adminhome {
 }
 </style>
 <script>
-	$(function() {
+ 	$(function() {
+
+		
 		$("#updateStore").click(function() {
+			console.log("admin");
 			$("#here").load("update.jsp");
 		});
 		$("#manageMember").click(function() {
@@ -39,9 +42,9 @@ div.adminhome {
 		});
 		$("#manageComments").click(function() {
 			$("#here").load("manageComments.jsp");
-		});
+		}); 
 
-	});
+	}); 
 </script>
 </head>
 <body>
@@ -52,7 +55,7 @@ div.adminhome {
 	<div class="w3-sidebar w3-bar-block" style="width: 20%;"></div>
 
 	<div id="here" class="w3-container w3-center w3-animate-opacity">사이드바를
-		통해 원하는 기능을 선택하세요</div>
+		통해 원하는 기능을 선택하세요<div id="here1"></div></div>
 
 </body>
 </html>
