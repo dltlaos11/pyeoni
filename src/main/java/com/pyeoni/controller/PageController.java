@@ -1,6 +1,5 @@
 package com.pyeoni.controller;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -8,6 +7,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 
 import com.pyeoni.model.ProductServices;
+import com.pyeoni.vo.ProductLikeVO;
 import com.pyeoni.vo.ProductVO;
 
 public class PageController implements CommonControllerInterface {
@@ -69,9 +69,14 @@ public class PageController implements CommonControllerInterface {
 
 		ProductServices services = new ProductServices();
 		List<ProductVO> productList = new ArrayList<>();
-
+		List<ProductLikeVO> newproductList = new ArrayList<>();
+		
 		productList = services.selectAdvancedProduct(1, 20, searchValue, sortValue, kindValue, eventValue, brandValue);
-
+		for(ProductVO pv : productList) {
+			
+			
+			
+		}
 		req.setAttribute("productList", productList);
 		req.setAttribute("pagenum", 21);
 
