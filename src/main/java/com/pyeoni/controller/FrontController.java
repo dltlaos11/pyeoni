@@ -82,10 +82,10 @@ public class FrontController extends HttpServlet {
 		case "/admin/update.do":
 			controll = new ProductUpdateController();
 			break;
-			
-		case "/comment/selectAllComment.view":
+		case "/admin/commentlist.do":
 			controll = new CommentSelectAllController();
 			break;
+			
 		case "/comment/selectComment.view":
 			controll = new CommentSelectController();
 			break;

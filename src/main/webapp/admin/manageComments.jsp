@@ -9,39 +9,67 @@
 
 <style>
 </style>
+<script type="text/javascript">
+
+	function er(){
+		console.log('야야야야');
+	}
+	
+	$(function() {
+		
+		$.ajax({
+			url : 'commentlist.do',
+			success : function(responseData) {
+				var datas = JSON.parse(responseData);
+				var commentList = datas.commentList;
+				
+				$.each(commentList,function(index,comment) {
+					console.log("commentid is")
+					console.log(comment['commentId']);
+					var commentid = comment['commentId'];
+					console.log(commentid);
+					
+					commentHTML = `
+						<tr>
+							<th scope="row">${"${index+1}"}</th>
+							<td>${"${comment['commentId']}"}</td>
+							<td><button onclick="er()" class="Comment">${"${comment['content']}"}</button></td>
+							<td>${"${comment['email']}"}</td>
+							<td>${"${comment['commentDate']}"}</td>
+						</tr>
+					`;
+					
+					$('tbody').append(commentHTML);
+				});
+			},
+			error : function(xhr, status, error) {
+				console.log(xhr.responseText);
+				console.log(status);
+				console.log(error);
+				alert('오류가 발생했습니다!');
+			}
+		});
+		
+		
+		
+	});
+</script>
 </head>
 <body>
 	<div>
 		<h1>전체 댓글 관리</h1>
-		
+
 		<table class="table table-dark">
 			<thead>
 				<tr>
-					<th scope="col">#</th>
-					<th scope="col">First</th>
-					<th scope="col">Last</th>
-					<th scope="col">Handle</th>
+					<th scope="col">순번</th>
+					<th scope="col">댓글 번호</th>
+					<th scope="col">내용</th>
+					<th scope="col">작성자</th>
+					<th scope="col">작성일</th>
 				</tr>
 			</thead>
 			<tbody>
-				<tr>
-					<th scope="row">1</th>
-					<td>Mark</td>
-					<td>Otto</td>
-					<td>@mdo</td>
-				</tr>
-				<tr>
-					<th scope="row">2</th>
-					<td>Jacob</td>
-					<td>Thornton</td>
-					<td>@fat</td>
-				</tr>
-				<tr>
-					<th scope="row">3</th>
-					<td>Larry</td>
-					<td>the Bird</td>
-					<td>@twitter</td>
-				</tr>
 			</tbody>
 		</table>
 	</div>
