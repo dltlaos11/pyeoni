@@ -19,7 +19,7 @@ import com.pyeoni.vo.MemberVO;
  * Servlet Filter implementation class LoginCheck
  */
 
-@WebFilter("*.vi")
+@WebFilter("/admin/*")
 
 public class LoginCheckFilter extends HttpFilter implements Filter {
        
@@ -41,7 +41,11 @@ public class LoginCheckFilter extends HttpFilter implements Filter {
 				res.sendRedirect(req.getContextPath()+"/auth/login.view");
 				return;
 			}
-			System.out.println("user: "+user);
+			if(user.getIsAdmin() == 0){
+				res.sendRedirect(req.getContextPath()+"/page/main.view");
+				return;
+			}
+				System.out.println("user: "+user);
 		}
 		
 		chain.doFilter(request, response);
