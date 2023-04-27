@@ -212,6 +212,7 @@ footer {
 					var sortType = $("select[name='sort_type']").val();
 					var productType = $("select[name='product_type']").val();
 					var eventType = $("select[name='event_type']").val();
+					var searchType = $("#search_bar").val();
 					var start = parseInt($("#pageNum").val());
 					var end = parseInt($("#pageNum").val())+19;
 					
@@ -223,7 +224,8 @@ footer {
 							"brand" : "emart24",
 							"sort_type" : sortType,
 							"product_type" : productType,
-							"event_type" : eventType
+							"event_type" : eventType,
+							"search_bar" : searchType
 						},
 						success : function(responseData) {
 							console.log(responseData);						 
