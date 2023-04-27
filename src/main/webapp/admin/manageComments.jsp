@@ -6,18 +6,26 @@
 <head>
 <meta charset="UTF-8">
 <title>전체 댓글 관리</title>
-<%@ include file = "../common/commonfiles.jsp" %>
+<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
 <style>
-	table { 
+
+	#com_body{
 	
-		width: 100%;
+		margin-top: 25%;
 		
 	}
-		 
-	th,td {
+
+	#com_div{
+		position: relative;
+	
+	}
+	
+
+	.com_td, .com_th {
   		text-align: center;
 	}
 </style>
+
 <script type="text/javascript">
 
 	$(function () {
@@ -41,12 +49,12 @@
 					 
 					commentHTML = `
 						<tr>
-							<th scope="row">${"${index+1}"}</th>
-							<td>${"${comment['commentId']}"}</td>
-							<td>${"${content}"}</td>
-							<td>${"${comment['email']}"}</td>
-							<td>${"${comment['commentDate']}"}</td>
-							<td><button onclick="Delete(event)" data-commentid=${"${comment['commentId']}"}>삭제</button></td>
+							<th scope="row" class="com_tr">${"${index+1}"}</th>
+							<td class="com_td">${"${comment['commentId']}"}</td>
+							<td class="com_td">${"${content}"}</td>
+							<td class="com_td">${"${comment['email']}"}</td>
+							<td class="com_td">${"${comment['commentDate']}"}</td>
+							<td class="com_td"><button class="com_btn" onclick="Delete(event)" data-commentid=${"${comment['commentId']}"}>삭제</button></td>
 						</tr>
 					`;
 					
@@ -92,28 +100,28 @@
 	    } else {
 	        alert("삭제가 취소되었습니다.");
 	    }
-	}
+	} 
 	
 
 </script>
 </head>
-<body>
+<body id="com_body">
 
-	<div>
-		<h1>전체 댓글 관리</h1>
+	<div style = " text-align: center" id="com_div">
+		<h1 class="com_h1">전체 댓글 관리</h1>
 
-		<table class="table table-dark">
-			<thead>
-				<tr>
-					<th scope="col">순번</th>
-					<th scope="col">댓글 번호</th>
-					<th scope="col">내용</th>
-					<th scope="col">작성자</th>
-					<th scope="col">작성일</th>
-					<th scope="col">삭제</th>
+		<table class="table table-dark" id="com_table">
+			<thead id="com_thead">
+				<tr class="com_tr">
+					<th scope="col" class="com_th">순번</th>
+					<th scope="col" class="com_th">댓글 번호</th>
+					<th scope="col" class="com_th">내용</th>
+					<th scope="col" class="com_th">작성자</th>
+					<th scope="col" class="com_th">작성일</th>
+					<th scope="col" class="com_th">삭제</th>
 				</tr>
 			</thead>
-			<tbody>
+			<tbody id="com_tbody">
 			</tbody>
 		</table>
 	</div>

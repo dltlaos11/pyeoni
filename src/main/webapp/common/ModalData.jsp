@@ -4,6 +4,7 @@
 	$(function() {
 		$('#exampleModal').on('show.bs.modal', function(event) {
 			var prodname = $(event.relatedTarget).data('pname');
+			console.log('안녕 '+prodname);
 			var prodpromotion = $(event.relatedTarget).data('ppro');
 			var prodprice = $(event.relatedTarget).data('pprice');
 			var prodbrand = $(event.relatedTarget).data('pbrand');
