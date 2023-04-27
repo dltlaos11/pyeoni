@@ -29,7 +29,7 @@ public class LoginController implements CommonControllerInterface {
 			MemberServices service = new MemberServices();
 			MemberVO member = service.login(email, password);
 
-			 if(member != null) {				
+			 if(member != null && member.getWithDraw()!=1) {				
 				HttpSession session = request.getSession();
 				session.setAttribute("loginUser", member);
 //				System.out.println(session.getAttribute("loginUser"));

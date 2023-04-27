@@ -137,6 +137,7 @@ function commentdel(){
 					}else
 						alert("댓글 추가 성공");
 					viewComment();
+					$("#textComment").val('');
 				},
 				error : function() { // 괄호 추가
 					alert("로그인해주세요");

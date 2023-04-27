@@ -39,11 +39,11 @@
 }
 
 .btnSEVENELEVEN:hover {
-	background-color: rgba(70, 193, 123, 0.3);
+	background-color: rgba(8, 120, 10, 0.3);
 }
 
 .btnMINISTOP:hover {
-	background-color: rgba(193, 123, 70, 0.3);
+	background-color: rgba(7, 15, 112, 0.3);
 }
 
 .btnC-SPACE:hover {
@@ -51,7 +51,7 @@
 }
 
 .btnEMART24:hover {
-	background-color: rgba(255, 215, 0, 0.3);
+	background-color: rgba(255, 126, 0, 0.3);
 }
 
 /* likecss */
@@ -186,6 +186,7 @@ scale(
 					'src',
 					$(elem).parent().parent().parent().parent().attr(
 							"data-pimg"));
+			$("#textComment").val('');
 			$("#exampleModal").modal("show");
 			viewComment();
 		}
@@ -277,9 +278,9 @@ scale(
 				data-pimg="${p.productImg }"
 				class="productInfo ${p.brand == 'CU' ? 'btnCU' : 
                                       p.brand == 'GS25' ? 'btnGS25' :
-                                      p.brand == 'SEVENELEVEN' ? 'btnSEVENELEVEN' :
+                                      p.brand == '7-ELEVEn' ? 'btnSEVENELEVEN' :
                                       p.brand == 'MINISTOP' ? 'btnMINISTOP' :
-                                      p.brand == 'C-SPACE' ? 'btnC-SPACE' : 'btnEMART24'}">
+                                      p.brand == 'C·SPACE' ? 'btnC-SPACE' : 'btnEMART24'}">
 				<!-- CU, GS25, emart24, 7-ELEVEn, MINISTOP, cspace -->
 				<table class="tg" style="table-layout: fixed; width: 625px">
 					<colgroup>
