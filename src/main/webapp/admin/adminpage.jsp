@@ -17,7 +17,7 @@ div.adminhome {
 	font-weight: bold;
 	font-size: 40px;
 	position: absolute;
-    z-index: 1; /* 다른 요소들보다 위에 나타나게 됩니다. */
+	z-index: 1; /* 다른 요소들보다 위에 나타나게 됩니다. */
 	left: 50%;
 	color: #F69320;
 	transform: translate(-50%, -50%);
@@ -38,26 +38,27 @@ div.adminhome {
 </head>
 <body>
 	<%@ include file="adminsidebar.jsp"%>
-	
+
 	<div style="margin-left: 25%;">
 		<div class="adminhome w3-animate-opacity">ADMINISTER PAGE</div>
 	</div>
 
-	<script>
-		$(document).ready(function() {
-			$("#updateStore").click(function() {
-				$("#here").load("updateProduct.view");
-			});
-			$("#manageMember").click(function() {
-				$("#here").load("manageMember.view");
-			});
-			$("#manageComments").click(function() {
-				$("#here").load("manageComments.view");
-			});
-		});
-	</script>
 
 	<div id="here">사이드바를 통해 원하는 기능을 선택하세요</div>
 
 </body>
+<script>
+	$(document).ready(function() {
+		$("#updateStore").click(function() {
+			$("#here").load("updateProduct.view");
+		});
+		$("#manageMember").click(function() {
+			$("#here").load("manageMember.view");
+		});
+		$("#manageComments").click(function() {
+			$("#here").load("manageComments.view");
+		});
+	});
+</script>
+
 </html>

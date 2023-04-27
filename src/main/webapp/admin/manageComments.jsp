@@ -6,24 +6,18 @@
 <head>
 <meta charset="UTF-8">
 <title>전체 댓글 관리</title>
-<script src="https://code.jquery.com/jquery-3.6.4.min.js"></script> 
+
 <style>
+#comment-div {
+	position: fixed;
+	width: 700px;
+	transform: translate(-50%, -30%);
+}
 
-	#com_body{
-	
-		margin-top: 25%;
-		
-	}
-
-	#com_div{
-		position: relative;
-	
-	}
-	
-
-	.com_td, .com_th {
-  		text-align: center;
-	}
+#comment-table {
+	width: 100%;
+	border-collapse: collapse;
+}
 </style>
 
 <script type="text/javascript">
@@ -71,7 +65,6 @@
 		
 	}
 	
-	
 	function Delete(event) {
 		let cid = event.target.dataset.commentid;
 
@@ -107,12 +100,12 @@
 </head>
 <body id="com_body">
 
-	<div style = " text-align: center" id="com_div">
+	<div style="text-align: center" id="comment-div">
 		<h1 class="com_h1">전체 댓글 관리</h1>
 
-		<table class="table table-dark" id="com_table">
+		<table class="table table-striped border-0" id="comment-table">
 			<thead id="com_thead">
-				<tr class="com_tr">
+				<tr class="table-dark">
 					<th scope="col" class="com_th">순번</th>
 					<th scope="col" class="com_th">댓글 번호</th>
 					<th scope="col" class="com_th">내용</th>
@@ -121,7 +114,7 @@
 					<th scope="col" class="com_th">삭제</th>
 				</tr>
 			</thead>
-			<tbody id="com_tbody">
+			<tbody>
 			</tbody>
 		</table>
 	</div>
