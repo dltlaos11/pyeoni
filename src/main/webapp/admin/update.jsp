@@ -9,7 +9,7 @@
 <html>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PYEONI 관리자 페이지</title>
 
 <style>
 .btn:hover {
@@ -60,7 +60,7 @@
 					"<div>값2:"+ JSON.parse(responseData).updateList[0].tableDelCount+"</div>";
 					
 					var resultContent = '';
-					resultContent += "<h4 class='alert-heading'>업데이트에 성공했습니다😊</h4> <p>업데이트 내역은 다음과 같습니다.</p> <hr> <p class='mb-0'>table에서 삭제된 상품개수: "+JSON.parse(responseData).updateList[0].crawalingCount+", DB에 갱신된 상품 개수: "+ JSON.parse(responseData).updateList[0].tableDelCount+"</p>";
+					resultContent += "<h4 class='alert-heading'>업데이트에 성공했습니다😊</h4> <p>업데이트 내역은 다음과 같습니다.</p> <hr> <p class='mb-0'>table에서 삭제된 상품개수: "+JSON.parse(responseData).updateList[0].tableDelCount+", DB에 갱신된 상품 개수: "+ JSON.parse(responseData).updateList[0].crawalingCount+"</p>";
 					
 					
 					$('#result').append(resultContent);

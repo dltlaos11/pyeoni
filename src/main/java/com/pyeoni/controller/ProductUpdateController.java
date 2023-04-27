@@ -24,22 +24,21 @@ public class ProductUpdateController implements CommonControllerInterface {
 		HttpServletRequest req = (HttpServletRequest)data.get("request");
 		req.setAttribute("ProductAll", productList);
 		
-		int tableDelCount = service2.cleanProductTable();
 		class Result {
 			int delcount;
 			int crawalingCount;
 		}
+		
 		Result result = new Result();
 		result.delcount = service2.cleanProductTable();
+
+		System.out.println("table 삭제 성공여부 : "+result.delcount);
 		
-		
-		System.out.println("table 삭제 성공여부 : "+service2.cleanProductTable());
 		
 		int count=0;
 		for(ProductVO p : productList) {
 			System.out.println(p);
-			count++;
-			service2.insertProduct(p);
+			count+=service2.insertProduct(p);
 		}
 		System.out.println("크롤링된 상품 개수 : "+count);
 		
@@ -56,7 +55,6 @@ public class ProductUpdateController implements CommonControllerInterface {
 		obj.put("crawalingCount", result.crawalingCount);
 		arr.add(obj);
 		updatesObj.put("updateList", arr);
-		
 		if (count == 0 ) {
 			/* 실패 */
 			return "responseBody:false";
