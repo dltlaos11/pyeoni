@@ -114,38 +114,30 @@ scale(
 }
 </style>
 <script>
-	$(function() {
-		$('.icon.heart')
-				.click(
-						function() {
-							if (!"${sessionScope.loginUser}") return;
-							$(this).toggleClass('active');
-							if ($(this).hasClass('active')) {
-								$(this)
-										.find('img')
-										.attr(
-												{
-													'src' : 'https://cdn-icons-png.flaticon.com/512/803/803087.png',
-													alt : '찜하기 완료'
-												});
-							} else {
-								$(this).find('i').removeClass('fas').addClass(
-										'far')
-								$(this)
-										.find('img')
-										.attr(
-												{
-													'src' : 'https://cdn-icons-png.flaticon.com/512/812/812327.png',
-													alt : "찜하기"
-												})
-							}
-						
-						
-						
-						}
-						
-				)
+/* $(function() {
+	  $('.icon.heart').click(function() {
+	    if (!"${sessionScope.loginUser}") return;
+
+	    $(this).toggleClass('active');
+
+	    if ($(this).hasClass('active')) {
+	      $(this).find('img').attr({
+	        'src': 'https://cdn-icons-png.flaticon.com/512/803/803087.png',
+	        'alt': '찜하기 완료'
+	      });
+	    } else {
+	      $(this).find('i').removeClass('fas').addClass('far');
+	      $(this).find('img').attr({
+	        'src': 'https://cdn-icons-png.flaticon.com/512/812/812327.png',
+	        'alt': '찜하기'
+	      });
+	    }
+	  });
 	});
+	 */
+	
+	
+	
 
 	/* 	$(function() {
 	 $("td.prodshow").on(
@@ -227,6 +219,7 @@ scale(
 					console.log("${newlikenum}");
 					$(elem).closest('td').find('div.likenum')
 							.text('' + newlike);
+					$(elem).find('img').attr('src','https://cdn-icons-png.flaticon.com/512/803/803087.png');
 				},
 				error : function() { // 괄호 추가
 
@@ -256,6 +249,7 @@ scale(
 				$(elem).attr('onclick', onclickval);
 				console.log("${newlikenum}");
 				$(elem).closest('td').find('div.likenum').text('' + newlike);
+				$(elem).find('img').attr('src','https://cdn-icons-png.flaticon.com/512/812/812327.png');
 			},
 			error : function() { // 괄호 추가
 
