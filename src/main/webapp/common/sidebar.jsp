@@ -18,19 +18,25 @@
 		// 현재 URL의 주소를 가져오기
 		var currentUrl = window.location.href;
 		var logoImage = document.getElementById("pagelogo");
-
+		var storename = "all";
 		// URL 주소가 cupage.jsp 인 경우
 		if (currentUrl.indexOf("cu") != -1) {
+			storename = "cu";
 			logoImage.src = "../img/logo_CU.png";
 		} else if (currentUrl.indexOf("emart") != -1) {
+			storename = "emart";
 			logoImage.src = "../img/logo_emart24.png";
 		} else if (currentUrl.indexOf("gs") != -1) {
+			storename = "gs";
 			logoImage.src = "../img/logo_GS.png";
 		} else if (currentUrl.indexOf("mini") != -1) {
+			storename = "mini";
 			logoImage.src = "../img/logo_mini.png";
 		} else if (currentUrl.indexOf("seven") != -1) {
+			storename = "seven";
 			logoImage.src = "../img/logo_seven3.png";
 		} else if (currentUrl.indexOf("cspace") != -1) {
+			storename = "cspace";
 			logoImage.src = "../img/logo_cSpace.svg";
 		} else {
 			logoImage.src = "../img/logo_pyeoni.png";
@@ -40,8 +46,46 @@
 			});
 		}
 
+		var sideGo1 = document.getElementById("sidego1");
+		var sideGo2 = document.getElementById("sidego2");
+		var sideGo3 = document.getElementById("sidego3");
+		var sideGo4 = document.getElementById("sidego4");
+		var sideGo5 = document.getElementById("sidego5"); 
+		var sideGo6 = document.getElementById("sidego6"); 
+		var sideGo7 = document.getElementById("sidego7"); 
+		var sideGo8 = document.getElementById("sidego8"); 
+
+		var loc = "../page/" + storename + ".view?product_type=";
+		var loc2 = "../page/" + storename + ".view?event_type="; 
+
+		sideGo1.onclick = function() {
+			location.href = loc + encodeURIComponent("음료");
+		};
+		sideGo2.onclick = function() {
+			location.href = loc + encodeURIComponent("아이스크림");
+		};
+		sideGo3.onclick = function() {
+			location.href = loc + encodeURIComponent("생활용품");
+		};
+		sideGo4.onclick = function() {
+			location.href = loc + encodeURIComponent("식품");
+		};
+		sideGo5.onclick = function() {
+			location.href = loc + encodeURIComponent("과자류");
+		};
+		sideGo6.onclick = function() {
+			location.href = loc2 + encodeURIComponent("1+1");
+		};
+		sideGo7.onclick = function() {
+			location.href = loc2 + encodeURIComponent("2+1");
+		};
+		sideGo8.onclick = function() {
+			location.href = loc2 + encodeURIComponent("3+1");
+		};
+
 	});
 </script>
+
 <style>
 .logo-container {
 	display: flex;
@@ -60,7 +104,23 @@
 </head>
 <body>
 	<%@ include file="../common/MypageModal.jsp"%>
-
+	<script>
+	$(function (){
+		
+		$('#myPageModal').on('shown.bs.modal', function () {
+			  $('#changepass').css('display', 'none'); // #targetElement의 color를 red로 변경
+			  $('#mypage_delbtn').css('display', 'none'); // #targetElement의 color를 red로 변경
+			})
+			
+			
+		if(!${not empty sessionScope.loginUser}) {
+    		$('#mypagediv').css('display','none');
+		} else {
+    		$('#mypagediv').css('display','block');
+		}
+	});
+	
+	</script>
 	<div class="nav" id="navbar">
 		<nav class="nav__container">
 			<div>
@@ -80,7 +140,7 @@
 							class="nav__name">Home</span>
 						</a>
 
-						<div class="nav__dropdown">
+						<div id="mypagediv" class="nav__dropdown">
 							<a href="#" class="nav__link" data-bs-toggle="modal"
 								data-bs-target="#myPageModal" data-bs-whatever="@mdo"> <i
 								class="bx bx-user nav__icon"></i> <span class="nav__name">MyPage</span>
@@ -120,9 +180,9 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("1+1")'>1+1</button>
-									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("2+1")'>2+1</button>
-									<button class="nav__dropdown-item side_btn" onclick='location.href="../page/all.view?event_type=" + encodeURIComponent("3+1")'>3+1</button>
+									<button class="nav__dropdown-item side_btn" id="sidego6">1+1</button>
+									<button class="nav__dropdown-item side_btn" id="sidego7">2+1</button>
+									<button class="nav__dropdown-item side_btn" id="sidego8">3+1</button>
 								</div>
 							</div>
 
@@ -136,11 +196,11 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<button class="nav__dropdown-item side_btn">음료</button>
-									<button class="nav__dropdown-item side_btn">아이스크림</button>
-									<button class="nav__dropdown-item side_btn">생활용품</button>
-									<button class="nav__dropdown-item side_btn">식품</button>
-									<button class="nav__dropdown-item side_btn">과자류</button>
+									<button class="nav__dropdown-item side_btn" id="sidego1">음료</button>
+									<button class="nav__dropdown-item side_btn" id="sidego2">아이스크림</button>
+									<button class="nav__dropdown-item side_btn" id="sidego3">생활용품</button>
+									<button class="nav__dropdown-item side_btn" id="sidego4">식품</button>
+									<button class="nav__dropdown-item side_btn" id="sidego5">과자류</button>
 								</div>
 							</div>
 						</div>

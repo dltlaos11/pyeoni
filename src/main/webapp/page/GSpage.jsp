@@ -56,6 +56,20 @@ a.nav-link {
 	font-weight: bold;
 }
 
+#logout_btn {
+	margin-right: 50px;
+	background-color: white;
+	border-color: rgb(0, 111, 186);
+	color: rgb(0, 111, 186);
+	font-weight: bold;
+}
+
+#logout_btn:hover {
+	background-color: rgb(0, 111, 186);
+	color: white;
+	font-weight: bold;
+}
+
 .content {
 	text-align: center;
 	margin-top: 100px;
@@ -154,6 +168,17 @@ footer {
 	color: white;
 	font-weight: bold;
 }
+
+#up_btn {
+  font-size: 3rem; /* 크기 조정 */
+  position: fixed;
+  bottom: 20px;
+  right: 500px;
+}
+
+#up_btn:hover {
+    color: blue;
+}
 </style>
 
 <script>
@@ -178,21 +203,16 @@ footer {
 			</div>
 		</div>
 	</div>
-
-
-
-	<!-- 1+1, 2+1 텍스트 -->
-	<div class="change_event">
-		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
-		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
-		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
-	</div>
+	
+	<!-- textChange -->
+	<%@ include file="../common/textChange.jsp" %>
 
 	<!-- ProductSelectAll -->
 	<%@ include file="../product/ProductShow.jsp"%>
 	<div id="more_here"></div>
 	<button class="btn" id="more_btn" type="submit">더보기</button>
 
+	<i class='bx bx-up-arrow-circle' id="up_btn" onClick="javascript:window.scrollTo(0,0)"></i>
 </body>
 
 <script>

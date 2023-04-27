@@ -39,13 +39,13 @@
                </c:if>
 			</ul>
 			<!-- 로그인한 사용자는 login/register 버튼 안뜨게 -->
-			<c:if test="${sessionScope.loginUser==null }">
+			<c:if test="${sessionScope.loginUser==null}">
 	            <form action="../auth/login.view">
 	               <button class="btn" type="submit" id="login_btn">login/register</button>
 	            </form>
             </c:if>
             
-            <c:if test="${sessionScope.loginUser!=null }">
+            <c:if test="${sessionScope.loginUser!=null}">
 	            <form action="../page/main.view">
 	               <button class="btn" type="submit" id="logout_btn">Logout</button>
 	            </form>

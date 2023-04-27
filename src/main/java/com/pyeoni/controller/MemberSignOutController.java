@@ -11,7 +11,7 @@ public class MemberSignOutController implements CommonControllerInterface {
 
 	@Override
 	public String execute(Map<String, Object> data) throws Exception {
-		
+		System.out.println("===================================");
 		String method = (String)data.get("method");
 		HttpServletRequest request = (HttpServletRequest)data.get("request");
 		

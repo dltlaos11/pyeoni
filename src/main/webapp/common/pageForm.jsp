@@ -19,7 +19,7 @@
 		</div>
 
 		<div class="select_product">
-			<select name="product_type" class="form-control">
+			<select id = "prodtype" name="product_type" class="form-control">
 				<option ${param.product_type==""?"selected":""} value="">상품-전체</option>
 				<option ${param.product_type=="음료"?"selected":""} value="음료">음료</option>
 				<option ${param.product_type=="아이스크림"?"selected":""} value="아이스크림">아이스크림</option>

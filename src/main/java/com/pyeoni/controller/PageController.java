@@ -1,13 +1,14 @@
 package com.pyeoni.controller;
 
-import java.awt.Point;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.pyeoni.model.LikeServices;
 import com.pyeoni.model.ProductServices;
+import com.pyeoni.vo.ProductLikeVO;
 import com.pyeoni.vo.ProductVO;
 
 public class PageController implements CommonControllerInterface {
@@ -69,10 +70,25 @@ public class PageController implements CommonControllerInterface {
 
 		ProductServices services = new ProductServices();
 		List<ProductVO> productList = new ArrayList<>();
-
+		List<ProductLikeVO> newproductList = new ArrayList<>();
+		LikeServices ls = new LikeServices();
 		productList = services.selectAdvancedProduct(1, 20, searchValue, sortValue, kindValue, eventValue, brandValue);
-
-		req.setAttribute("productList", productList);
+		for(ProductVO pv : productList) {
+			ProductLikeVO plv = new ProductLikeVO();
+	
+			plv.setBrand(pv.getBrand());
+			plv.setKind(pv.getKind());
+			plv.setPrice(pv.getPrice());
+			plv.setProductImg(pv.getProductImg());
+			plv.setProductName(pv.getProductName());
+			plv.setPromotion(pv.getPromotion());
+			int likes = ls.selectLike(pv.getBrand(), pv.getPrice(), pv.getProductName(), pv.getPromotion());
+			plv.setLikenum(likes);
+			
+			newproductList.add(plv);
+		}
+		req.setAttribute("productList", newproductList);
+		System.out.println(newproductList);
 		req.setAttribute("pagenum", 21);
 
 		return page;
