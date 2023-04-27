@@ -47,11 +47,53 @@
 	width: 150px;
 	height: 300px;
 }
+
+/* 댓글 모달 css */
+#commentsection{
+	text-align: left;
+}
+
+.commentdel{
+	background-color: black;
+	border: 2px solid black;
+	color: white;
+	font-weight: bold;
+	border-radius: 5px;
+	margin-left:350px;
+}
+
+.commentdel:hover{
+	background-color: white;
+	color: black;
+}
+
 </style>
 <script>
 
+/* function commentdel(event) {
+	  event.preventDefault(); // 기본 동작 방지
+
+	  var commentId = event.target.parentNode.id;
+	  $.ajax({
+	    method: 'GET',
+	    url: '/pyeoni/comment/deleteComment.view',
+	    data: {
+	      "commentId": commentId
+	    },
+	    success: function(responseData) {
+	      if (responseData == "true") {
+	        alert("댓글 삭제가 완료되었습니다.");
+	        viewComment(); // 댓글 목록 갱신
+	      }
+	    },
+	    error: function() {
+	      alert("댓글 삭제에 실패했습니다.");
+	    }
+	  });
+} */
+
 function commentdel(){	
-	alert("delbtnclick");
+	alert("댓글삭제완료");
 	var commentId = event.target.parentNode.id;
 	$.ajax({
 		method : 'GET',
@@ -69,7 +111,7 @@ function commentdel(){
 			
 		}
 	});	
-}
+} 
 
 	$(function() {	
 		$('#btnaddcomment').on('click', addComment);
@@ -145,13 +187,11 @@ function commentdel(){
               		<span class="comment-id">${"${comment['commentDate']}"}</span><br>
               		<span class="comment-email">${"${comment['email']}"}</span><br>
               		<span class="comment-text">${"${comment['content']}"}</span>		
-              		<button class="commentdelbtn" onclick="commentdel()">댓글 삭제</button>
+              		<button class="commentdel" onclick="commentdel()">댓글 삭제</button>
             		</div>
             		<hr>
           			`;
-				}
-				else{
-					
+				}else{					
 		    		commentHTML += `
 	            		<div class="comment">
 	              		<span class="comment-id">${"${comment['commentId']}"}</span><br>
@@ -160,8 +200,7 @@ function commentdel(){
 	              		<span class="comment-text">${"${comment['content']}"}</span>		
 	            		</div>
 	            		<hr>
-	          			`;
-				
+	          			`;			
 				}
 				});
 				console.log("html" + commentHTML);
@@ -192,8 +231,7 @@ function commentdel(){
 						<li class="modalcomment">
 							<div class="products">
 								<div>
-									<img id="modalimg" src="" style="width: 200px; height: 200px; object-fit: contain;">
-									
+									<img id="modalimg" src="" style="width: 200px; height: 200px; object-fit: contain;">									
 								</div>
 								<div class="detail">
 									<span id="prodbrand"><img id="cu_logo"
@@ -212,15 +250,13 @@ function commentdel(){
 							<div id="commentsection"></div>
 							<div class="card mb-2">
 								<textarea id="textComment" rows="3"></textarea>
-								<button type="button" class="btn btn-dark mt-3"
-									id="btnaddcomment">댓글 작성</button>
+								<button type="button" class="btn btn-dark mt-3" id="btnaddcomment">댓글 작성</button>
 							</div>
 						</li>
 					</ul>
 				</div>
 				<div class="modal-footer">
-					<button type="button" class="btn btn-secondary"
-						data-bs-dismiss="modal">Close</button>
+					<button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
 				</div>
 			</div>
 		</div>
