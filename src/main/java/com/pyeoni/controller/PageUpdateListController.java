@@ -6,7 +6,9 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import com.pyeoni.model.LikeServices;
 import com.pyeoni.model.ProductServices;
+import com.pyeoni.vo.ProductLikeVO;
 import com.pyeoni.vo.ProductVO;
 
 public class PageUpdateListController implements CommonControllerInterface {
@@ -32,14 +34,29 @@ public class PageUpdateListController implements CommonControllerInterface {
 
 		ProductServices services = new ProductServices();
 		List<ProductVO> productList = new ArrayList<>();
-
+		List<ProductLikeVO> newproductList = new ArrayList<>();
+		LikeServices ls = new LikeServices();
 		start = req.getParameter("start") != null ? Integer.parseInt(req.getParameter("start")) : 1;
 		end = req.getParameter("end") != null ? Integer.parseInt(req.getParameter("end")) : 20;
 
 		productList = services.selectAdvancedProduct(start, end, searchValue, sortValue, kindValue, eventValue,
 				brandValue);
+		for(ProductVO pv : productList) {
+			ProductLikeVO plv = new ProductLikeVO();
+	
+			plv.setBrand(pv.getBrand());
+			plv.setKind(pv.getKind());
+			plv.setPrice(pv.getPrice());
+			plv.setProductImg(pv.getProductImg());
+			plv.setProductName(pv.getProductName());
+			plv.setPromotion(pv.getPromotion());
+			int likes = ls.selectLike(pv.getBrand(), pv.getPrice(), pv.getProductName(), pv.getPromotion());
+			plv.setLikenum(likes);
+			
+			newproductList.add(plv);
+		}
 
-		req.setAttribute("productList", productList);
+		req.setAttribute("productList", newproductList);
 
 		return "../product/AddList.jsp";
 	}
