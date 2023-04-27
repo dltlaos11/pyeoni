@@ -191,9 +191,9 @@ footer {
 
 </head>
 <body>
-	<%@ include file="../common/sidebar.jsp"%>
-	<%@ include file="../common/pageheader.jsp"%>
-	<%@ include file="../common/ModalData.jsp"%>
+	
+	<%@ include file="../common/sidebar.jsp" %>
+	<%@ include file="../common/pageheader.jsp" %>
 
 	<div class="content">
 		<div class="col-md-6 offset-md-3 mt-2 mb-4" id="search">
