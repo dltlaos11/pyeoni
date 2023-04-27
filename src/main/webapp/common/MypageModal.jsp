@@ -117,12 +117,12 @@
 						</tr>
 						<tr>
 							<td>새 비밀번호</td>
-							<td><input id="passwordinput" type="password"
+							<td><input id="newpasswordinput" type="password"
 								name="password" required="required"></td>
 						</tr>
 						<tr>
 							<td>새 비밀번호 확인</td>
-							<td><input id="passwordinput" type="password"
+							<td><input id="newpasswordinput2" type="password"
 								name="password" required="required"></td>
 						</tr>
 
@@ -133,10 +133,12 @@
 					</table>
 
 					<hr>
-					<label class="mypage_head">회원탈퇴</label>
 					<div id="mypage_delbtn">
+						<label class="mypage_head">회원탈퇴</label>
+
 						<button class="btn" id="delmember">회원 탈퇴</button>
 					</div>
+
 
 				</div>
 			</div>
@@ -148,60 +150,60 @@
 	$(function() {
 		$('#delmember').on('click', deletemember);
 		function deletemember() {
-			var email = $('#emailinput').val();
-			var password = $('#passwordinput').val();
+
 			$.ajax({
 				method : 'POST',
-				url : '/pyeoni/member/memberSignout.view',
+				url : '../member/memberSignout.view',
 				data : {
-					"email" : email,
-					"password" : password
+					"email" : "${loginUser.email}",
+					"password" : "${loginUser.password}"
 				},
 				success : function(responseData) {
 					if (responseData == "true") {
-						alert("회원 탈퇴 완료");
+						alert("회원 탈퇴 완료...자동으로 로그아웃 됩니다.");
 						$.ajax({
-							method : 'POST',
-							url : '../memeber/memberSignout.view',
-							data : {
-								"email" : email,
-								"password" : password
-							},
+							url : "../auth/logout.view",
 							success : function(responseData) {
-								alert("회원탈퇴 성공");
 								window.location.href = "../page/main.view";
-							},
-							error : function() {
-								console.log("회원탈퇴 실패");
 							}
 						});
 					}
+				},
+				error : function() {
+
+					alert("회원탈퇴 실패");
 				}
 			});
 		}
 
 		$('#passwordchange').on('click', changepassword);
 		function changepassword() {
-			var email = $('#emailinput').val();
-			var password = $('#passwordinput').val();
-			$.ajax({
+			var password1 = $('#newpasswordinput').val();
+			var password2 = $('#newpasswordinput2').val();
+			if (password1 == password2) {
+				$.ajax({
 
-				method : 'POST',
-				url : '/pyeoni/memeber/memberDetail.view',
-				data : {
-					"email" : email,
-					"password" : password
-				},
-				success : function(responseData) {
-					if (responseData == "true")
-						alert("비밀번호 변경 완료");
-				},
-				error : function() { // 괄호 추가
+					method : 'POST',
+					url : '../memeber/memberDetail.view',
+					data : {
+						"email" : "${loginUser.email}",
+						"password" : password2
+					},
+					success : function(responseData) {
+						if (responseData == "true")
+							alert("비밀번호 변경 완료");
+					},
+					error : function() { // 괄호 추가
 
-				}
-			});
+					}
+				});
+
+			} else {
+				alert("입력한 비밀번호가 일치하지 않습니다.");
+			}
+
 		}
-		
+
 		/* 비밀번호 확인하기 */
 		$('#passwordcheck').on("click", function() {
 			var email = $('#emailinput').val();
@@ -217,6 +219,10 @@
 				success : function(responseData) {
 					if (responseData == "true") {
 						alert("비밀번호 확인완료");
+						$('#changepass').css('display', 'block'); // #here 요소 보이게 함
+						if ('${sessionScope.loginUser.userName}' != '관리자') {
+							$('#mypage_delbtn').css('display', 'block'); // #here 요소 보이게 함
+						}
 
 					} else {
 						alert("비밀번호가 일치하지 않습니다.");
@@ -226,7 +232,7 @@
 					alert("연결실패");
 				}
 			});
-	
+
 		});
 	});
 </script>

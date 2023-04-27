@@ -15,4 +15,5 @@ public class ProductLikeVO {
 	private int price;
 	private String kind;
 	private String productImg;
+	private int likenum;
 }

@@ -104,7 +104,23 @@
 </head>
 <body>
 	<%@ include file="../common/MypageModal.jsp"%>
-
+	<script>
+	$(function (){
+		
+		$('#myPageModal').on('shown.bs.modal', function () {
+			  $('#changepass').css('display', 'none'); // #targetElement의 color를 red로 변경
+			  $('#mypage_delbtn').css('display', 'none'); // #targetElement의 color를 red로 변경
+			})
+			
+			
+		if(!${not empty sessionScope.loginUser}) {
+    		$('#mypagediv').css('display','none');
+		} else {
+    		$('#mypagediv').css('display','block');
+		}
+	});
+	
+	</script>
 	<div class="nav" id="navbar">
 		<nav class="nav__container">
 			<div>
@@ -124,7 +140,7 @@
 							class="nav__name">Home</span>
 						</a>
 
-						<div class="nav__dropdown">
+						<div id="mypagediv" class="nav__dropdown">
 							<a href="#" class="nav__link" data-bs-toggle="modal"
 								data-bs-target="#myPageModal" data-bs-whatever="@mdo"> <i
 								class="bx bx-user nav__icon"></i> <span class="nav__name">MyPage</span>
@@ -139,9 +155,9 @@
 
 							<div class="nav__dropdown-collapse">
 								<div class="nav__dropdown-content">
-									<a href="../page/cu.view" class="nav__dropdown-item">CU</a> 
-									<a href="../page/gs.view" class="nav__dropdown-item">GS25</a> 
-									<a href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
+									<a href="../page/cu.view" class="nav__dropdown-item">CU</a> <a
+										href="../page/gs.view" class="nav__dropdown-item">GS25</a> <a
+										href="../page/seven.view" class="nav__dropdown-item">SEVEN-ELEVEN</a>
 									<a href="../page/mini.view" class="nav__dropdown-item">MINI-STOP</a>
 									<a href="../page/emart.view" class="nav__dropdown-item">emart-24</a>
 									<a href="../page/cspace.view" class="nav__dropdown-item">C-SAPCE</a>

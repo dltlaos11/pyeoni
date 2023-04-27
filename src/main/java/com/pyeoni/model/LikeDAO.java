@@ -64,7 +64,7 @@ public class LikeDAO {
 	public int selectLike(String brand, int price, String productName, String promotion){
 		int likeCount=0;
 		String sql = """
-			SELECT COUNT(*) FROM likes WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?;
+			SELECT COUNT(*) FROM likes WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ?
 			""";
 				
 		conn=OracleUtill.getConnection();

@@ -30,9 +30,12 @@
 						<td class="tg-7eit">${p.productName}<br></td>
 						<td class="tg-8n49">${p.price}원<br></td>
 						<td class="tg-8n49" rowspan="2"></td>
-						<td class="tg-7eit" rowspan="2"><img
-							src="data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3e%3cpath fill='%23000000' d='M462.3 62.6C407.5 15.9 326 24.3 275.7 76.2L256 96.5l-19.7-20.3C186.1 24.3 104.5 15.9 49.7 62.6c-62.8 53.6-66.1 149.8-9.9 207.9l193.5 199.8c12.5 12.9 32.8 12.9 45.3 0l193.5-199.8c56.3-58.1 53-154.3-9.8-207.9z'/%3e%3c/svg%3e"
-							alt="Image" width="50" height="50"><br>좋아요수</td>
+							<td class="tg-7eit" rowspan="2"><div class="right_area">
+									<span class="icon heart" onclick="likebtn"> <img
+										src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
+										alt="찜하기">
+									</span>
+								</div> <br><div id ="likenum">${p.likenum }</div></td>
 					</tr>
 					<tr>
 						<td class="tg-7eit">${p.promotion}</td>
