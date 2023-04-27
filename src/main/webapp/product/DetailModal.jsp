@@ -8,9 +8,6 @@
 
 <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-<!-- 미완성 코드 -->
-
-
 <style>
 .products {
 	display: flex;
@@ -69,8 +66,8 @@
 
 .comment-date {
   font-family: Arial, sans-serif;
-  font-size: 1.3em;
-  margin-left: 10px;
+  font-size: 0.8em;
+  float : right;
   color: #999;
 }
 
