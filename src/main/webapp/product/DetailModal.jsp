@@ -67,30 +67,30 @@
 	color: black;
 }
 
+.comment-date {
+  font-family: Arial, sans-serif;
+  font-size: 1.3em;
+  margin-left: 10px;
+  color: #999;
+}
+
+.comment-email {
+	font-family: Arial, sans-serif;
+	font-size: 1.3em;
+	margin-left: 10px;
+	color: #999;
+}
+
+.comment-text {
+	font-family: Arial, sans-serif;
+	font-size: 1.3em;
+	margin: 10px 0;
+	margin-left: 10px;
+	color: #333;
+}
+
 </style>
 <script>
-
-/* function commentdel(event) {
-	  event.preventDefault(); // 기본 동작 방지
-
-	  var commentId = event.target.parentNode.id;
-	  $.ajax({
-	    method: 'GET',
-	    url: '/pyeoni/comment/deleteComment.view',
-	    data: {
-	      "commentId": commentId
-	    },
-	    success: function(responseData) {
-	      if (responseData == "true") {
-	        alert("댓글 삭제가 완료되었습니다.");
-	        viewComment(); // 댓글 목록 갱신
-	      }
-	    },
-	    error: function() {
-	      alert("댓글 삭제에 실패했습니다.");
-	    }
-	  });
-} */
 
 function commentdel(){	
 	alert("댓글삭제완료");
@@ -182,21 +182,19 @@ function commentdel(){
 				/* 	const comment = commentList[i]; */
 				if(loginuser == comment['email']|| loginuser == "관리자") {
           		commentHTML += `
-            		<div id=${"${comment['commentId']}"} class="comment" >
-              		<span class="comment-id">${"${comment['commentId']}"}</span><br>
-              		<span class="comment-id">${"${comment['commentDate']}"}</span><br>
-              		<span class="comment-email">${"${comment['email']}"}</span><br>
-              		<span class="comment-text">${"${comment['content']}"}</span>		
-              		<button class="commentdel" onclick="commentdel()">댓글 삭제</button>
+            		<div id=${"${comment['commentId']}"} class="comment" >	              		
+            		<span class="comment-email">${"${comment['email']}"}</span>
+            		<span class="comment-date">${"${comment['commentDate']}"}</span><br><br>
+					<span class="comment-text">${"${comment['content']}"}</span>		
+	              		<button class="commentdel" onclick="commentdel()">댓글 삭제</button>
             		</div>
             		<hr>
           			`;
 				}else{					
 		    		commentHTML += `
-	            		<div class="comment">
-	              		<span class="comment-id">${"${comment['commentId']}"}</span><br>
-	              		<span class="comment-id">${"${comment['commentDate']}"}</span><br>
-	              		<span class="comment-email">${"${comment['email']}"}</span><br>
+	            		<div class="comment">	              		
+		    			<span class="comment-email">${"${comment['email']}"}</span>
+		    			<span class="comment-date">${"${comment['commentDate']}"}</span><br><br>	              		
 	              		<span class="comment-text">${"${comment['content']}"}</span>		
 	            		</div>
 	            		<hr>
