@@ -2,6 +2,15 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <div class="selectall">
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions" %>
+			<c:if test="${fn:length(productList) < 20}">
+  				<script>
+    				$(document).ready(function() {
+      				$("#more_btn").css("display", "none");
+    				});
+  				</script>
+			</c:if>
+
 		<c:forEach items="${productList}" var="p">
 
 			<button data-bs-target="#exampleModal" data-bs-whatever="@mdo"
@@ -10,9 +19,9 @@
 				data-pimg="${p.productImg }"
 				class="productInfo ${p.brand == 'CU' ? 'btnCU' : 
                                       p.brand == 'GS25' ? 'btnGS25' :
-                                      p.brand == 'SEVENELEVEN' ? 'btnSEVENELEVEN' :
+                                      p.brand == '7-ELEVEn' ? 'btnSEVENELEVEN' :
                                       p.brand == 'MINISTOP' ? 'btnMINISTOP' :
-                                      p.brand == 'C-SPACE' ? 'btnC-SPACE' : 'btnEMART24'}">
+                                      p.brand == 'C·SPACE' ? 'btnC-SPACE' : 'btnEMART24'}">
 				<!-- CU, GS25, emart24, 7-ELEVEn, MINISTOP, cspace -->
 				<table class="tg" style="table-layout: fixed; width: 625px">
 					<colgroup>

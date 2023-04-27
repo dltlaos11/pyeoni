@@ -19,7 +19,7 @@ https://inpa.tistory.com/entry/CSS-%F0%9F%92%8D-%EB%A1%9C%EA%B7%B8%EC%9D%B8-%ED%
 <%@ include file="../common/commonfiles.jsp"%>
 <head>
 <meta charset="UTF-8">
-<title>Insert title here</title>
+<title>PYEONI</title>
 <link rel="stylesheet" href="../css/login.css">
 
 <style>
@@ -165,7 +165,7 @@ $(function(){
 
 </script>
 <body>
-	<a href="#" class="navbar-brand"><img src="../img/logo_pyeoni.png"
+	<a href="../page/main.view" class="navbar-brand"><img src="../img/logo_pyeoni.png"
 		alt="Pyeoni">Pyeoni</a>
 
 	<div id="container" class="container">
