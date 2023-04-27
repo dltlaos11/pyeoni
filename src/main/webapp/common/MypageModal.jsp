@@ -184,7 +184,7 @@
 				$.ajax({
 
 					method : 'POST',
-					url : '../memeber/memberDetail.view',
+					url : '../member/memberDetail.view',
 					data : {
 						"email" : "${loginUser.email}",
 						"password" : password2

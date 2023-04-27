@@ -5,9 +5,11 @@ import java.util.List;
 import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import com.pyeoni.model.LikeServices;
 import com.pyeoni.model.ProductServices;
+import com.pyeoni.vo.MemberVO;
 import com.pyeoni.vo.ProductLikeVO;
 import com.pyeoni.vo.ProductVO;
 
@@ -21,7 +23,15 @@ public class PageUpdateListController implements CommonControllerInterface {
 		String method = (String) data.get("method");
 		System.out.println(method + " : 메소드");
 		HttpServletRequest req = (HttpServletRequest) data.get("request");
-
+		HttpSession browser = req.getSession();
+		Object temploginUser =  browser.getAttribute("loginUser");
+		MemberVO loginUser = null;
+		String email =  null;
+		if(temploginUser!=null) {
+			loginUser = (MemberVO)temploginUser;
+			email = loginUser.getEmail();
+		} 
+		
 		String brandValue = req.getParameter("brand");
 
 		String searchValue = req.getParameter("search_bar");
@@ -52,8 +62,13 @@ public class PageUpdateListController implements CommonControllerInterface {
 			plv.setPromotion(pv.getPromotion());
 			int likes = ls.selectLike(pv.getBrand(), pv.getPrice(), pv.getProductName(), pv.getPromotion());
 			plv.setLikenum(likes);
-			
+			int chk = 0;
+			if(email!=null) {
+				chk = ls.memberlike(pv.getBrand(), pv.getPrice(), pv.getProductName(), pv.getPromotion(), email);
+			}
+			plv.setCheck(chk);
 			newproductList.add(plv);
+
 		}
 
 		req.setAttribute("productList", newproductList);

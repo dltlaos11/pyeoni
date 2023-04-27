@@ -19,4 +19,9 @@ public class LikeServices {
 	public int selectLike(String brand, int price, String productName, String promotion){
 		return lDAO.selectLike(brand, price, productName, promotion);
 	}
+	
+	public int memberlike(String brand, int price, String productName, String promotion, String email) {
+		/* 좋아요가 있으면 1, 없으면 0을 반환 */
+		return lDAO.memberlike(brand, price, productName, promotion, email);
+	}
 }

@@ -16,4 +16,5 @@ public class ProductLikeVO {
 	private String kind;
 	private String productImg;
 	private int likenum;
+	private int check;
 }

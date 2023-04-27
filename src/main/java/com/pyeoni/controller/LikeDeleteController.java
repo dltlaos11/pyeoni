@@ -16,18 +16,20 @@ public class LikeDeleteController implements CommonControllerInterface {
 		
 		String method = (String)data.get("method");
 		
-		if(method.equals("DELETE")) {
+		if(method.equals("GET")) {
 			LikeVO like = LikeAddController.makeLike(request);
 			
 			LikeServices service = new LikeServices();
 			int result = service.deleteLike(like);
-			
+	         int newlikenum = service.selectLike(like.getBrand(), like.getPrice(), like.getProductName(),like.getPromotion());
+	      	request.setAttribute("newlikenum", newlikenum);
+	      	System.out.println("newlike" + newlikenum);
 			if (result == 0 ) {
 				/* 성공 */
-				return "responseBody:false";
+				return "responseBody:"+newlikenum;
 			}else {
 				/* 실패 */
-				return "responseBody:true";
+				return "responseBody:"+newlikenum;
 			}
 		}
 		

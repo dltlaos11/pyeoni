@@ -87,5 +87,35 @@ public class LikeDAO {
 		
 		return likeCount;
 	}
+
+	public int memberlike(String brand, int price, String productName, String promotion, String email) {
+		int likeCount=0;
+		String sql = """
+			SELECT COUNT(*) FROM likes WHERE brand = ? AND price = ? AND product_name = ? AND promotion = ? AND email = ?
+			""";
+				
+		conn=OracleUtill.getConnection();
+		try {
+			pst=conn.prepareStatement(sql);
+			pst.setString(1, brand);
+			pst.setInt(2, price);
+			pst.setString(3, productName);
+			pst.setString(4, promotion);
+			pst.setString(5, email);
+			
+			re=pst.executeQuery();
+			while(re.next()) {
+				likeCount = re.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
+		return likeCount;
+
+	
+	}
 	
 }

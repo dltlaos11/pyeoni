@@ -90,123 +90,179 @@
 }
 
 @
-keyframes animateHeart { 0%{
+keyframes animateHeart { 0% {
 	transform: scale(.2);
 }
 40
-
-
 %
 {
 transform
-
-
 :
-
-
-scale
-(
-
-
-1
-.2
-
-
-)
-;
-
-
+scale(
+1.2
+);
 }
 100
-
-
 %
 {
 transform
-
-
 :
-
-
-scale
-(
-
-
+scale(
 1
-
-
-)
-;
-
-
+);
 }
 }
 </style>
 <script>
 	$(function() {
-		$('.icon.heart').click(	function() {
-			$(this).toggleClass('active');
-			if ($(this).hasClass('active')) {
-				$(this).find('img').attr({'src':'https://cdn-icons-png.flaticon.com/512/803/803087.png', alt : '찜하기 완료'});
-			} else {
-				$(this).find('i').removeClass('fas').addClass('far')
-				$(this).find('img').attr({'src':'https://cdn-icons-png.flaticon.com/512/812/812327.png', alt : "찜하기"})
-			}
-		})
-	});	
-	
-	$(function() {
-		$("td").on("click", function() {
-
-			if ($(this).find("span.icon").length == 0) {	
-
-				$("#prodname").text($(this).parent().parent().parent().parent().attr("data-pname"));
-				$("#prodpromotion").text($(this).parent().parent().parent().parent().attr("data-ppro"));
-				$("#prodprice").text($(this).parent().parent().parent().parent().attr("data-pprice"));
-				$("#prodbrand").text($(this).parent().parent().parent().parent().attr("data-pbrand"));
-				$("#modalimg").attr('src', $(this).parent().parent().parent().parent().attr("data-pimg"));
-				$("#exampleModal").modal("show");
-				viewComment();
-				
-			}
-		});
+		$('.icon.heart')
+				.click(
+						function() {
+							if (!"${sessionScope.loginUser}") return;
+							$(this).toggleClass('active');
+							if ($(this).hasClass('active')) {
+								$(this)
+										.find('img')
+										.attr(
+												{
+													'src' : 'https://cdn-icons-png.flaticon.com/512/803/803087.png',
+													alt : '찜하기 완료'
+												});
+							} else {
+								$(this).find('i').removeClass('fas').addClass(
+										'far')
+								$(this)
+										.find('img')
+										.attr(
+												{
+													'src' : 'https://cdn-icons-png.flaticon.com/512/812/812327.png',
+													alt : "찜하기"
+												})
+							}
+						
+						
+						
+						}
+						
+				)
 	});
-	
-	
-	
-	function likebtn(pname, pro, brand, price){
 
-/* 		좋아요를 눌렀습니다.... 좋아요 테이블에 추가하기....그리고 좋아요값을 수정하기
-		onclick 이기때문에 온로드일필요가 없습니다. */
+	/* 	$(function() {
+	 $("td.prodshow").on(
+	 "click",
+	 function() {
+
+	 if ($(this).find("span.icon").length == 0) {
+
+	 $("#prodname").text(
+	 $(this).parent().parent().parent().parent()
+	 .attr("data-pname"));
+	 $("#prodpromotion").text(
+	 $(this).parent().parent().parent().parent()
+	 .attr("data-ppro"));
+	 $("#prodprice").text(
+	 $(this).parent().parent().parent().parent()
+	 .attr("data-pprice"));
+	 $("#prodbrand").text(
+	 $(this).parent().parent().parent().parent()
+	 .attr("data-pbrand"));
+	 $("#modalimg").attr(
+	 'src',
+	 $(this).parent().parent().parent().parent()
+	 .attr("data-pimg"));
+	 $("#exampleModal").modal("show");
+	 viewComment();
+
+	 }
+	 });
+	 }); */
+	function showModal(elem) {
+		if ($(elem).find("span.icon").length == 0) {
+			$("#prodname").text(
+					$(elem).parent().parent().parent().parent().attr(
+							"data-pname"));
+			$("#prodpromotion").text(
+					$(elem).parent().parent().parent().parent().attr(
+							"data-ppro"));
+			$("#prodprice").text(
+					$(elem).parent().parent().parent().parent().attr(
+							"data-pprice"));
+			$("#prodbrand").text(
+					$(elem).parent().parent().parent().parent().attr(
+							"data-pbrand"));
+			$("#modalimg").attr(
+					'src',
+					$(elem).parent().parent().parent().parent().attr(
+							"data-pimg"));
+			$("#exampleModal").modal("show");
+			viewComment();
+		}
+	}
+	function likebtn(elem, pname, pro, brand, price) {
+		if (!"${sessionScope.loginUser}") {
+			alert("로그인을 해주세요");
+		} else {
+			console.log("likebtn실행");
+			/* 		좋아요를 눌렀습니다.... 좋아요 테이블에 추가하기....그리고 좋아요값을 수정하기
+			 onclick 이기때문에 온로드일필요가 없습니다. */
+			var newlike = 0;
+			$.ajax({
+				method : 'POST',
+				url : '../like/addLike.do',
+				data : {
+					/* 			누가 어디 좋아요를 눌렀나? 
+								가격, 브랜드, productName promotion brand price email */
+					"productName" : pname,
+					"promotion" : pro,
+					"brand" : brand,
+					"price" : price,
+					"email" : "${loginUser.email}"
+				},
+				success : function(responseData) {
+
+					newlike = parseInt(responseData);
+					var onclickval = $(elem).attr('onclick');
+					onclickval = onclickval.replace('like', 'del');
+					$(elem).attr('onclick', onclickval);
+					console.log("${newlikenum}");
+					$(elem).closest('td').find('div.likenum')
+							.text('' + newlike);
+				},
+				error : function() { // 괄호 추가
+
+				}
+			});
+		}
+
+	}
+
+	function delbtn(elem, pname, pro, brand, price) {
+		console.log("delbtn실행");
+		var newlike = 0;
 		$.ajax({
-			method : 'POST',
-			url : '../like/addLike.do',
+			method : 'GET',
+			url : '../like/deleteLike.do',
 			data : {
-	/* 			누가 어디 좋아요를 눌렀나? 
-				가격, 브랜드, productName promotion brand price email */
-				"productName": pname,
-				"promotion": pro,
-				"brand": brand,
-				"price": price,
-				"email": "${loginUser.email}"
+				"productName" : pname,
+				"promotion" : pro,
+				"brand" : brand,
+				"price" : price,
+				"email" : "${loginUser.email}"
 			},
 			success : function(responseData) {
-				if(responseData == "true")
-					alert("like가 추가되었습니다.");
-				else{
-					
-					alert("이미 좋아요를 눌렀습니다.");
-				}
+				newlike = parseInt(responseData);
+				var onclickval = $(elem).attr('onclick');
+				onclickval = onclickval.replace('del', 'like');
+				$(elem).attr('onclick', onclickval);
+				console.log("${newlikenum}");
+				$(elem).closest('td').find('div.likenum').text('' + newlike);
 			},
 			error : function() { // 괄호 추가
-				
+
 			}
-		});	
-		
-		
-		
+		});
+
 	}
-	
 </script>
 </head>
 <body>
@@ -221,10 +277,10 @@ scale
 	<div class="selectall">
 		<c:forEach items="${productList}" var="p">
 
-			<button data-bs-target="#exampleModal"
-				data-bs-whatever="@mdo" data-pname="${p.productName}"
-				data-ppro="${p.promotion}" data-pprice="${p.price}"
-				data-pbrand="${p.brand}" data-pimg="${p.productImg }"
+			<button data-bs-target="#exampleModal" data-bs-whatever="@mdo"
+				data-pname="${p.productName}" data-ppro="${p.promotion}"
+				data-pprice="${p.price}" data-pbrand="${p.brand}"
+				data-pimg="${p.productImg }"
 				class="productInfo ${p.brand == 'CU' ? 'btnCU' : 
                                       p.brand == 'GS25' ? 'btnGS25' :
                                       p.brand == 'SEVENELEVEN' ? 'btnSEVENELEVEN' :
@@ -241,22 +297,39 @@ scale
 					</colgroup>
 					<thead>
 						<tr>
-							<td class="tg-8n49" rowspan="2"><img src="${p.productImg}"
-								alt="Image"
+							<td onclick="showModal(this)" class="prodshow tg-8n49"
+								rowspan="2"><img src="${p.productImg}" alt="Image"
 								style="width: 100px; height: 100px; object-fit: contain;"></td>
-							<td class="tg-7eit">${p.productName}<br></td>
-							<td class="tg-8n49">${p.price}원<br></td>
-							<td class="tg-8n49" rowspan="2"></td>
-							<td class="tg-7eit" rowspan="2"><div class="right_area">
-									<span class="icon heart" onclick="likebtn('${p.productName}','${p.promotion}','${p.brand}','${p.price}')"> <img
-										src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
-										alt="찜하기">
-									</span>
-								</div> <br><div id ="likenum">${p.likenum }</div></td>
+							<td onclick="showModal(this)" class="prodshow tg-7eit">${p.productName}<br></td>
+							<td onclick="showModal(this)" class="prodshow tg-8n49"
+								rowspan="2"></td>
+							<td onclick="showModal(this)" class="prodshow tg-8n49">${p.price}원<br></td>
+							<td onclick="showModal(this)" class="prodshow tg-7eit"
+								rowspan="2"><div class="right_area">
+									<c:choose>
+										<c:when test="${p.check == 1}">
+											<span style="margin-left: 7px;" class="icon heart active"
+												onclick="delbtn(this,'${p.productName}','${p.promotion}','${p.brand}','${p.price}')">
+												<img
+												src="https://cdn-icons-png.flaticon.com/512/803/803087.png"
+												alt="찜하기 완료">
+											</span>
+										</c:when>
+										<c:otherwise>
+											<span style="margin-left: 7px;" class="icon heart"
+												onclick="likebtn(this,'${p.productName}','${p.promotion}','${p.brand}','${p.price}')">
+												<img
+												src="https://cdn-icons-png.flaticon.com/512/812/812327.png"
+												alt="찜하기">
+											</span>
+										</c:otherwise>
+									</c:choose>
+								</div> <br>
+								<div class="likenum">${p.likenum }</div></td>
 						</tr>
 						<tr>
-							<td class="tg-7eit">${p.promotion}</td>
-							<td class="tg-7eit">${p.brand}</td>
+							<td onclick="showModal(this)" class="prodshow tg-7eit">${p.promotion}</td>
+							<td onclick="showModal(this)" class="prodshow tg-7eit">${p.brand}</td>
 						</tr>
 					</thead>
 				</table>
