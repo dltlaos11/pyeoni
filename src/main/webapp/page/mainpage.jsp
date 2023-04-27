@@ -115,7 +115,7 @@ footer {
    height: 110px;
    bottom: 0;
    position: absolute;
-   text-align: right;
+   text-align: center;
    
    font-size: 15px;
 }
@@ -152,7 +152,7 @@ footer {
                href="https://github.com/Jennorresothie/pyeoni">Github</a>
          </nav>
          <p>
-            <span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
+            <span>제작자 : 이택주, 주용준, 양진우, 윤성훈</span> <br> <span>이메일 : 1111@naver.com</span>
             <br> <span>Copyright 2023. All Rights Reserved.</span>
          </p>
    </footer>
