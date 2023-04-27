@@ -174,7 +174,7 @@ footer {
   font-size: 3rem; /* 크기 조정 */
   position: fixed;
   bottom: 20px;
-  right: 500px;
+  left: 80%;
 }
 
 #up_btn:hover {
