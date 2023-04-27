@@ -76,8 +76,9 @@
 </style>
 </head>
 <body>
-	<div class="modal fade" id="myPageModal" tabindex="-1"
-		aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal fade" id="myPageModal" data-bs-backdrop="static"
+		data-bs-keyboard="false" tabindex="-1"
+		aria-labelledby="staticBackdropLabel" aria-hidden="true">
 		<div class="modal-dialog">
 			<div class="modal-content">
 				<div class="modal-header">
@@ -110,18 +111,18 @@
 
 					<hr>
 
-					<table>
+					<table id="changepass">
 						<tr class="form-floating">
 							<td><label class="mypage_head">비밀번호 변경</label></td>
 						</tr>
 						<tr>
 							<td>새 비밀번호</td>
-							<td><input id="passwordinput" type="password"
+							<td><input id="newpasswordinput" type="password"
 								name="password" required="required"></td>
 						</tr>
 						<tr>
 							<td>새 비밀번호 확인</td>
-							<td><input id="passwordinput" type="password"
+							<td><input id="newpasswordinput2" type="password"
 								name="password" required="required"></td>
 						</tr>
 
@@ -132,11 +133,12 @@
 					</table>
 
 					<hr>
-					<label class="mypage_head">회원탈퇴</label>
-
 					<div id="mypage_delbtn">
+						<label class="mypage_head">회원탈퇴</label>
+
 						<button class="btn" id="delmember">회원 탈퇴</button>
 					</div>
+
 
 				</div>
 			</div>
@@ -146,72 +148,92 @@
 
 <script>
 	$(function() {
-
 		$('#delmember').on('click', deletemember);
 		function deletemember() {
-			var email = $('#emailinput').val();
-			var password = $('#passwordinput').val();
-			$.ajax({
 
-				method : 'POST',
-				url : '/pyeoni/memeber/memberSignout.view',
-				data : {
-					"email" : email,
-					"password" : password
-				},
-				success : function(responseData) {
-					if (responseData == "true")
-						alert("회원 탈퇴 완료");
-					else
-						console.log("실패");
-				},
-				error : function() { // 괄호 추가
-
-				}
-			});
 			$.ajax({
 				method : 'POST',
-				url : '/pyeoni/auth/logout.view',
+				url : '../member/memberSignout.view',
 				data : {
-					"email" : email,
-					"password" : password
+					"email" : "${loginUser.email}",
+					"password" : "${loginUser.password}"
 				},
 				success : function(responseData) {
-					alert("로그아웃 성공");
-					window.location.href = "../page/main.view";
+					if (responseData == "true") {
+						alert("회원 탈퇴 완료...자동으로 로그아웃 됩니다.");
+						$.ajax({
+							url : "../auth/logout.view",
+							success : function(responseData) {
+								window.location.href = "../page/main.view";
+							}
+						});
+					}
 				},
-				error : function() { // 괄호 추가
+				error : function() {
+
+					alert("회원탈퇴 실패");
 				}
 			});
-
 		}
 
 		$('#passwordchange').on('click', changepassword);
 		function changepassword() {
+			var password1 = $('#newpasswordinput').val();
+			var password2 = $('#newpasswordinput2').val();
+			if (password1 == password2) {
+				$.ajax({
+
+					method : 'POST',
+					url : '../member/memberDetail.view',
+					data : {
+						"email" : "${loginUser.email}",
+						"password" : password2
+					},
+					success : function(responseData) {
+						if (responseData == "true")
+							alert("비밀번호 변경 완료");
+					},
+					error : function() { // 괄호 추가
+
+					}
+				});
+
+			} else {
+				alert("입력한 비밀번호가 일치하지 않습니다.");
+			}
+
+		}
+
+		/* 비밀번호 확인하기 */
+		$('#passwordcheck').on("click", function() {
 			var email = $('#emailinput').val();
 			var password = $('#passwordinput').val();
-			$.ajax({
 
+			$.ajax({
 				method : 'POST',
-				url : '/pyeoni/memeber/memberDetail.view',
+				url : '../auth/login.view',
 				data : {
 					"email" : email,
 					"password" : password
 				},
 				success : function(responseData) {
-					if (responseData == "true")
-						alert("비밀번호 변경 완료");
-				},
-				error : function() { // 괄호 추가
+					if (responseData == "true") {
+						alert("비밀번호 확인완료");
+						$('#changepass').css('display', 'block'); // #here 요소 보이게 함
+						if ('${sessionScope.loginUser.userName}' != '관리자') {
+							$('#mypage_delbtn').css('display', 'block'); // #here 요소 보이게 함
+						}
 
+					} else {
+						alert("비밀번호가 일치하지 않습니다.");
+					}
+				},
+				error : function() {
+					alert("연결실패");
 				}
 			});
-		}
 
-		function vertifypassword() {
-
-		}
-
+		});
 	});
 </script>
 </html>

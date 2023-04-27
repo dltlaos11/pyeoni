@@ -15,7 +15,7 @@ public class CommentDeleteController implements CommonControllerInterface {
 		
 		String method = (String)data.get("method");
 		
-		if(method.equals("DELETE")) {
+		if(method.equals("GET")) {
 			int commentId = Integer.parseInt(request.getParameter("commentId"));
 			
 			CommentService service = new CommentService();

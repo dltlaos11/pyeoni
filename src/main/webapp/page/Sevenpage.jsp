@@ -56,6 +56,20 @@ a.nav-link {
 	font-weight: bold;
 }
 
+#logout_btn {
+	margin-right: 50px;
+	background-color: white;
+	border-color: rgb(0, 129, 98);
+	color: rgb(0, 129, 98);
+	font-weight: bold;
+}
+
+#logout_btn:hover {
+	background-color: rgb(0, 129, 98);
+	color: white;
+	font-weight: bold;
+}
+
 .content {
 	text-align: center;
 	margin-top: 80px;
@@ -153,6 +167,17 @@ footer {
 	color: white;
 	font-weight: bold;
 }
+
+#up_btn {
+  font-size: 3rem; /* 크기 조정 */
+  position: fixed;
+  bottom: 20px;
+  right: 500px;
+}
+
+#up_btn:hover {
+    color: blue;
+}
 </style>
 
 <script>
@@ -180,31 +205,16 @@ footer {
 			</div>
 		</div>
 	</div>
-
-	<!-- 1+1, 2+1 텍스트 -->
-	<div class="change_event">
-		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
-		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
-		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
-	</div>
-
+	
+	<!-- textChange -->
+	<%@ include file="../common/textChange.jsp" %>
+	
 	<!-- ProductSelectAll -->
 	<%@ include file="../product/ProductShow.jsp"%>
 	<div id="more_here"></div>
 	<button class="btn" id="more_btn" type="submit">더보기</button>
 
-	<!-- <footer>
-         <hr>
-         <nav>
-            <a href="https://www.naver.com/">Naver</a> | <a
-               href="https://github.com/Jennorresothie/pyeoni">Github</a>
-         </nav>
-         <p>
-            <span>제작자 : 맨앞줄조</span> <br> <span>이메일 : 1111@naver.com</span>
-            <br> <span>Copyright 2023. All Rights Reserved.</span>
-         </p>
-   </footer> -->
-
+	<i class='bx bx-up-arrow-circle' id="up_btn" onClick="javascript:window.scrollTo(0,0)"></i>
 </body>
 
 <script>
@@ -215,6 +225,7 @@ footer {
 					var sortType = $("select[name='sort_type']").val();
 					var productType = $("select[name='product_type']").val();
 					var eventType = $("select[name='event_type']").val();
+					var searchType = $("#search_bar").val();
 					var start = parseInt($("#pageNum").val());
 					var end = parseInt($("#pageNum").val())+19;
 					
@@ -226,7 +237,8 @@ footer {
 							"brand" : "7-ELEVEn",
 							"sort_type" : sortType,
 							"product_type" : productType,
-							"event_type" : eventType
+							"event_type" : eventType,
+							"search_bar" : searchType
 						},
 						success : function(responseData) {
 							console.log(responseData);						 

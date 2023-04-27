@@ -217,6 +217,7 @@ public class ProductDAO {
 				select * from(select pp.* , ROWNUM rnum from( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img 
 				FROM product p 
 				""";
+		
 		String sqlEnd = """
 			) pp  where ROWNUM <= ? )  WHERE rnum >= ?
 				""";
@@ -275,6 +276,79 @@ public class ProductDAO {
 			OracleUtill.dbDisconnection(re, conn, pst);
 		}
 
+		return productList;
+	}
+	
+	// 상품 고급 좋아요 검색
+	public List<ProductVO> selectAdvancedLikeProduct(int start, int end, String pname, String arrange, String kind, String event, String brand) {
+		List<ProductVO> productList = new ArrayList<>();
+		StringBuffer tempSb = new StringBuffer();
+		
+		boolean pre = false;
+		
+		String sql = """
+				select * from(select pp.* , ROWNUM rnum from( SELECT p.product_name, p.promotion, p.brand, p.price, p.kind, p.product_img 
+				FROM product p 
+				""";
+		
+		String sqlEnd = """
+			) pp  where ROWNUM <= ? )  WHERE rnum >= ?
+				""";
+		tempSb.append(sql);
+		if(pname!=null && !pname.equals("")) {	
+			pname = pname.replace(" ", "%");
+			tempSb.append("where product_name like '%"+pname+"%'");
+			pre=true;
+		}
+		if(kind!=null && !kind.equals("")) {
+			if(pre==true)
+				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
+			tempSb.append("kind ='"+kind+"' ");
+			pre=true;
+		}
+		if(event!=null && !event.equals("")) {
+			if(pre==true)
+				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
+			tempSb.append("promotion ='"+event+"' ");
+			pre=true;
+		}
+		if(brand!=null && !brand.equals("")) {
+			if(pre==true)
+				tempSb.append(" and ");
+			else
+				tempSb.append(" where ");
+			tempSb.append("brand ='"+brand+"' ");
+		}
+		if(arrange!=null && !arrange.equals("")) {
+			tempSb.append(arrange);
+		}
+		tempSb.append(sqlEnd);
+		
+		sql = tempSb.toString();
+		System.out.println("sql " + sql);
+		conn = OracleUtill.getConnection();
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, end);
+			pst.setInt(2, start);
+			
+			re = pst.executeQuery();
+			while (re.next()) {
+				ProductVO product = makeProduct(re);
+				productList.add(product);
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(re, conn, pst);
+		}
+		
 		return productList;
 	}
 

@@ -154,6 +154,17 @@ footer {
 	color: white;
 	font-weight: bold;
 }
+
+#up_btn {
+  font-size: 3rem; /* 크기 조정 */
+  position: fixed;
+  bottom: 20px;
+  right: 500px;
+}
+
+#up_btn:hover {
+    color: blue;
+}
 </style>
 
 <script>
@@ -181,19 +192,16 @@ footer {
 			</div>
 		</div>
 	</div>
-
-	<!-- 1+1, 2+1 텍스트 -->
-	<div class="change_event">
-		<i class='bx bxs-megaphone'></i> <span id="allproduct">전체 상품목록입니다.</span><br>
-		<!-- <span id="1+1">1+1 행사상품입니다.</span><br>
-		<span id="2+1">2+1 행사상품입니다.</span><br>   -->   	  
-	</div>
+	
+	<!-- textChange -->
+	<%@ include file="../common/textChange.jsp" %>
 
 	<!-- ProductSelectAll -->
 	<%@ include file="../product/ProductShow.jsp"%>
 	<div id="more_here"></div>
 	<button class="btn" id="more_btn" type="submit">더보기</button>
-
+	
+	<i class='bx bx-up-arrow-circle' id="up_btn" onClick="javascript:window.scrollTo(0,0)"></i>
 </body>
 
 <script>
@@ -204,6 +212,7 @@ footer {
 					var sortType = $("select[name='sort_type']").val();
 					var productType = $("select[name='product_type']").val();
 					var eventType = $("select[name='event_type']").val();
+					var searchType = $("#search_bar").val();
 					var start = parseInt($("#pageNum").val());
 					var end = parseInt($("#pageNum").val())+19;
 					
@@ -215,7 +224,8 @@ footer {
 							"brand" : "emart24",
 							"sort_type" : sortType,
 							"product_type" : productType,
-							"event_type" : eventType
+							"event_type" : eventType,
+							"search_bar" : searchType
 						},
 						success : function(responseData) {
 							console.log(responseData);						 

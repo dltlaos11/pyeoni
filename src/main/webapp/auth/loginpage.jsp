@@ -94,12 +94,6 @@ $(function(){
 			  } 
 		 
 		});
-	
-
-	
-
-	
-
 
 	function signUp(){
 		  var email = $("#emailinput").val();
