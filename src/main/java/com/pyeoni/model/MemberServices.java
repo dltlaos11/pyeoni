@@ -41,4 +41,9 @@ public class MemberServices {
 	public List<MemberVO> selectAll() {
 		return dao.selectAll();
 	}
+	
+	// 계정 복구 or 삭제
+	public List<MemberVO> controllLife(String coin, String email){
+		return dao.controllLife(coin, email);
+	}
 }

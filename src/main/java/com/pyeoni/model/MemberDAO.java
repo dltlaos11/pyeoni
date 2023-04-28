@@ -190,6 +190,39 @@ public class MemberDAO {
 		
 		return memList;
 	}
+	
+	// 계정 복구 or 삭제
+	public List<MemberVO> controllLife(String coin, String email){
+		String sql = """
+				 UPDATE member SET withdraw=? WHERE email=?
+				""";
+		List<MemberVO> memList = new ArrayList<>();
+
+		conn = OracleUtill.getConnection();
+		
+		int Coin = Integer.parseInt(coin);
+		
+		try {
+			pst = conn.prepareStatement(sql);
+			pst.setInt(1, Coin);
+			pst.setString(2, email);
+			
+			System.out.println(sql);
+			
+			result = pst.executeUpdate();
+			
+			System.out.println("업데이트 결과 "+result);
+			
+			memList = selectAll();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			OracleUtill.dbDisconnection(null, conn, pst);
+		}
+		
+		return memList;
+	}
 
 	private MemberVO makeMem(ResultSet re) throws SQLException {
 		MemberVO mem = new MemberVO();
